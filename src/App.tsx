@@ -71,7 +71,7 @@ const copy = {
       "Kurumların yapay zekâyı sadece deneme amaçlı değil, gerçek karar kalitesi ve operasyonel verim artışı sağlayacak şekilde kullanmasına yardımcı olmak.",
     vision: "Vizyon",
     visionText:
-      "Türkiye’den çıkan, saygın, etkili ve iş dünyasında güven oluşturan bir kurumsal AI çözüm şirketi olmak.",
+      "Türkiye'den çıkan, saygın, etkili ve iş dünyasında güven oluşturan bir kurumsal AI çözüm şirketi olmak.",
     blogEyebrow: "Blog",
     blogTitle: "İçgörüler, notlar ve uygulama deneyimleri",
     blogText:
@@ -145,7 +145,7 @@ const copy = {
     useCasesTitle: "Priority enterprise use cases",
     useCasesText:
       "We focus first on the areas most suitable for rapid value creation. These examples represent structures that can be applied across sectors.",
-    talkThisUseCase: "Let’s discuss this use case",
+    talkThisUseCase: "Let's discuss this use case",
     aboutEyebrow: "About",
     aboutTitle: "About Decigent",
     aboutText:
@@ -163,7 +163,7 @@ const copy = {
     searchPosts: "Search posts...",
     readOnLinkedIn: "Read on LinkedIn",
     contactEyebrow: "Contact",
-    contactTitle: "Let’s clarify your AI opportunity together",
+    contactTitle: "Let's clarify your AI opportunity together",
     contactText:
       "In the first conversation, we evaluate your business objective, priority use case, and the fastest path to measurable value.",
     contactForm: "Contact form",
@@ -180,7 +180,7 @@ const copy = {
     addressLabel: "Address",
     recommended: "Recommended first step",
     recommendedText:
-      "Let’s first select one high-impact use case. Then we can clarify the data requirements, workflow, and pilot scope together.",
+      "Let's first select one high-impact use case. Then we can clarify the data requirements, workflow, and pilot scope together.",
     menu: "Menu",
     contactInfo: "Contact",
     footerTag: "Intelligent decisions and operations",
@@ -450,6 +450,18 @@ const styles = {
   } as const,
 };
 
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(
+    typeof window !== "undefined" ? window.innerWidth < 768 : false
+  );
+  useEffect(() => {
+    const handler = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener("resize", handler);
+    return () => window.removeEventListener("resize", handler);
+  }, []);
+  return isMobile;
+}
+
 function SectionHeader({
   eyebrow,
   title,
@@ -517,6 +529,9 @@ export default function App() {
   const [currentPage, setCurrentPage] = useState<Page>("Ana Sayfa");
   const [blogQuery, setBlogQuery] = useState("");
   const [prefilledMessage, setPrefilledMessage] = useState("");
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const isMobile = useIsMobile();
 
   const c = copy[lang];
   const currentServices = services[lang];
@@ -551,6 +566,11 @@ export default function App() {
     }
   }, [currentPage, c.prefMessage]);
 
+  // Close mobile menu on resize to desktop
+  useEffect(() => {
+    if (!isMobile) setMobileMenuOpen(false);
+  }, [isMobile]);
+
   const filteredPosts = useMemo(() => {
     return currentBlogPosts.filter((post) => {
       const haystack = `${post.category} ${post.title} ${post.excerpt}`.toLowerCase();
@@ -578,6 +598,7 @@ export default function App() {
   };
 
   const navigateTo = (page: Page) => {
+    setMobileMenuOpen(false);
     setCurrentPage(
       page === "Hizmetler" || page === "Çözümler" || page === "Use Cases"
         ? "Ana Sayfa"
@@ -630,6 +651,7 @@ export default function App() {
 
   return (
     <div style={styles.page}>
+      {/* ── HEADER ── */}
       <header
         style={{
           position: "sticky",
@@ -643,87 +665,213 @@ export default function App() {
         <div
           style={{
             ...styles.container,
-            height: 84,
+            minHeight: 72,
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            gap: 20,
+            gap: 12,
+            flexWrap: "wrap",
+            padding: isMobile ? "12px 16px" : "0 24px",
           }}
         >
           <button
             onClick={() => navigateTo("Ana Sayfa")}
-            style={{ background: "transparent", border: "none", cursor: "pointer" }}
+            style={{ background: "transparent", border: "none", cursor: "pointer", padding: 0 }}
           >
-            <img src="/logo.png" alt="Decigent Logo" style={{ height: 40, width: "auto" }} />
+            <img src="/logo.png" alt="Decigent Logo" style={{ height: 36, width: "auto" }} />
           </button>
 
-          <nav style={{ display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center" }}>
+          {isMobile ? (
+            /* Mobile: lang toggle + hamburger */
+            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+              <div
+                style={{
+                  display: "flex",
+                  border: "1px solid #cbd5e1",
+                  borderRadius: 999,
+                  overflow: "hidden",
+                }}
+              >
+                <button
+                  onClick={() => setLang("tr")}
+                  style={{
+                    border: "none",
+                    background: lang === "tr" ? "#0f172a" : "white",
+                    color: lang === "tr" ? "white" : "#334155",
+                    padding: "7px 11px",
+                    cursor: "pointer",
+                    fontWeight: 700,
+                    fontSize: 13,
+                  }}
+                >
+                  TR
+                </button>
+                <button
+                  onClick={() => setLang("en")}
+                  style={{
+                    border: "none",
+                    background: lang === "en" ? "#0f172a" : "white",
+                    color: lang === "en" ? "white" : "#334155",
+                    padding: "7px 11px",
+                    cursor: "pointer",
+                    fontWeight: 700,
+                    fontSize: 13,
+                  }}
+                >
+                  EN
+                </button>
+              </div>
+              <button
+                onClick={() => setMobileMenuOpen((v) => !v)}
+                aria-label={mobileMenuOpen ? "Menüyü kapat" : "Menüyü aç"}
+                style={{
+                  border: "1px solid #cbd5e1",
+                  borderRadius: 12,
+                  background: "white",
+                  width: 40,
+                  height: 40,
+                  cursor: "pointer",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: 5,
+                  padding: 0,
+                  flexShrink: 0,
+                }}
+              >
+                {mobileMenuOpen ? (
+                  /* X ikonu */
+                  <>
+                    <span style={{
+                      display: "block", width: 18, height: 2,
+                      background: "#0f172a", borderRadius: 2,
+                      transform: "rotate(45deg) translate(5px, 5px)",
+                    }} />
+                    <span style={{
+                      display: "block", width: 18, height: 2,
+                      background: "#0f172a", borderRadius: 2,
+                      opacity: 0,
+                    }} />
+                    <span style={{
+                      display: "block", width: 18, height: 2,
+                      background: "#0f172a", borderRadius: 2,
+                      transform: "rotate(-45deg) translate(5px, -5px)",
+                    }} />
+                  </>
+                ) : (
+                  /* Hamburger ikonu */
+                  <>
+                    <span style={{ display: "block", width: 18, height: 2, background: "#0f172a", borderRadius: 2 }} />
+                    <span style={{ display: "block", width: 18, height: 2, background: "#0f172a", borderRadius: 2 }} />
+                    <span style={{ display: "block", width: 18, height: 2, background: "#0f172a", borderRadius: 2 }} />
+                  </>
+                )}
+              </button>
+            </div>
+          ) : (
+            /* Desktop nav */
+            <nav style={{ display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center" }}>
+              {navItems.map((item) => (
+                <button
+                  key={item}
+                  onClick={() => navigateTo(item)}
+                  style={{
+                    border: "none",
+                    background: currentPage === item ? "#0f172a" : "transparent",
+                    color: currentPage === item ? "white" : "#475569",
+                    padding: "10px 14px",
+                    borderRadius: 999,
+                    cursor: "pointer",
+                    fontWeight: 600,
+                  }}
+                >
+                  {pageLabel(item)}
+                </button>
+              ))}
+              <div
+                style={{
+                  display: "flex",
+                  border: "1px solid #cbd5e1",
+                  borderRadius: 999,
+                  overflow: "hidden",
+                  marginLeft: 8,
+                }}
+              >
+                <button
+                  onClick={() => setLang("tr")}
+                  style={{
+                    border: "none",
+                    background: lang === "tr" ? "#0f172a" : "white",
+                    color: lang === "tr" ? "white" : "#334155",
+                    padding: "8px 12px",
+                    cursor: "pointer",
+                    fontWeight: 700,
+                  }}
+                >
+                  TR
+                </button>
+                <button
+                  onClick={() => setLang("en")}
+                  style={{
+                    border: "none",
+                    background: lang === "en" ? "#0f172a" : "white",
+                    color: lang === "en" ? "white" : "#334155",
+                    padding: "8px 12px",
+                    cursor: "pointer",
+                    fontWeight: 700,
+                  }}
+                >
+                  EN
+                </button>
+              </div>
+            </nav>
+          )}
+        </div>
+
+        {/* Mobile dropdown menu */}
+        {isMobile && mobileMenuOpen && (
+          <div
+            style={{
+              borderTop: "1px solid #e2e8f0",
+              background: "white",
+              padding: "12px 16px",
+              display: "grid",
+              gap: 4,
+            }}
+          >
             {navItems.map((item) => (
               <button
                 key={item}
                 onClick={() => navigateTo(item)}
                 style={{
                   border: "none",
-                  background: currentPage === item ? "#0f172a" : "transparent",
-                  color: currentPage === item ? "white" : "#475569",
-                  padding: "10px 14px",
-                  borderRadius: 999,
+                  background: currentPage === item ? "#f1f5f9" : "transparent",
+                  color: currentPage === item ? "#0f172a" : "#475569",
+                  padding: "12px 14px",
+                  borderRadius: 12,
                   cursor: "pointer",
                   fontWeight: 600,
+                  textAlign: "left",
+                  fontSize: 15,
                 }}
               >
                 {pageLabel(item)}
               </button>
             ))}
-
-            <div
-              style={{
-                display: "flex",
-                border: "1px solid #cbd5e1",
-                borderRadius: 999,
-                overflow: "hidden",
-                marginLeft: 8,
-              }}
-            >
-              <button
-                onClick={() => setLang("tr")}
-                style={{
-                  border: "none",
-                  background: lang === "tr" ? "#0f172a" : "white",
-                  color: lang === "tr" ? "white" : "#334155",
-                  padding: "8px 12px",
-                  cursor: "pointer",
-                  fontWeight: 700,
-                }}
-              >
-                TR
-              </button>
-              <button
-                onClick={() => setLang("en")}
-                style={{
-                  border: "none",
-                  background: lang === "en" ? "#0f172a" : "white",
-                  color: lang === "en" ? "white" : "#334155",
-                  padding: "8px 12px",
-                  cursor: "pointer",
-                  fontWeight: 700,
-                }}
-              >
-                EN
-              </button>
-            </div>
-          </nav>
-        </div>
+          </div>
+        )}
       </header>
 
       {currentPage === "Ana Sayfa" && (
         <>
+          {/* ── HERO ── */}
           <section style={{ ...styles.section, paddingTop: 88 }}>
             <div
               style={{
                 ...styles.container,
                 display: "grid",
-                gridTemplateColumns: "1.1fr 0.9fr",
+                gridTemplateColumns: isMobile ? "1fr" : "1.1fr 0.9fr",
                 gap: 32,
                 alignItems: "center",
               }}
@@ -741,7 +889,13 @@ export default function App() {
                 >
                   {c.heroBadge}
                 </div>
-                <h1 style={{ fontSize: 56, lineHeight: 1.05, margin: "0 0 18px" }}>
+                <h1
+                  style={{
+                    fontSize: isMobile ? 36 : 56,
+                    lineHeight: 1.05,
+                    margin: "0 0 18px",
+                  }}
+                >
                   {c.heroTitle}
                 </h1>
                 <p style={{ ...styles.muted, fontSize: 18, marginBottom: 24 }}>
@@ -765,7 +919,7 @@ export default function App() {
                 <div
                   style={{
                     display: "grid",
-                    gridTemplateColumns: "repeat(3, minmax(0,1fr))",
+                    gridTemplateColumns: isMobile ? "1fr" : "repeat(3, minmax(0,1fr))",
                     gap: 14,
                   }}
                 >
@@ -809,11 +963,12 @@ export default function App() {
                             alignItems: "center",
                             justifyContent: "center",
                             fontSize: 12,
+                            flexShrink: 0,
                           }}
                         >
                           {i + 1}
                         </div>
-                        <span>{step}</span>
+                        <span style={{ fontSize: isMobile ? 14 : 16 }}>{step}</span>
                       </div>
                       <span>›</span>
                     </div>
@@ -845,6 +1000,7 @@ export default function App() {
             </div>
           </section>
 
+          {/* ── SERVICES ── */}
           <section id="services-section" style={styles.section}>
             <div style={styles.container}>
               <SectionHeader
@@ -855,7 +1011,9 @@ export default function App() {
               <div
                 style={{
                   display: "grid",
-                  gridTemplateColumns: "repeat(3, minmax(0,1fr))",
+                  gridTemplateColumns: isMobile
+                    ? "1fr"
+                    : "repeat(3, minmax(0,1fr))",
                   gap: 18,
                 }}
               >
@@ -878,6 +1036,7 @@ export default function App() {
             </div>
           </section>
 
+          {/* ── SOLUTIONS ── */}
           <section id="solutions-section" style={styles.section}>
             <div style={styles.container}>
               <SectionHeader
@@ -888,7 +1047,7 @@ export default function App() {
               <div
                 style={{
                   display: "grid",
-                  gridTemplateColumns: "repeat(2, minmax(0,1fr))",
+                  gridTemplateColumns: isMobile ? "1fr" : "repeat(2, minmax(0,1fr))",
                   gap: 18,
                 }}
               >
@@ -937,6 +1096,7 @@ export default function App() {
             </div>
           </section>
 
+          {/* ── USE CASES ── */}
           <section id="usecases-section" style={styles.section}>
             <div style={styles.container}>
               <SectionHeader
@@ -947,7 +1107,7 @@ export default function App() {
               <div
                 style={{
                   display: "grid",
-                  gridTemplateColumns: "repeat(2, minmax(0,1fr))",
+                  gridTemplateColumns: isMobile ? "1fr" : "repeat(2, minmax(0,1fr))",
                   gap: 18,
                 }}
               >
@@ -969,7 +1129,7 @@ export default function App() {
                 style={{
                   marginTop: 18,
                   display: "grid",
-                  gridTemplateColumns: "1fr 1fr",
+                  gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
                   gap: 14,
                 }}
               >
@@ -984,6 +1144,7 @@ export default function App() {
         </>
       )}
 
+      {/* ── ABOUT ── */}
       {currentPage === "About" && (
         <section style={styles.section}>
           <div style={styles.container}>
@@ -995,7 +1156,7 @@ export default function App() {
             <div
               style={{
                 display: "grid",
-                gridTemplateColumns: "1fr 1fr",
+                gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
                 gap: 18,
                 marginBottom: 18,
               }}
@@ -1013,14 +1174,16 @@ export default function App() {
         </section>
       )}
 
+      {/* ── BLOG ── */}
       {currentPage === "Blog" && (
         <section style={styles.section}>
           <div style={styles.container}>
             <div
               style={{
                 display: "flex",
+                flexDirection: isMobile ? "column" : "row",
                 justifyContent: "space-between",
-                alignItems: "end",
+                alignItems: isMobile ? "flex-start" : "end",
                 gap: 20,
                 marginBottom: 28,
               }}
@@ -1038,7 +1201,8 @@ export default function App() {
                   padding: "12px 16px",
                   borderRadius: 999,
                   border: "1px solid #cbd5e1",
-                  minWidth: 240,
+                  minWidth: isMobile ? "100%" : 240,
+                  boxSizing: "border-box",
                 }}
               />
             </div>
@@ -1046,7 +1210,9 @@ export default function App() {
             <div
               style={{
                 display: "grid",
-                gridTemplateColumns: "repeat(3, minmax(0,1fr))",
+                gridTemplateColumns: isMobile
+                  ? "1fr"
+                  : "repeat(3, minmax(0,1fr))",
                 gap: 18,
               }}
             >
@@ -1076,6 +1242,7 @@ export default function App() {
         </section>
       )}
 
+      {/* ── CONTACT ── */}
       {currentPage === "Contact" && (
         <section style={styles.section}>
           <div style={styles.container}>
@@ -1087,7 +1254,7 @@ export default function App() {
             <div
               style={{
                 display: "grid",
-                gridTemplateColumns: "1.05fr 0.95fr",
+                gridTemplateColumns: isMobile ? "1fr" : "1.05fr 0.95fr",
                 gap: 18,
               }}
             >
@@ -1099,7 +1266,7 @@ export default function App() {
                   <div
                     style={{
                       display: "grid",
-                      gridTemplateColumns: "1fr 1fr",
+                      gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
                       gap: 14,
                     }}
                   >
@@ -1109,7 +1276,7 @@ export default function App() {
                   <div
                     style={{
                       display: "grid",
-                      gridTemplateColumns: "1fr 1fr",
+                      gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
                       gap: 14,
                     }}
                   >
@@ -1160,6 +1327,7 @@ export default function App() {
         </section>
       )}
 
+      {/* ── FOOTER ── */}
       <footer
         style={{
           borderTop: "1px solid #e2e8f0",
@@ -1168,7 +1336,13 @@ export default function App() {
         }}
       >
         <div style={styles.container}>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 24 }}>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr 1fr",
+              gap: 24,
+            }}
+          >
             <div>
               <div style={{ fontSize: 20, fontWeight: 700, marginBottom: 8 }}>Decigent</div>
               <div style={{ color: "#64748b" }}>{c.footerTag}</div>
