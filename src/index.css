@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.card-hover {
+  transition: background 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.card-hover:hover {
+  background: #FEF9EE !important;
+  border-color: #F0D89A !important;
+  box-shadow: 0 12px 36px rgba(14, 38, 56, 0.10) !important;
+}

@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
+import { type Lang, copy, services, solutions, useCasesList, blogPosts } from "./data";
 
-type Lang = "tr" | "en";
 type Page =
   | "Ana Sayfa"
   | "Hizmetler"
@@ -15,400 +15,30 @@ const navItems: Page[] = [
   "Hizmetler",
   "Çözümler",
   "Use Cases",
-  "About",
+  "Biz Kimiz",
   "Blog",
-  "Contact",
+  "İletişim",
 ];
 
-const copy = {
-  tr: {
-    home: "Ana Sayfa",
-    services: "Hizmetler",
-    solutions: "Çözümler",
-    useCases: "Use Cases",
-    about: "About",
-    blog: "Blog",
-    contact: "Contact",
-    ctaMeet: "Görüşme Planla",
-    heroBadge: "Kurumsal kararlar ve operasyonlar için yapay zekâ",
-    heroTitle: "Kurumsal kararlar ve operasyonlar için akıllı AI çözümleri",
-    heroText:
-      "Decigent, yapay zekâ destekli ajanik iş akışları temelli kurumsal uygulama çözümleri geliştirir. Hedefimiz, kurumların daha hızlı karar almasını, süreçlerini daha akıllı yönetmesini ve somut iş değeri üretmesini sağlamaktır.",
-    reviewSolutions: "Çözümleri İncele",
-    quickPilot: "Hızlı pilot",
-    quickPilotText: "90 gün içinde ölçülebilir değer",
-    controlledAI: "Kontrollü AI",
-    controlledAIText: "İnsan onayı ve izlenebilirlik",
-    enterpriseFit: "Kurumsal uyum",
-    enterpriseFitText: "Mevcut süreçlerle entegre yaklaşım",
-    decisionEngine: "Decigent Decision Engine",
-    step1: "Veri kaynaklarını birleştir",
-    step2: "Kritik sinyalleri tespit et",
-    step3: "Karar önerisi oluştur",
-    step4: "İnsan onayı ile aksiyona dönüştür",
-    approach: "Temel yaklaşım",
-    delivery: "Teslim modeli",
-    deliveryValue: "Pilot → ölçekleme → ürünleşme",
-    servicesEyebrow: "Hizmetler",
-    servicesTitle: "Nasıl çalışıyoruz?",
-    servicesText:
-      "Decigent, kurumlara AI dönüşümünü başlatmak ve ölçeklemek için uçtan uca hizmetler sunar.",
-    solutionsEyebrow: "Çözümler",
-    solutionsTitle: "Ne inşa ediyoruz?",
-    solutionsText:
-      "Kurumsal karar ve operasyon süreçlerini dönüştüren yapay zekâ çözümleri.",
-    useCasesEyebrow: "Use Cases",
-    useCasesTitle: "Öncelikli kurumsal kullanım senaryoları",
-    useCasesText:
-      "İlk aşamada hızlı değer üretmeye en uygun alanları hedefliyoruz. Bu örnekler, farklı sektörlerde uygulanabilecek yapıların temsilidir.",
-    talkThisUseCase: "Bu Use Case'i Konuşalım",
-    aboutEyebrow: "About",
-    aboutTitle: "Decigent hakkında",
-    aboutText:
-      "Decigent, kurumların karar alma ve operasyon yetkinliklerini yapay zekâ ile güçlendirmeye odaklanan bağımsız bir girişimdir.",
-    mission: "Misyon",
-    missionText:
-      "Kurumların yapay zekâyı sadece deneme amaçlı değil, gerçek karar kalitesi ve operasyonel verim artışı sağlayacak şekilde kullanmasına yardımcı olmak.",
-    vision: "Vizyon",
-    visionText:
-      "Türkiye'den çıkan, saygın, etkili ve iş dünyasında güven oluşturan bir kurumsal AI çözüm şirketi olmak.",
-    blogEyebrow: "Blog",
-    blogTitle: "İçgörüler, notlar ve uygulama deneyimleri",
-    blogText:
-      "Decigent blog, kurumsal AI dönüşümüne dair stratejik bakış, uygulama notları ve yönetsel içgörüler paylaşmak için tasarlanmıştır.",
-    searchPosts: "Yazılarda ara...",
-    readOnLinkedIn: "LinkedIn'de Oku",
-    contactEyebrow: "Contact",
-    contactTitle: "Bir AI kullanım alanını birlikte netleştirelim",
-    contactText:
-      "İlk görüşmede iş hedefinizi, öncelikli kullanım senaryonuzu ve en hızlı değer üretme yolunu birlikte değerlendiriyoruz.",
-    contactForm: "İletişim formu",
-    contactFormText:
-      "Form gönderildiğinde varsayılan mail uygulamanız açılır ve mesajınız otomatik olarak doldurulur.",
-    name: "Ad Soyad",
-    company: "Şirket",
-    email: "E-posta",
-    phone: "Telefon",
-    messagePlaceholder: "Kısa ihtiyaç tanımınızı yazın",
-    send: "Mesaj Gönder",
-    emailLabel: "E-posta",
-    phoneLabel: "Telefon",
-    addressLabel: "Adres",
-    recommended: "Önerilen ilk adım",
-    recommendedText:
-      "Önce tek bir yüksek etkili kullanım alanı seçelim. Sonra veri gereksinimi, iş akışı ve pilot kapsamını birlikte netleştirelim.",
-    menu: "Menü",
-    contactInfo: "İletişim",
-    footerTag: "Intelligent decisions and operations",
-    rights: "Tüm hakları saklıdır.",
-    linkedIn: "LinkedIn",
-    prefMessage:
-      "Merhaba, {title} use case'i ile ilgileniyorum. Bu çözüm için detaylı bilgi almak ve kısa bir görüşme planlamak istiyorum.",
-  },
-  en: {
-    home: "Home",
-    services: "Services",
-    solutions: "Solutions",
-    useCases: "Use Cases",
-    about: "About",
-    blog: "Blog",
-    contact: "Contact",
-    ctaMeet: "Schedule a Meeting",
-    heroBadge: "AI for enterprise decisions and operations",
-    heroTitle: "Smart AI solutions for enterprise decisions and operations",
-    heroText:
-      "Decigent develops enterprise application solutions built on AI-powered agentic workflows. Our goal is to help organizations make faster decisions, run smarter processes, and generate measurable business value.",
-    reviewSolutions: "Explore Solutions",
-    quickPilot: "Fast pilot",
-    quickPilotText: "Measurable value within 90 days",
-    controlledAI: "Controlled AI",
-    controlledAIText: "Human approval and traceability",
-    enterpriseFit: "Enterprise fit",
-    enterpriseFitText: "Integrated with existing processes",
-    decisionEngine: "Decigent Decision Engine",
-    step1: "Unify data sources",
-    step2: "Detect critical signals",
-    step3: "Generate decision recommendations",
-    step4: "Turn into action with human approval",
-    approach: "Core approach",
-    delivery: "Delivery model",
-    deliveryValue: "Pilot → scale → productization",
-    servicesEyebrow: "Services",
-    servicesTitle: "How we work",
-    servicesText:
-      "Decigent provides end-to-end services to launch and scale AI transformation in enterprises.",
-    solutionsEyebrow: "Solutions",
-    solutionsTitle: "What we build",
-    solutionsText:
-      "AI solutions that transform enterprise decision and operational processes.",
-    useCasesEyebrow: "Use Cases",
-    useCasesTitle: "Priority enterprise use cases",
-    useCasesText:
-      "We focus first on the areas most suitable for rapid value creation. These examples represent structures that can be applied across sectors.",
-    talkThisUseCase: "Let's discuss this use case",
-    aboutEyebrow: "About",
-    aboutTitle: "About Decigent",
-    aboutText:
-      "Decigent is an independent venture focused on strengthening enterprise decision-making and operational capabilities with AI.",
-    mission: "Mission",
-    missionText:
-      "To help organizations use AI not just for experimentation, but to create real improvements in decision quality and operational efficiency.",
-    vision: "Vision",
-    visionText:
-      "To become a respected and effective enterprise AI solutions company emerging from Türkiye.",
-    blogEyebrow: "Blog",
-    blogTitle: "Insights, notes and implementation experience",
-    blogText:
-      "The Decigent blog is designed to share strategic perspectives, implementation notes, and executive insights on enterprise AI transformation.",
-    searchPosts: "Search posts...",
-    readOnLinkedIn: "Read on LinkedIn",
-    contactEyebrow: "Contact",
-    contactTitle: "Let's clarify your AI opportunity together",
-    contactText:
-      "In the first conversation, we evaluate your business objective, priority use case, and the fastest path to measurable value.",
-    contactForm: "Contact form",
-    contactFormText:
-      "When the form is submitted, your default mail app opens and the message is auto-filled.",
-    name: "Full Name",
-    company: "Company",
-    email: "Email",
-    phone: "Phone",
-    messagePlaceholder: "Write a short description of your need",
-    send: "Send Message",
-    emailLabel: "Email",
-    phoneLabel: "Phone",
-    addressLabel: "Address",
-    recommended: "Recommended first step",
-    recommendedText:
-      "Let's first select one high-impact use case. Then we can clarify the data requirements, workflow, and pilot scope together.",
-    menu: "Menu",
-    contactInfo: "Contact",
-    footerTag: "Intelligent decisions and operations",
-    rights: "All rights reserved.",
-    linkedIn: "LinkedIn",
-    prefMessage:
-      "Hello, I am interested in the use case: {title}. I would like to learn more and schedule a short meeting.",
-  },
+const NAVY = "#0E2638";
+const GOLD = "#D5A753";
+const GOLD_LIGHT = "#FEF9EE";
+const GOLD_BORDER = "#F0D89A";
+const SOFT_BG = "#F8FAFC";
+const SPACE = {
+  xs: 8,
+  sm: 10,
+  md: 14,
+  lg: 18,
+  xl: 24,
 } as const;
-
-const services = {
-  tr: [
-    {
-      title: "Ajanik İş Akışları",
-      description:
-        "Tekrarlayan ve karar gerektiren iş süreçlerini kontrollü, izlenebilir ve ölçülebilir AI iş akışlarına dönüştürüyoruz.",
-    },
-    {
-      title: "Karar Destek Çözümleri",
-      description:
-        "Yöneticilerin daha hızlı, daha tutarlı ve veri destekli karar almasını sağlayan kurumsal çözümler geliştiriyoruz.",
-    },
-    {
-      title: "Kurumsal Copilotlar",
-      description:
-        "Satış, operasyon, satın alma, İK ve yönetim ekipleri için role özel yapay zekâ asistanları tasarlıyoruz.",
-    },
-    {
-      title: "Veri ve İçgörü Katmanı",
-      description:
-        "Dağınık verileri anlamlı içgörülere dönüştüren sorgulama, özetleme ve aksiyon katmanı kuruyoruz.",
-    },
-    {
-      title: "AI Governance",
-      description:
-        "Yetki, insan onayı, izlenebilirlik ve güvenli kullanım gereksinimlerini çözüm tasarımının merkezine yerleştiriyoruz.",
-    },
-    {
-      title: "Pilot ve Ölçekleme",
-      description:
-        "Hızlı pilotlarla değeri kanıtlıyor, ardından kurumsal ölçekte yaygınlaştırma planı oluşturuyoruz.",
-    },
-  ],
-  en: [
-    {
-      title: "Agentic Workflows",
-      description:
-        "We transform repetitive and decision-heavy business processes into controlled, traceable, and measurable AI workflows.",
-    },
-    {
-      title: "Decision Support Solutions",
-      description:
-        "We build enterprise solutions that enable executives to make faster, more consistent, and data-driven decisions.",
-    },
-    {
-      title: "Enterprise Copilots",
-      description:
-        "We design role-specific AI assistants for sales, operations, procurement, HR, and executive teams.",
-    },
-    {
-      title: "Data and Insight Layer",
-      description:
-        "We build a layer that turns fragmented data into meaningful insights, querying, summarization, and action.",
-    },
-    {
-      title: "AI Governance",
-      description:
-        "We place authorization, human approval, traceability, and safe usage requirements at the center of solution design.",
-    },
-    {
-      title: "Pilot and Scaling",
-      description:
-        "We prove value with fast pilots and then define a scaling roadmap at enterprise level.",
-    },
-  ],
-};
-
-const solutions = {
-  tr: [
-    {
-      title: "Yönetim Raporu ve Aksiyon Copilotu",
-      sector: "Üretim",
-      description:
-        "Yöneticilere dağınık operasyon verilerini özetler, kritik sapmaları işaretler ve önerilen aksiyonları sunar.",
-      bullets: [
-        "Haftalık özet",
-        "Sapma alarmı",
-        "Aksiyon önerisi",
-        "Yönetici görünümü",
-      ],
-    },
-    {
-      title: "Teklif ve Müşteri Yanıt Ajanı",
-      sector: "Satış",
-      description:
-        "Teklif hazırlama, müşteri sorularını yanıtlama ve satış ekibinin yanıt hızını artırma için kullanılır.",
-      bullets: [
-        "Teklif taslağı",
-        "Hızlı yanıtlama",
-        "CRM özeti",
-        "Fırsat takibi",
-      ],
-    },
-    {
-      title: "Tedarikçi Karşılaştırma ve Onay Akışı",
-      sector: "Satın Alma",
-      description:
-        "Teklifleri kıyaslar, risk noktalarını işaretler ve onay süreçlerini hızlandırır.",
-      bullets: ["Karşılaştırma", "Risk analizi", "Onay akışı", "Kayıt"],
-    },
-    {
-      title: "İK Talep ve Politika Asistanı",
-      sector: "İK",
-      description:
-        "İç prosedür ve politikalar üzerinden çalışan sorularını yanıtlayan güvenli kurumsal asistan sunar.",
-      bullets: ["Politika Q&A", "Self-service", "Loglama", "Doküman erişimi"],
-    },
-  ],
-  en: [
-    {
-      title: "Management Reporting and Action Copilot",
-      sector: "Manufacturing",
-      description:
-        "Summarizes fragmented operational data for executives, highlights critical deviations, and presents recommended actions.",
-      bullets: [
-        "Weekly summary",
-        "Deviation alerts",
-        "Action suggestions",
-        "Executive view",
-      ],
-    },
-    {
-      title: "Proposal and Customer Response Agent",
-      sector: "Sales",
-      description:
-        "Used to prepare proposals, answer customer questions, and improve sales response speed.",
-      bullets: [
-        "Proposal draft",
-        "Fast responses",
-        "CRM summary",
-        "Opportunity tracking",
-      ],
-    },
-    {
-      title: "Supplier Comparison and Approval Flow",
-      sector: "Procurement",
-      description:
-        "Compares bids, flags risk points, and accelerates approval processes.",
-      bullets: ["Comparison", "Risk analysis", "Approval flow", "Audit trail"],
-    },
-    {
-      title: "HR Request and Policy Assistant",
-      sector: "HR",
-      description:
-        "Provides a secure enterprise assistant that answers employee questions based on internal procedures and policies.",
-      bullets: ["Policy Q&A", "Self-service", "Logging", "Document access"],
-    },
-  ],
-};
-
-const useCasesList = {
-  tr: [
-    "Yönetim ekipleri için hızlı özet ve karar desteği",
-    "Satış ekipleri için teklif ve yanıt otomasyonu",
-    "Satın alma süreçlerinde teklif kıyaslama ve onay hızlandırma",
-    "Kurumsal bilgi tabanı üzerinden güvenli çalışan asistanları",
-    "Operasyon verilerinden anomali tespiti ve aksiyon önerisi",
-    "Web ve WhatsApp tabanlı destek asistanları",
-  ],
-  en: [
-    "Fast summaries and decision support for management teams",
-    "Proposal and response automation for sales teams",
-    "Bid comparison and faster approvals in procurement",
-    "Secure employee assistants on top of enterprise knowledge bases",
-    "Anomaly detection and action suggestions from operational data",
-    "Web and WhatsApp based support assistants",
-  ],
-};
-
-const blogPosts = {
-  tr: [
-    {
-      category: "Bakış Açısı",
-      title: "Agentic AI neden kurumsal dönüşümün bir sonraki aşaması?",
-      excerpt:
-        "Kurumsal yapay zekâ kullanımının, tekil chatbotlardan kontrollü ajan tabanlı iş akışlarına neden evrildiğini anlatıyoruz.",
-    },
-    {
-      category: "Uygulama",
-      title: "Başarılı bir AI pilotu nasıl tasarlanır?",
-      excerpt:
-        "90 günlük bir pilotta hedef kapsam, veri gereksinimleri, insan kontrolü ve başarı ölçütleri nasıl tanımlanmalı?",
-    },
-    {
-      category: "Yönetim",
-      title: "Karar destek sistemlerinde güven ve izlenebilirlik",
-      excerpt:
-        "Kurumsal ortamlarda güvenli AI kullanımının temelinde açıklanabilirlik, yetki ve kayıt mekanizmaları yer alır.",
-    },
-  ],
-  en: [
-    {
-      category: "Perspective",
-      title: "Why is Agentic AI the next phase of enterprise transformation?",
-      excerpt:
-        "We explain why enterprise AI usage is evolving from standalone chatbots to controlled, agent-based workflows.",
-    },
-    {
-      category: "Implementation",
-      title: "How should a successful AI pilot be designed?",
-      excerpt:
-        "How should scope, data requirements, human control, and success metrics be defined in a 90-day pilot?",
-    },
-    {
-      category: "Management",
-      title: "Trust and traceability in decision support systems",
-      excerpt:
-        "Safe AI usage in enterprise environments is built on explainability, authorization, and recording mechanisms.",
-    },
-  ],
-};
 
 const styles = {
   page: {
     minHeight: "100vh",
-    background: "#ffffff",
-    color: "#0f172a",
-    fontFamily: "Inter, Arial, sans-serif",
+    background: SOFT_BG,
+    color: NAVY,
+    fontFamily: "Manrope, Inter, 'Segoe UI', Arial, sans-serif",
   } as const,
   container: {
     width: "100%",
@@ -417,21 +47,25 @@ const styles = {
     padding: "0 24px",
   } as const,
   section: {
-    padding: "72px 0",
+    padding: "64px 0",
+  } as const,
+  sectionLarge: {
+    padding: "64px 0",
   } as const,
   card: {
-    border: "1px solid #e2e8f0",
+    border: "1px solid #E2E8F0",
     borderRadius: "24px",
     padding: "24px",
     background: "#ffffff",
-    boxShadow: "0 10px 30px rgba(15, 23, 42, 0.05)",
+    boxShadow: "0 10px 30px rgba(14, 38, 56, 0.05)",
   } as const,
   muted: {
-    color: "#475569",
+    color: "#64748B",
+    fontSize: 17,
     lineHeight: 1.7,
   } as const,
   buttonPrimary: {
-    background: "#0f172a",
+    background: NAVY,
     color: "white",
     border: "none",
     borderRadius: "999px",
@@ -441,14 +75,261 @@ const styles = {
   } as const,
   buttonSecondary: {
     background: "white",
-    color: "#0f172a",
+    color: NAVY,
     border: "1px solid #cbd5e1",
     borderRadius: "999px",
     padding: "12px 20px",
     cursor: "pointer",
     fontWeight: 600,
   } as const,
+  buttonGold: {
+    background: GOLD,
+    color: NAVY,
+    border: "none",
+    borderRadius: "999px",
+    padding: "12px 20px",
+    cursor: "pointer",
+    fontWeight: 700,
+  } as const,
 };
+
+type HeroAnnotation = {
+  title: string;
+  description: string;
+  top: string;
+  left: string;
+};
+
+type IconProps = {
+  size?: number;
+  color?: string;
+  strokeWidth?: number;
+};
+
+function WorkflowIcon({ size = 22, color = "#334155", strokeWidth = 2.2 }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <circle cx="6" cy="6" r="2" stroke={color} strokeWidth={strokeWidth} />
+      <circle cx="18" cy="6" r="2" stroke={color} strokeWidth={strokeWidth} />
+      <circle cx="12" cy="18" r="2" stroke={color} strokeWidth={strokeWidth} />
+      <path d="M8 6h8M7.5 7.5l3.5 8M16.5 7.5l-3.5 8" stroke={color} strokeWidth={strokeWidth} />
+    </svg>
+  );
+}
+
+function BarChart2Icon({ size = 22, color = "#334155", strokeWidth = 2.2 }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M4 20h16" stroke={color} strokeWidth={strokeWidth} />
+      <rect x="6" y="11" width="3" height="7" stroke={color} strokeWidth={strokeWidth} />
+      <rect x="11" y="7" width="3" height="11" stroke={color} strokeWidth={strokeWidth} />
+      <rect x="16" y="4" width="3" height="14" stroke={color} strokeWidth={strokeWidth} />
+    </svg>
+  );
+}
+
+function BotIcon({ size = 22, color = "#334155", strokeWidth = 2.2 }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <rect x="5" y="8" width="14" height="10" rx="3" stroke={color} strokeWidth={strokeWidth} />
+      <path d="M12 4v4M9 13h.01M15 13h.01M8 20v-2M16 20v-2" stroke={color} strokeWidth={strokeWidth} />
+    </svg>
+  );
+}
+
+function LayersIcon({ size = 22, color = "#334155", strokeWidth = 2.2 }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M12 4l8 4-8 4-8-4 8-4zM4 12l8 4 8-4M4 16l8 4 8-4" stroke={color} strokeWidth={strokeWidth} />
+    </svg>
+  );
+}
+
+function ShieldIcon({ size = 22, color = "#334155", strokeWidth = 2.2 }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M12 3l7 3v5c0 4.5-2.6 7.8-7 10-4.4-2.2-7-5.5-7-10V6l7-3z" stroke={color} strokeWidth={strokeWidth} />
+      <path d="M9 12l2 2 4-4" stroke={color} strokeWidth={strokeWidth} />
+    </svg>
+  );
+}
+
+function RocketIcon({ size = 22, color = "#334155", strokeWidth = 2.2 }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M14 4c3 0 5 2 6 6-3.5.8-5.7 2.8-8 5l-3-3c2.2-2.3 4.2-4.5 5-8z" stroke={color} strokeWidth={strokeWidth} />
+      <circle cx="15.5" cy="8.5" r="1.2" stroke={color} strokeWidth={strokeWidth} />
+      <path d="M9 15l-3 3M8 12l-3 1M12 16l1 3" stroke={color} strokeWidth={strokeWidth} />
+    </svg>
+  );
+}
+
+const heroAnnotations: Record<Lang, HeroAnnotation[]> = {
+  tr: [
+    {
+      title: "Veri Birleştirme",
+      description: "ERP, CRM ve operasyon verisini tek akışta toplar.",
+      top: "18%",
+      left: "4%",
+    },
+    {
+      title: "Risk Sinyali",
+      description: "Kritik sapmaları erken tespit eder.",
+      top: "38%",
+      left: "4%",
+    },
+    {
+      title: "Karar Önerisi",
+      description: "Önceliklendirilmiş aksiyon önerileri üretir.",
+      top: "58%",
+      left: "4%",
+    },
+    {
+      title: "İnsan Onayı",
+      description: "Kararı kontrollü şekilde yayına alır.",
+      top: "78%",
+      left: "4%",
+    },
+  ],
+  en: [
+    {
+      title: "Data Unification",
+      description: "Consolidates ERP, CRM, and operational data into one flow.",
+      top: "18%",
+      left: "4%",
+    },
+    {
+      title: "Risk Signal",
+      description: "Detects critical deviations early.",
+      top: "38%",
+      left: "4%",
+    },
+    {
+      title: "Decision Recommendation",
+      description: "Produces prioritized action recommendations.",
+      top: "58%",
+      left: "4%",
+    },
+    {
+      title: "Human Approval",
+      description: "Releases decisions with controlled oversight.",
+      top: "78%",
+      left: "4%",
+    },
+  ],
+};
+
+const servicesAnnotations: Record<Lang, HeroAnnotation[]> = {
+  tr: [
+    {
+      title: "Ajanik İş Akışları",
+      description: "Tekrarlayan süreçleri izlenebilir ve ölçülebilir akışlara dönüştürür.",
+      top: "16%",
+      left: "4%",
+    },
+    {
+      title: "Karar Destek",
+      description: "Yöneticiler için kritik sinyalleri öne çıkarır.",
+      top: "36%",
+      left: "4%",
+    },
+    {
+      title: "Kurumsal Copilot",
+      description: "Role özel asistanlarla ekip verimini artırır.",
+      top: "56%",
+      left: "4%",
+    },
+    {
+      title: "Governance",
+      description: "Yetki, log ve insan onayı ile kontrollü kullanım sağlar.",
+      top: "76%",
+      left: "4%",
+    },
+  ],
+  en: [
+    {
+      title: "Agentic Workflows",
+      description: "Transforms repetitive processes into measurable, traceable flows.",
+      top: "16%",
+      left: "4%",
+    },
+    {
+      title: "Decision Support",
+      description: "Highlights critical signals for executive decisions.",
+      top: "36%",
+      left: "4%",
+    },
+    {
+      title: "Enterprise Copilots",
+      description: "Improves team productivity with role-specific assistants.",
+      top: "56%",
+      left: "4%",
+    },
+    {
+      title: "Governance",
+      description: "Ensures controlled use with permissions, logs, and human approval.",
+      top: "76%",
+      left: "4%",
+    },
+  ],
+};
+
+const solutionsAnnotations: Record<Lang, HeroAnnotation[]> = {
+  tr: [
+    {
+      title: "Yönetim Copilotu",
+      description: "Dağınık verileri yönetim için aksiyona çevrilebilir özetlere dönüştürür.",
+      top: "16%",
+      left: "4%",
+    },
+    {
+      title: "Satış Hızlandırma",
+      description: "Teklif ve yanıt sürecini hızlandırır, dönüşümleri güçlendirir.",
+      top: "36%",
+      left: "4%",
+    },
+    {
+      title: "Satın Alma Akışı",
+      description: "Tedarikçi karşılaştırma ve onay adımlarını kısaltır.",
+      top: "56%",
+      left: "4%",
+    },
+    {
+      title: "İK Asistanı",
+      description: "Politika ve prosedür bazlı güvenli çalışan desteği sağlar.",
+      top: "76%",
+      left: "4%",
+    },
+  ],
+  en: [
+    {
+      title: "Management Copilot",
+      description: "Turns fragmented data into actionable executive summaries.",
+      top: "16%",
+      left: "4%",
+    },
+    {
+      title: "Sales Acceleration",
+      description: "Speeds up proposal and response cycles to improve conversion.",
+      top: "36%",
+      left: "4%",
+    },
+    {
+      title: "Procurement Flow",
+      description: "Shortens supplier comparison and approval steps.",
+      top: "56%",
+      left: "4%",
+    },
+    {
+      title: "HR Assistant",
+      description: "Provides secure employee support on top of policies and procedures.",
+      top: "76%",
+      left: "4%",
+    },
+  ],
+};
+
+const serviceIcons = [WorkflowIcon, BarChart2Icon, BotIcon, LayersIcon, ShieldIcon, RocketIcon];
 
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(
@@ -478,14 +359,25 @@ function SectionHeader({
           display: "inline-block",
           padding: "6px 12px",
           borderRadius: 999,
-          background: "#f1f5f9",
+          background: GOLD_LIGHT,
+          border: `1px solid ${GOLD_BORDER}`,
+          color: "#8A6820",
           fontSize: 13,
+          fontWeight: 600,
           marginBottom: 16,
         }}
       >
         {eyebrow}
       </div>
-      <h2 style={{ margin: "0 0 12px", fontSize: 36, lineHeight: 1.15 }}>
+      <h2
+        style={{
+          margin: "0 0 12px",
+          fontSize: "clamp(28px, 3vw, 36px)",
+          lineHeight: 1.2,
+          fontWeight: 700,
+          letterSpacing: "-0.6px",
+        }}
+      >
         {title}
       </h2>
       <p style={{ ...styles.muted, margin: 0 }}>{text}</p>
@@ -503,7 +395,7 @@ function LinkedInMark() {
         alignItems: "center",
         justifyContent: "center",
         borderRadius: 3,
-        background: "#0f172a",
+        background: NAVY,
         color: "white",
         fontSize: 10,
         fontWeight: 700,
@@ -538,6 +430,9 @@ export default function App() {
   const currentSolutions = solutions[lang];
   const currentUseCases = useCasesList[lang];
   const currentBlogPosts = blogPosts[lang];
+  const currentHeroAnnotations = heroAnnotations[lang];
+  const currentServicesAnnotations = servicesAnnotations[lang];
+  const currentSolutionsAnnotations = solutionsAnnotations[lang];
 
   useEffect(() => {
     const saved = localStorage.getItem("decigent-lang") as Lang | null;
@@ -545,8 +440,17 @@ export default function App() {
       setLang(saved);
       return;
     }
-    const browserLang = navigator.language.toLowerCase();
-    setLang(browserLang.startsWith("tr") ? "tr" : "en");
+    const detect = async () => {
+      try {
+        const res = await fetch("https://ipapi.co/country/", { signal: AbortSignal.timeout(3000) });
+        const country = (await res.text()).trim().toUpperCase();
+        setLang(country === "TR" ? "tr" : "en");
+      } catch {
+        const browserLang = navigator.language.toLowerCase();
+        setLang(browserLang.startsWith("tr") ? "tr" : "en");
+      }
+    };
+    detect();
   }, []);
 
   useEffect(() => {
@@ -560,7 +464,7 @@ export default function App() {
 
   useEffect(() => {
     const selected = sessionStorage.getItem("selectedUseCase");
-    if (selected && currentPage === "Contact") {
+    if (selected && currentPage === "İletişim") {
       setPrefilledMessage(c.prefMessage.replace("{title}", selected));
       sessionStorage.removeItem("selectedUseCase");
     }
@@ -588,11 +492,11 @@ export default function App() {
         return c.solutions;
       case "Use Cases":
         return c.useCases;
-      case "About":
+      case "Biz Kimiz":
         return c.about;
       case "Blog":
         return c.blog;
-      case "Contact":
+      case "İletişim":
         return c.contact;
     }
   };
@@ -628,7 +532,7 @@ export default function App() {
 
   const handleUseCaseContact = (title: string) => {
     sessionStorage.setItem("selectedUseCase", title);
-    setCurrentPage("Contact");
+    setCurrentPage("İletişim");
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
@@ -657,9 +561,9 @@ export default function App() {
           position: "sticky",
           top: 0,
           zIndex: 100,
-          background: "rgba(255,255,255,0.94)",
+          background: "rgba(248,250,252,0.94)",
           backdropFilter: "blur(12px)",
-          borderBottom: "1px solid #e2e8f0",
+          borderBottom: "1px solid #E2E8F0",
         }}
       >
         <div
@@ -678,12 +582,12 @@ export default function App() {
             onClick={() => navigateTo("Ana Sayfa")}
             style={{ background: "transparent", border: "none", cursor: "pointer", padding: 0 }}
           >
-            <img src="/logo.png" alt="Decigent Logo" style={{ height: 36, width: "auto" }} />
+            <img src="/decigent_logo_black.png" alt="Decigent Logo" style={{ height: 36, width: "auto" }} />
           </button>
 
           {isMobile ? (
             /* Mobile: lang toggle + hamburger */
-            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: SPACE.xs }}>
               <div
                 style={{
                   display: "flex",
@@ -696,7 +600,7 @@ export default function App() {
                   onClick={() => setLang("tr")}
                   style={{
                     border: "none",
-                    background: lang === "tr" ? "#0f172a" : "white",
+                    background: lang === "tr" ? NAVY : "white",
                     color: lang === "tr" ? "white" : "#334155",
                     padding: "7px 11px",
                     cursor: "pointer",
@@ -710,7 +614,7 @@ export default function App() {
                   onClick={() => setLang("en")}
                   style={{
                     border: "none",
-                    background: lang === "en" ? "#0f172a" : "white",
+                    background: lang === "en" ? NAVY : "white",
                     color: lang === "en" ? "white" : "#334155",
                     padding: "7px 11px",
                     cursor: "pointer",
@@ -745,41 +649,41 @@ export default function App() {
                   <>
                     <span style={{
                       display: "block", width: 18, height: 2,
-                      background: "#0f172a", borderRadius: 2,
+                      background: NAVY, borderRadius: 2,
                       transform: "rotate(45deg) translate(5px, 5px)",
                     }} />
                     <span style={{
                       display: "block", width: 18, height: 2,
-                      background: "#0f172a", borderRadius: 2,
+                      background: NAVY, borderRadius: 2,
                       opacity: 0,
                     }} />
                     <span style={{
                       display: "block", width: 18, height: 2,
-                      background: "#0f172a", borderRadius: 2,
+                      background: NAVY, borderRadius: 2,
                       transform: "rotate(-45deg) translate(5px, -5px)",
                     }} />
                   </>
                 ) : (
                   /* Hamburger ikonu */
                   <>
-                    <span style={{ display: "block", width: 18, height: 2, background: "#0f172a", borderRadius: 2 }} />
-                    <span style={{ display: "block", width: 18, height: 2, background: "#0f172a", borderRadius: 2 }} />
-                    <span style={{ display: "block", width: 18, height: 2, background: "#0f172a", borderRadius: 2 }} />
+                    <span style={{ display: "block", width: 18, height: 2, background: NAVY, borderRadius: 2 }} />
+                    <span style={{ display: "block", width: 18, height: 2, background: NAVY, borderRadius: 2 }} />
+                    <span style={{ display: "block", width: 18, height: 2, background: NAVY, borderRadius: 2 }} />
                   </>
                 )}
               </button>
             </div>
           ) : (
             /* Desktop nav */
-            <nav style={{ display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center" }}>
+            <nav style={{ display: "flex", gap: SPACE.xs, flexWrap: "wrap", alignItems: "center" }}>
               {navItems.map((item) => (
                 <button
                   key={item}
                   onClick={() => navigateTo(item)}
                   style={{
                     border: "none",
-                    background: currentPage === item ? "#0f172a" : "transparent",
-                    color: currentPage === item ? "white" : "#475569",
+                    background: currentPage === item ? NAVY : "transparent",
+                    color: currentPage === item ? "white" : "#334155",
                     padding: "10px 14px",
                     borderRadius: 999,
                     cursor: "pointer",
@@ -802,7 +706,7 @@ export default function App() {
                   onClick={() => setLang("tr")}
                   style={{
                     border: "none",
-                    background: lang === "tr" ? "#0f172a" : "white",
+                    background: lang === "tr" ? NAVY : "white",
                     color: lang === "tr" ? "white" : "#334155",
                     padding: "8px 12px",
                     cursor: "pointer",
@@ -815,7 +719,7 @@ export default function App() {
                   onClick={() => setLang("en")}
                   style={{
                     border: "none",
-                    background: lang === "en" ? "#0f172a" : "white",
+                    background: lang === "en" ? NAVY : "white",
                     color: lang === "en" ? "white" : "#334155",
                     padding: "8px 12px",
                     cursor: "pointer",
@@ -833,8 +737,8 @@ export default function App() {
         {isMobile && mobileMenuOpen && (
           <div
             style={{
-              borderTop: "1px solid #e2e8f0",
-              background: "white",
+              borderTop: "1px solid #E2E8F0",
+              background: SOFT_BG,
               padding: "12px 16px",
               display: "grid",
               gap: 4,
@@ -846,8 +750,8 @@ export default function App() {
                 onClick={() => navigateTo(item)}
                 style={{
                   border: "none",
-                  background: currentPage === item ? "#f1f5f9" : "transparent",
-                  color: currentPage === item ? "#0f172a" : "#475569",
+                  background: currentPage === item ? "#F1F5F9" : "transparent",
+                  color: currentPage === item ? NAVY : "#334155",
                   padding: "12px 14px",
                   borderRadius: 12,
                   cursor: "pointer",
@@ -866,137 +770,92 @@ export default function App() {
       {currentPage === "Ana Sayfa" && (
         <>
           {/* ── HERO ── */}
-          <section style={{ ...styles.section, paddingTop: 88 }}>
-            <div
-              style={{
-                ...styles.container,
-                display: "grid",
-                gridTemplateColumns: isMobile ? "1fr" : "1.1fr 0.9fr",
-                gap: 32,
-                alignItems: "center",
-              }}
-            >
-              <div>
-                <div
-                  style={{
-                    display: "inline-block",
-                    padding: "6px 12px",
-                    borderRadius: 999,
-                    background: "#f1f5f9",
-                    fontSize: 13,
-                    marginBottom: 18,
-                  }}
-                >
-                  {c.heroBadge}
-                </div>
+          <section style={styles.sectionLarge}>
+            <div style={styles.container}>
+              <div
+                style={{
+                  width: "100%",
+                  background: "rgba(255, 255, 255, 0.9)",
+                  border: "1px solid #E2E8F0",
+                  borderRadius: 16,
+                  padding: isMobile ? "12px 14px" : "16px 18px",
+                  boxShadow: "0 8px 24px rgba(11, 18, 32, 0.08)",
+                  marginBottom: 24,
+                }}
+              >
                 <h1
                   style={{
-                    fontSize: isMobile ? 36 : 56,
-                    lineHeight: 1.05,
-                    margin: "0 0 18px",
+                    fontSize: isMobile ? 28 : 48,
+                    lineHeight: 1.08,
+                    margin: "0 0 10px",
+                    fontWeight: 700,
+                    letterSpacing: "-1px",
                   }}
                 >
                   {c.heroTitle}
                 </h1>
-                <p style={{ ...styles.muted, fontSize: 18, marginBottom: 24 }}>
+                <p style={{ ...styles.muted, margin: 0, fontSize: isMobile ? 15 : 18 }}>
                   {c.heroText}
                 </p>
-                <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 28 }}>
-                  <button
-                    style={styles.buttonPrimary}
-                    onClick={() => navigateTo("Çözümler")}
-                  >
-                    {c.reviewSolutions}
-                  </button>
-                  <button
-                    style={styles.buttonSecondary}
-                    onClick={() => navigateTo("Use Cases")}
-                  >
-                    {c.useCases}
-                  </button>
-                </div>
-
-                <div
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns: isMobile ? "1fr" : "repeat(3, minmax(0,1fr))",
-                    gap: 14,
-                  }}
-                >
-                  {[
-                    [c.quickPilot, c.quickPilotText],
-                    [c.controlledAI, c.controlledAIText],
-                    [c.enterpriseFit, c.enterpriseFitText],
-                  ].map(([title, text]) => (
-                    <div key={title} style={{ ...styles.card, padding: 18 }}>
-                      <div style={{ fontWeight: 700, marginBottom: 6 }}>{title}</div>
-                      <div style={{ ...styles.muted, fontSize: 14 }}>{text}</div>
-                    </div>
-                  ))}
-                </div>
               </div>
-
-              <div style={{ ...styles.card, overflow: "hidden", padding: 0 }}>
-                <div style={{ background: "#0f172a", color: "white", padding: 28 }}>
-                  <div style={{ marginBottom: 18, opacity: 0.8 }}>{c.decisionEngine}</div>
-                  {[c.step1, c.step2, c.step3, c.step4].map((step, i) => (
+              <div style={{ position: "relative", marginBottom: 24 }}>
+                <img
+                  src="/decigent_hero.png"
+                  alt="Decigent AI platform"
+                  style={{ width: "100%", display: "block", borderRadius: 18 }}
+                />
+                {!isMobile &&
+                  currentHeroAnnotations.map((item) => (
                     <div
-                      key={step}
+                      key={item.title}
                       style={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "space-between",
-                        padding: "14px 16px",
-                        borderRadius: 18,
-                        background: "rgba(255,255,255,0.08)",
-                        marginBottom: 10,
+                        position: "absolute",
+                        top: item.top,
+                        left: item.left,
+                        maxWidth: 290,
+                        background: "rgba(255, 255, 255, 0.9)",
+                        border: "1px solid #E2E8F0",
+                        borderRadius: 14,
+                        padding: "10px 12px",
+                        boxShadow: "0 8px 24px rgba(11, 18, 32, 0.08)",
                       }}
                     >
-                      <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                        <div
-                          style={{
-                            width: 28,
-                            height: 28,
-                            borderRadius: 999,
-                            background: "rgba(255,255,255,0.14)",
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            fontSize: 12,
-                            flexShrink: 0,
-                          }}
-                        >
-                          {i + 1}
-                        </div>
-                        <span style={{ fontSize: isMobile ? 14 : 16 }}>{step}</span>
+                      <div style={{ fontWeight: 700, fontSize: 14, marginBottom: 4 }}>
+                        {item.title}
                       </div>
-                      <span>›</span>
+                      <div style={{ ...styles.muted, fontSize: 13, lineHeight: 1.5 }}>
+                        {item.description}
+                      </div>
                     </div>
                   ))}
-                </div>
-
+              </div>
+              {isMobile && (
                 <div
                   style={{
                     display: "grid",
-                    gridTemplateColumns: "1fr 1fr",
-                    gap: 14,
-                    padding: 22,
+                    gridTemplateColumns: "1fr",
+                    gap: SPACE.sm,
+                    marginBottom: 24,
                   }}
                 >
-                  <div style={{ ...styles.card, padding: 18 }}>
-                    <div style={{ fontSize: 13, color: "#64748b", marginBottom: 8 }}>
-                      {c.approach}
+                  {currentHeroAnnotations.map((item) => (
+                    <div
+                      key={item.title}
+                      style={{
+                        border: "1px solid #E2E8F0",
+                        borderRadius: 14,
+                        background: "#ffffff",
+                        padding: "10px 12px",
+                      }}
+                    >
+                      <div style={{ fontWeight: 700, fontSize: 14, marginBottom: 4 }}>
+                        {item.title}
+                      </div>
+                      <div style={{ ...styles.muted, fontSize: 13 }}>{item.description}</div>
                     </div>
-                    <div style={{ fontWeight: 700 }}>Decision intelligence + agents</div>
-                  </div>
-                  <div style={{ ...styles.card, padding: 18 }}>
-                    <div style={{ fontSize: 13, color: "#64748b", marginBottom: 8 }}>
-                      {c.delivery}
-                    </div>
-                    <div style={{ fontWeight: 700 }}>{c.deliveryValue}</div>
-                  </div>
+                  ))}
                 </div>
-              </div>
+              )}
             </div>
           </section>
 
@@ -1008,30 +867,54 @@ export default function App() {
                 title={c.servicesTitle}
                 text={c.servicesText}
               />
+              <div style={{ position: "relative", marginBottom: 32 }}>
+                <img
+                  src="/decigent_services.png"
+                  alt="Decigent services visual"
+                  style={{ width: "100%", display: "block", borderRadius: 18 }}
+                />
+              </div>
               <div
                 style={{
                   display: "grid",
                   gridTemplateColumns: isMobile
                     ? "1fr"
                     : "repeat(3, minmax(0,1fr))",
-                  gap: 18,
+                  gap: SPACE.lg,
                 }}
               >
-                {currentServices.map((service) => (
-                  <div key={service.title} style={styles.card}>
+                {currentServices.map((service, index) => {
+                  const ServiceIcon = serviceIcons[index] ?? WorkflowIcon;
+                  const isFeatured = index === 0;
+                  return (
+                  <div
+                    key={service.title}
+                    className="card-hover"
+                    style={{
+                      ...styles.card,
+                      background: isFeatured ? GOLD_LIGHT : "#ffffff",
+                      border: isFeatured ? `1px solid ${GOLD_BORDER}` : "1px solid #E2E8F0",
+                    }}
+                  >
                     <div
                       style={{
                         width: 48,
                         height: 48,
                         borderRadius: 16,
-                        background: "#f1f5f9",
+                        background: isFeatured ? "#ffffff" : "#F1F5F9",
                         marginBottom: 16,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
                       }}
-                    />
+                    >
+                      <ServiceIcon size={22} color="#334155" strokeWidth={2.2} />
+                    </div>
                     <h3 style={{ margin: "0 0 10px", fontSize: 22 }}>{service.title}</h3>
                     <p style={{ ...styles.muted, margin: 0 }}>{service.description}</p>
                   </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           </section>
@@ -1044,15 +927,29 @@ export default function App() {
                 title={c.solutionsTitle}
                 text={c.solutionsText}
               />
+              <div style={{ position: "relative", marginBottom: 32 }}>
+                <img
+                  src="/decigent_solutions.png"
+                  alt="Decigent solutions visual"
+                  style={{ width: "100%", display: "block", borderRadius: 18 }}
+                />
+              </div>
               <div
                 style={{
                   display: "grid",
                   gridTemplateColumns: isMobile ? "1fr" : "repeat(2, minmax(0,1fr))",
-                  gap: 18,
+                  gap: SPACE.lg,
                 }}
               >
-                {currentSolutions.map((item) => (
-                  <div key={item.title} style={styles.card}>
+                {currentSolutions.map((item, index) => (
+                  <div
+                    key={item.title}
+                    className="card-hover"
+                    style={{
+                      ...styles.card,
+                      background: index % 2 === 0 ? "#ffffff" : "#F8FAFC",
+                    }}
+                  >
                     <div
                       style={{
                         display: "inline-block",
@@ -1071,7 +968,7 @@ export default function App() {
                       style={{
                         display: "grid",
                         gridTemplateColumns: "1fr 1fr",
-                        gap: 10,
+                        gap: SPACE.sm,
                         marginTop: 16,
                       }}
                     >
@@ -1108,11 +1005,11 @@ export default function App() {
                 style={{
                   display: "grid",
                   gridTemplateColumns: isMobile ? "1fr" : "repeat(2, minmax(0,1fr))",
-                  gap: 18,
+                  gap: SPACE.lg,
                 }}
               >
                 {currentSolutions.map((item, index) => (
-                  <div key={`${item.title}-${index}`} style={styles.card}>
+                  <div key={`${item.title}-${index}`} className="card-hover" style={styles.card}>
                     <h3 style={{ marginTop: 0 }}>{item.title}</h3>
                     <p style={{ ...styles.muted, marginBottom: 18 }}>{item.description}</p>
                     <button
@@ -1127,25 +1024,79 @@ export default function App() {
 
               <div
                 style={{
-                  marginTop: 18,
+                  marginTop: 32,
                   display: "grid",
                   gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
-                  gap: 14,
+                  gap: SPACE.md,
                 }}
               >
                 {currentUseCases.map((item) => (
-                  <div key={item} style={{ ...styles.card, padding: 18 }}>
+                  <div key={item} className="card-hover" style={{ ...styles.card, padding: 18 }}>
                     <div style={styles.muted}>{item}</div>
                   </div>
                 ))}
               </div>
             </div>
           </section>
+
+          {/* ── WHY DECIGENT ── */}
+          <section style={{ ...styles.section, background: SOFT_BG }}>
+            <div style={styles.container}>
+              <SectionHeader
+                eyebrow={c.whyEyebrow}
+                title={c.whyTitle}
+                text={c.whyText}
+              />
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: isMobile ? "1fr" : "repeat(2, minmax(0,1fr))",
+                  gap: SPACE.lg,
+                  marginBottom: 32,
+                }}
+              >
+                {[
+                  { title: c.whyPilot, text: c.whyPilotText, accent: true },
+                  { title: c.whyAnalysis, text: c.whyAnalysisText, accent: false },
+                  { title: c.whyFlexible, text: c.whyFlexibleText, accent: false },
+                  { title: c.whyFounding, text: c.whyFoundingText, accent: false },
+                ].map((item) => (
+                  <div
+                    key={item.title}
+                    className="card-hover"
+                    style={{
+                      ...styles.card,
+                      background: item.accent ? NAVY : "#ffffff",
+                      color: item.accent ? "#ffffff" : NAVY,
+                    }}
+                  >
+                    <h3 style={{ margin: "0 0 10px", fontSize: 20 }}>{item.title}</h3>
+                    <p
+                      style={{
+                        margin: 0,
+                        lineHeight: 1.7,
+                        color: item.accent ? "#94a3b8" : "#334155",
+                      }}
+                    >
+                      {item.text}
+                    </p>
+                  </div>
+                ))}
+              </div>
+              <button
+                type="button"
+                style={styles.buttonGold}
+                onClick={() => setCurrentPage("İletişim")}
+              >
+                {c.whyCta}
+              </button>
+            </div>
+          </section>
         </>
       )}
 
       {/* ── ABOUT ── */}
-      {currentPage === "About" && (
+      {currentPage === "Biz Kimiz" && (
         <section style={styles.section}>
           <div style={styles.container}>
             <SectionHeader
@@ -1157,15 +1108,15 @@ export default function App() {
               style={{
                 display: "grid",
                 gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
-                gap: 18,
-                marginBottom: 18,
+                gap: SPACE.lg,
+                marginBottom: 32,
               }}
             >
-              <div style={styles.card}>
+              <div className="card-hover" style={styles.card}>
                 <h3 style={{ marginTop: 0 }}>{c.mission}</h3>
                 <p style={{ ...styles.muted, margin: 0 }}>{c.missionText}</p>
               </div>
-              <div style={styles.card}>
+              <div className="card-hover" style={styles.card}>
                 <h3 style={{ marginTop: 0 }}>{c.vision}</h3>
                 <p style={{ ...styles.muted, margin: 0 }}>{c.visionText}</p>
               </div>
@@ -1185,7 +1136,7 @@ export default function App() {
                 justifyContent: "space-between",
                 alignItems: isMobile ? "flex-start" : "end",
                 gap: 20,
-                marginBottom: 28,
+                marginBottom: 32,
               }}
             >
               <SectionHeader
@@ -1213,12 +1164,12 @@ export default function App() {
                 gridTemplateColumns: isMobile
                   ? "1fr"
                   : "repeat(3, minmax(0,1fr))",
-                gap: 18,
+                gap: SPACE.lg,
               }}
             >
               {filteredPosts.map((post) => (
-                <div key={post.title} style={styles.card}>
-                  <div style={{ color: "#64748b", fontSize: 14, marginBottom: 12 }}>
+                <div key={post.title} className="card-hover" style={styles.card}>
+                  <div style={{ color: "#64748B", fontSize: 14, marginBottom: 12 }}>
                     {post.category}
                   </div>
                   <h3 style={{ margin: "0 0 10px", fontSize: 24 }}>{post.title}</h3>
@@ -1243,7 +1194,7 @@ export default function App() {
       )}
 
       {/* ── CONTACT ── */}
-      {currentPage === "Contact" && (
+      {currentPage === "İletişim" && (
         <section style={styles.section}>
           <div style={styles.container}>
             <SectionHeader
@@ -1255,19 +1206,19 @@ export default function App() {
               style={{
                 display: "grid",
                 gridTemplateColumns: isMobile ? "1fr" : "1.05fr 0.95fr",
-                gap: 18,
+                gap: SPACE.lg,
               }}
             >
-              <div style={styles.card}>
+              <div className="card-hover" style={styles.card}>
                 <h3 style={{ marginTop: 0 }}>{c.contactForm}</h3>
                 <p style={{ ...styles.muted, marginTop: 0 }}>{c.contactFormText}</p>
 
-                <form onSubmit={handleContactSubmit} style={{ display: "grid", gap: 14 }}>
+                <form onSubmit={handleContactSubmit} style={{ display: "grid", gap: SPACE.md }}>
                   <div
                     style={{
                       display: "grid",
                       gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
-                      gap: 14,
+                      gap: SPACE.md,
                     }}
                   >
                     <input name="name" placeholder={c.name} required style={inputStyle} />
@@ -1277,7 +1228,7 @@ export default function App() {
                     style={{
                       display: "grid",
                       gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
-                      gap: 14,
+                      gap: SPACE.md,
                     }}
                   >
                     <input
@@ -1303,19 +1254,19 @@ export default function App() {
                 </form>
               </div>
 
-              <div style={{ display: "grid", gap: 18 }}>
+              <div style={{ display: "grid", gap: SPACE.lg }}>
                 {[
                   [c.emailLabel, "info@decigent.com"],
                   [c.phoneLabel, "+90 258 XXX XX XX"],
                   [c.addressLabel, "Atalar Mh. 1346 Sok. No: 24/10 Pamukkale - DENİZLİ"],
                 ].map(([title, text]) => (
-                  <div key={title} style={styles.card}>
+                  <div key={title} className="card-hover" style={styles.card}>
                     <div style={{ fontWeight: 700, marginBottom: 8 }}>{title}</div>
                     <div style={styles.muted}>{text}</div>
                   </div>
                 ))}
 
-                <div style={{ ...styles.card, background: "#0f172a", color: "white" }}>
+                <div style={{ ...styles.card, background: NAVY, color: "white" }}>
                   <div style={{ fontWeight: 700, marginBottom: 10 }}>{c.recommended}</div>
                   <div style={{ color: "#cbd5e1", lineHeight: 1.7 }}>
                     {c.recommendedText}
@@ -1330,9 +1281,9 @@ export default function App() {
       {/* ── FOOTER ── */}
       <footer
         style={{
-          borderTop: "1px solid #e2e8f0",
+          borderTop: "1px solid #E2E8F0",
           padding: "40px 0",
-          background: "#fff",
+          background: SOFT_BG,
         }}
       >
         <div style={styles.container}>
@@ -1340,16 +1291,16 @@ export default function App() {
             style={{
               display: "grid",
               gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr 1fr",
-              gap: 24,
+              gap: SPACE.xl,
             }}
           >
             <div>
               <div style={{ fontSize: 20, fontWeight: 700, marginBottom: 8 }}>Decigent</div>
-              <div style={{ color: "#64748b" }}>{c.footerTag}</div>
+              <div style={{ color: "#64748B" }}>{c.footerTag}</div>
             </div>
             <div>
               <div style={{ fontWeight: 700, marginBottom: 12 }}>{c.menu}</div>
-              <div style={{ display: "grid", gap: 8 }}>
+              <div style={{ display: "grid", gap: SPACE.xs }}>
                 {navItems.map((item) => (
                   <button
                     key={item}
@@ -1358,7 +1309,7 @@ export default function App() {
                       background: "transparent",
                       border: "none",
                       textAlign: "left",
-                      color: "#475569",
+                      color: "#334155",
                       cursor: "pointer",
                       padding: 0,
                     }}
@@ -1370,7 +1321,7 @@ export default function App() {
             </div>
             <div>
               <div style={{ fontWeight: 700, marginBottom: 12 }}>{c.contactInfo}</div>
-              <div style={{ display: "grid", gap: 8, color: "#475569" }}>
+              <div style={{ display: "grid", gap: SPACE.xs, color: "#334155" }}>
                 <div>info@decigent.com</div>
                 <div>+90 258 XXX XX XX</div>
                 <div>Atalar Mh. 1346 Sok. No: 24/10 Pamukkale - DENİZLİ</div>
@@ -1383,7 +1334,7 @@ export default function App() {
                     textDecoration: "none",
                     display: "inline-flex",
                     alignItems: "center",
-                    gap: 8,
+                    gap: SPACE.xs,
                     marginTop: 6,
                   }}
                 >
@@ -1395,10 +1346,10 @@ export default function App() {
           </div>
           <div
             style={{
-              marginTop: 28,
+              marginTop: 32,
               paddingTop: 20,
-              borderTop: "1px solid #e2e8f0",
-              color: "#64748b",
+              borderTop: "1px solid #E2E8F0",
+              color: "#64748B",
               fontSize: 14,
             }}
           >

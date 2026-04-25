@@ -1,0 +1,1 @@
+@tailwind base;@tailwind components;@tailwind utilities;.card-hover{transition:background .18s ease,border-color .18s ease,box-shadow .18s ease}.card-hover:hover{background:#fef9ee!important;border-color:#f0d89a!important;box-shadow:0 12px 36px #0e26381a!important}
