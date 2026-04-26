@@ -20,8 +20,8 @@ const navItems: Page[] = [
   "İletişim",
 ];
 
-const NAVY = "#0E2638";
-const GOLD = "#D5A753";
+const NAVY = "#0D1B2A";
+const GOLD = "#D4A017";
 const GOLD_LIGHT = "#FEF9EE";
 const GOLD_BORDER = "#F0D89A";
 const SOFT_BG = "#F8FAFC";
@@ -38,7 +38,7 @@ const styles = {
     minHeight: "100vh",
     background: SOFT_BG,
     color: NAVY,
-    fontFamily: "Manrope, Inter, 'Segoe UI', Arial, sans-serif",
+    fontFamily: "'Science Gothic', Inter, Aptos, Arial, sans-serif",
   } as const,
   container: {
     width: "100%",
@@ -54,10 +54,10 @@ const styles = {
   } as const,
   card: {
     border: "1px solid #E2E8F0",
-    borderRadius: "24px",
+    borderRadius: "8px",
     padding: "24px",
     background: "#ffffff",
-    boxShadow: "0 10px 30px rgba(14, 38, 56, 0.05)",
+    boxShadow: "0 8px 20px rgba(13, 27, 42, 0.04)",
   } as const,
   muted: {
     color: "#64748B",
@@ -91,13 +91,6 @@ const styles = {
     cursor: "pointer",
     fontWeight: 700,
   } as const,
-};
-
-type HeroAnnotation = {
-  title: string;
-  description: string;
-  top: string;
-  left: string;
 };
 
 type IconProps = {
@@ -164,62 +157,6 @@ function RocketIcon({ size = 22, color = "#334155", strokeWidth = 2.2 }: IconPro
   );
 }
 
-const heroAnnotations: Record<Lang, HeroAnnotation[]> = {
-  tr: [
-    {
-      title: "Veri Birleştirme",
-      description: "ERP, CRM ve operasyon verisini tek akışta toplar.",
-      top: "18%",
-      left: "4%",
-    },
-    {
-      title: "Risk Sinyali",
-      description: "Kritik sapmaları erken tespit eder.",
-      top: "38%",
-      left: "4%",
-    },
-    {
-      title: "Karar Önerisi",
-      description: "Önceliklendirilmiş aksiyon önerileri üretir.",
-      top: "58%",
-      left: "4%",
-    },
-    {
-      title: "İnsan Onayı",
-      description: "Kararı kontrollü şekilde yayına alır.",
-      top: "78%",
-      left: "4%",
-    },
-  ],
-  en: [
-    {
-      title: "Data Unification",
-      description: "Consolidates ERP, CRM, and operational data into one flow.",
-      top: "18%",
-      left: "4%",
-    },
-    {
-      title: "Risk Signal",
-      description: "Detects critical deviations early.",
-      top: "38%",
-      left: "4%",
-    },
-    {
-      title: "Decision Recommendation",
-      description: "Produces prioritized action recommendations.",
-      top: "58%",
-      left: "4%",
-    },
-    {
-      title: "Human Approval",
-      description: "Releases decisions with controlled oversight.",
-      top: "78%",
-      left: "4%",
-    },
-  ],
-};
-
-
 const serviceIcons = [WorkflowIcon, BarChart2Icon, BotIcon, LayersIcon, ShieldIcon, RocketIcon];
 
 function useIsMobile() {
@@ -266,7 +203,7 @@ function SectionHeader({
           fontSize: "clamp(28px, 3vw, 36px)",
           lineHeight: 1.2,
           fontWeight: 700,
-          letterSpacing: "-0.6px",
+          letterSpacing: 0,
         }}
       >
         {title}
@@ -297,6 +234,217 @@ function LinkedInMark() {
   );
 }
 
+function DecisionCoreVisual({ lang, isMobile }: { lang: Lang; isMobile: boolean }) {
+  const labels =
+    lang === "tr"
+      ? {
+          data: "ERP / CRM / Excel",
+          risk: "Risk Sinyali",
+          audit: "Denetim Kaydı",
+          action: "Aksiyon Önerisi",
+          approval: "İnsan Onayı",
+          outcome: "Ölçülen Sonuç",
+        }
+      : {
+          data: "ERP / CRM / Excel",
+          risk: "Risk Signal",
+          audit: "Audit Trail",
+          action: "Recommended Action",
+          approval: "Human Approval",
+          outcome: "Measured Outcome",
+        };
+
+  const card = (
+    x: number,
+    y: number,
+    width: number,
+    height: number,
+    title: string,
+    accent: "blue" | "gold",
+    icon: "data" | "risk" | "audit" | "action" | "approval" | "outcome"
+  ) => {
+    const color = accent === "blue" ? "#2776EA" : GOLD;
+    const iconX = x + 40;
+    const iconY = y + 26;
+    const textLines = title.includes("/") ? [title] : title.split(" ");
+    const textX = icon === "data" || icon === "risk" || icon === "audit" ? x + width / 2 : x + 132;
+    const textY = icon === "data" || icon === "risk" || icon === "audit" ? y + 118 : y + 56;
+    const textAnchor = icon === "data" || icon === "risk" || icon === "audit" ? "middle" : "start";
+
+    return (
+      <g key={title}>
+        <rect
+          x={x}
+          y={y}
+          width={width}
+          height={height}
+          rx="14"
+          fill="#0D1B2A"
+          fillOpacity="0.72"
+          stroke={color}
+          strokeWidth="2"
+        />
+        <g transform={`translate(${iconX} ${iconY})`} stroke={color} strokeWidth="4" fill="none" strokeLinecap="round" strokeLinejoin="round">
+          {icon === "data" && (
+            <>
+              <ellipse cx="30" cy="14" rx="24" ry="10" />
+              <path d="M6 14v42c0 6 11 10 24 10s24-4 24-10V14" />
+              <path d="M6 34c0 6 11 10 24 10s24-4 24-10" />
+              <rect x="72" y="22" width="50" height="48" rx="4" />
+              <path d="M84 36h18M84 50h26M84 64h18" />
+            </>
+          )}
+          {icon === "risk" && (
+            <>
+              <path d="M42 4l32 14v24c0 24-14 42-32 52-18-10-32-28-32-52V18L42 4z" />
+              <path d="M42 28v30M42 74h.1" />
+            </>
+          )}
+          {icon === "audit" && (
+            <>
+              <path d="M18 6h48l22 22v70H18z" />
+              <path d="M66 6v24h22M34 44h26M34 62h20M34 80h18" />
+              <circle cx="82" cy="82" r="20" />
+              <path d="M82 70v13l9 6" />
+            </>
+          )}
+          {icon === "action" && (
+            <>
+              <path d="M18 72V36h28" />
+              <path d="M46 36l-14-14M46 36L32 50" />
+              <circle cx="18" cy="72" r="9" />
+              <path d="M70 18l22 22M92 18L70 40M70 72l22 22M92 72L70 94" />
+            </>
+          )}
+          {icon === "approval" && (
+            <>
+              <circle cx="38" cy="28" r="20" />
+              <path d="M8 94c4-30 18-44 30-44s26 14 30 44" />
+              <circle cx="82" cy="76" r="20" />
+              <path d="M72 76l7 7 15-17" />
+            </>
+          )}
+          {icon === "outcome" && (
+            <>
+              <path d="M10 88h96" />
+              <rect x="18" y="58" width="14" height="30" />
+              <rect x="46" y="42" width="14" height="46" />
+              <rect x="74" y="24" width="14" height="64" />
+              <path d="M16 42l26-26 22 20 36-34" />
+              <path d="M84 2h16v16" />
+            </>
+          )}
+        </g>
+        <text
+          x={textX}
+          y={textY}
+          fill="#F7F9FC"
+          fontSize="25"
+          fontWeight="700"
+          textAnchor={textAnchor}
+        >
+          {textLines.map((line, index) => (
+            <tspan key={`${line}-${index}`} x={textX} dy={index === 0 ? 0 : 32}>
+              {line}
+            </tspan>
+          ))}
+        </text>
+      </g>
+    );
+  };
+
+  return (
+    <div
+      aria-label="Decigent Decision Core visual"
+      style={{
+        position: "relative",
+        aspectRatio: "16 / 9",
+        minHeight: isMobile ? 260 : 420,
+        borderRadius: 8,
+        overflow: "hidden",
+        background: NAVY,
+        border: "1px solid rgba(247, 249, 252, 0.12)",
+        boxShadow: "0 16px 44px rgba(13, 27, 42, 0.18)",
+      }}
+    >
+      <svg
+        viewBox="0 0 1536 864"
+        role="img"
+        aria-hidden="true"
+        style={{ width: "100%", height: "100%", display: "block" }}
+      >
+        <defs>
+          <radialGradient id="decisionCoreGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#2776EA" stopOpacity="0.14" />
+            <stop offset="58%" stopColor={NAVY} stopOpacity="0.84" />
+            <stop offset="100%" stopColor={NAVY} stopOpacity="1" />
+          </radialGradient>
+          <filter id="goldGlow" x="-80%" y="-80%" width="260%" height="260%">
+            <feDropShadow dx="0" dy="0" stdDeviation="8" floodColor={GOLD} floodOpacity="0.42" />
+          </filter>
+          <filter id="blueGlow" x="-80%" y="-80%" width="260%" height="260%">
+            <feDropShadow dx="0" dy="0" stdDeviation="8" floodColor="#2776EA" floodOpacity="0.42" />
+          </filter>
+        </defs>
+
+        <rect width="1536" height="864" fill={NAVY} />
+        <circle cx="768" cy="432" r="318" fill="url(#decisionCoreGlow)" />
+        {[148, 184, 220, 256].map((r, index) => (
+          <circle
+            key={r}
+            cx="768"
+            cy="432"
+            r={r}
+            fill="none"
+            stroke={index % 2 === 0 ? "#2776EA" : GOLD}
+            strokeOpacity={index % 2 === 0 ? 0.32 : 0.26}
+            strokeDasharray="6 16"
+          />
+        ))}
+
+        <circle cx="768" cy="432" r="188" fill="none" stroke={GOLD} strokeWidth="5" filter="url(#goldGlow)" />
+
+        <path d="M368 198h95c70 0 76 70 156 126" fill="none" stroke="#2776EA" strokeWidth="4" strokeLinecap="round" filter="url(#blueGlow)" />
+        <path d="M344 432h238" fill="none" stroke="#2776EA" strokeWidth="4" strokeLinecap="round" filter="url(#blueGlow)" />
+        <path d="M344 666h116c80 0 88-72 158-128" fill="none" stroke="#2776EA" strokeWidth="4" strokeLinecap="round" filter="url(#blueGlow)" />
+        <path d="M917 324c76-58 76-126 156-126h95" fill="none" stroke={GOLD} strokeWidth="4" strokeLinecap="round" filter="url(#goldGlow)" />
+        <path d="M954 432h228" fill="none" stroke={GOLD} strokeWidth="4" strokeLinecap="round" filter="url(#goldGlow)" />
+        <path d="M918 538c78 58 78 128 158 128h92" fill="none" stroke={GOLD} strokeWidth="4" strokeLinecap="round" filter="url(#goldGlow)" />
+
+        {[{ x: 622, y: 324, c: "#9CCDF6" }, { x: 574, y: 432, c: GOLD }, { x: 622, y: 540, c: "#9CCDF6" }, { x: 914, y: 324, c: GOLD }, { x: 962, y: 432, c: GOLD }, { x: 914, y: 540, c: GOLD }, { x: 768, y: 312, c: GOLD }, { x: 768, y: 552, c: GOLD }].map((dot) => (
+          <circle key={`${dot.x}-${dot.y}`} cx={dot.x} cy={dot.y} r="9" fill={dot.c} filter={dot.c === GOLD ? "url(#goldGlow)" : "url(#blueGlow)"} />
+        ))}
+
+        {card(66, 96, 302, 136, labels.data, "blue", "data")}
+        {card(66, 364, 278, 136, labels.risk, "blue", "risk")}
+        {card(66, 632, 278, 136, labels.audit, "blue", "audit")}
+        {card(1128, 104, 342, 136, labels.action, "gold", "action")}
+        {card(1128, 372, 342, 136, labels.approval, "gold", "approval")}
+        {card(1128, 640, 342, 136, labels.outcome, "gold", "outcome")}
+
+        <text x="768" y="540" textAnchor="middle" fill="#F7F9FC" fontSize="34" fontWeight="800">
+          Decision Core
+        </text>
+      </svg>
+      <img
+        src="/favicon_gold.ico"
+        alt=""
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          top: "43%",
+          left: "50%",
+          width: isMobile ? 62 : 82,
+          height: isMobile ? 62 : 82,
+          transform: "translate(-50%, -50%)",
+          pointerEvents: "none",
+          filter: "drop-shadow(0 0 14px rgba(212, 160, 23, 0.38))",
+        }}
+      />
+    </div>
+  );
+}
+
 const inputStyle: React.CSSProperties = {
   width: "100%",
   padding: "14px 16px",
@@ -321,8 +469,6 @@ export default function App() {
   const currentSolutions = solutions[lang];
   const currentUseCases = useCasesList[lang];
   const currentBlogPosts = blogPosts[lang];
-  const currentHeroAnnotations = heroAnnotations[lang];
-
   useEffect(() => {
     const saved = localStorage.getItem("decigent-lang") as Lang | null;
     if (saved === "tr" || saved === "en") {
@@ -471,7 +617,7 @@ export default function App() {
             onClick={() => navigateTo("Ana Sayfa")}
             style={{ background: "transparent", border: "none", cursor: "pointer", padding: 0 }}
           >
-            <img src="/decigent_logo_inverse.svg" alt="Decigent Logo" style={{ height: 56, width: "auto" }} />
+            <img src="/decigent_logo_header.svg" alt="Decigent Logo" style={{ height: 40, width: "auto" }} />
           </button>
 
           {isMobile ? (
@@ -659,92 +805,116 @@ export default function App() {
       {currentPage === "Ana Sayfa" && (
         <>
           {/* ── HERO ── */}
-          <section style={styles.sectionLarge}>
+          <section
+            style={{
+              ...styles.sectionLarge,
+              background: `linear-gradient(180deg, ${SOFT_BG} 0%, #ffffff 100%)`,
+            }}
+          >
             <div style={styles.container}>
               <div
                 style={{
-                  width: "100%",
-                  background: "rgba(255, 255, 255, 0.9)",
-                  border: "1px solid #E2E8F0",
-                  borderRadius: 16,
-                  padding: isMobile ? "12px 14px" : "16px 18px",
-                  boxShadow: "0 8px 24px rgba(11, 18, 32, 0.08)",
-                  marginBottom: 24,
+                  display: "grid",
+                  gridTemplateColumns: isMobile ? "1fr" : "0.92fr 1.08fr",
+                  gap: isMobile ? 28 : 42,
+                  alignItems: "center",
                 }}
               >
-                <h1
-                  style={{
-                    fontSize: isMobile ? 28 : 48,
-                    lineHeight: 1.08,
-                    margin: "0 0 10px",
-                    fontWeight: 700,
-                    letterSpacing: "-1px",
-                  }}
-                >
-                  {c.heroTitle}
-                </h1>
-                <p style={{ ...styles.muted, margin: 0, fontSize: isMobile ? 15 : 18 }}>
-                  {c.heroText}
-                </p>
-              </div>
-              <div style={{ position: "relative", marginBottom: 24 }}>
-                <img
-                  src="/decigent_hero.png"
-                  alt="Decigent AI platform"
-                  style={{ width: "100%", display: "block", borderRadius: 18 }}
-                />
-                {!isMobile &&
-                  currentHeroAnnotations.map((item) => (
-                    <div
-                      key={item.title}
+                <div>
+                  <div
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: 8,
+                      padding: "7px 12px",
+                      borderRadius: 999,
+                      border: `1px solid ${GOLD_BORDER}`,
+                      background: GOLD_LIGHT,
+                      color: "#73540B",
+                      fontSize: 13,
+                      fontWeight: 700,
+                      marginBottom: 18,
+                    }}
+                  >
+                    <span
                       style={{
-                        position: "absolute",
-                        top: item.top,
-                        left: item.left,
-                        maxWidth: 290,
-                        background: "rgba(255, 255, 255, 0.9)",
-                        border: "1px solid #E2E8F0",
-                        borderRadius: 14,
-                        padding: "10px 12px",
-                        boxShadow: "0 8px 24px rgba(11, 18, 32, 0.08)",
+                        width: 7,
+                        height: 7,
+                        borderRadius: 999,
+                        background: GOLD,
+                        display: "inline-block",
                       }}
-                    >
-                      <div style={{ fontWeight: 700, fontSize: 14, marginBottom: 4 }}>
-                        {item.title}
+                    />
+                    {c.heroBadge}
+                  </div>
+                  <h1
+                    style={{
+                      fontSize: isMobile ? 38 : 62,
+                      lineHeight: 1.02,
+                      margin: "0 0 18px",
+                      fontWeight: 800,
+                      letterSpacing: 0,
+                      maxWidth: 760,
+                    }}
+                  >
+                    {c.heroTitle}
+                  </h1>
+                  <p
+                    style={{
+                      ...styles.muted,
+                      margin: 0,
+                      fontSize: isMobile ? 16 : 19,
+                      maxWidth: 680,
+                    }}
+                  >
+                    {c.heroText}
+                  </p>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexWrap: "wrap",
+                      gap: SPACE.sm,
+                      marginTop: 26,
+                    }}
+                  >
+                    <button type="button" style={styles.buttonGold} onClick={() => navigateTo("Use Cases")}>
+                      {c.reviewSolutions}
+                    </button>
+                    <button type="button" style={styles.buttonSecondary} onClick={() => setCurrentPage("İletişim")}>
+                      {c.ctaMeet}
+                    </button>
+                  </div>
+                  <div
+                    style={{
+                      display: "grid",
+                      gridTemplateColumns: isMobile ? "1fr" : "repeat(3, minmax(0, 1fr))",
+                      gap: SPACE.sm,
+                      marginTop: 28,
+                      maxWidth: 760,
+                    }}
+                  >
+                    {[
+                      [c.quickPilot, c.quickPilotText],
+                      [c.controlledAI, c.controlledAIText],
+                      [c.enterpriseFit, c.enterpriseFitText],
+                    ].map(([title, text]) => (
+                      <div
+                        key={title}
+                        style={{
+                          borderTop: `2px solid ${GOLD}`,
+                          paddingTop: 10,
+                        }}
+                      >
+                        <div style={{ color: NAVY, fontWeight: 800, fontSize: 14, marginBottom: 4 }}>
+                          {title}
+                        </div>
+                        <div style={{ color: "#64748B", fontSize: 13, lineHeight: 1.45 }}>{text}</div>
                       </div>
-                      <div style={{ ...styles.muted, fontSize: 13, lineHeight: 1.5 }}>
-                        {item.description}
-                      </div>
-                    </div>
-                  ))}
-              </div>
-              {isMobile && (
-                <div
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns: "1fr",
-                    gap: SPACE.sm,
-                    marginBottom: 24,
-                  }}
-                >
-                  {currentHeroAnnotations.map((item) => (
-                    <div
-                      key={item.title}
-                      style={{
-                        border: "1px solid #E2E8F0",
-                        borderRadius: 14,
-                        background: "#ffffff",
-                        padding: "10px 12px",
-                      }}
-                    >
-                      <div style={{ fontWeight: 700, fontSize: 14, marginBottom: 4 }}>
-                        {item.title}
-                      </div>
-                      <div style={{ ...styles.muted, fontSize: 13 }}>{item.description}</div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
-              )}
+                <DecisionCoreVisual lang={lang} isMobile={isMobile} />
+              </div>
             </div>
           </section>
 
@@ -760,7 +930,7 @@ export default function App() {
                 <img
                   src="/decigent_services.png"
                   alt="Decigent services visual"
-                  style={{ width: "100%", display: "block", borderRadius: 18 }}
+                  style={{ width: "100%", display: "block", borderRadius: 8 }}
                 />
               </div>
               <div
@@ -820,7 +990,7 @@ export default function App() {
                 <img
                   src="/decigent_solutions.png"
                   alt="Decigent solutions visual"
-                  style={{ width: "100%", display: "block", borderRadius: 18 }}
+                  style={{ width: "100%", display: "block", borderRadius: 8 }}
                 />
               </div>
               <div
@@ -1146,7 +1316,6 @@ export default function App() {
               <div style={{ display: "grid", gap: SPACE.lg }}>
                 {[
                   [c.emailLabel, "info@decigent.com"],
-                  [c.phoneLabel, "+90 258 XXX XX XX"],
                   [c.addressLabel, "Atalar Mh. 1346 Sok. No: 24/10 Pamukkale - DENİZLİ"],
                 ].map(([title, text]) => (
                   <div key={title} className="card-hover" style={styles.card}>
@@ -1212,7 +1381,6 @@ export default function App() {
               <div style={{ fontWeight: 700, marginBottom: 12 }}>{c.contactInfo}</div>
               <div style={{ display: "grid", gap: SPACE.xs, color: "#334155" }}>
                 <div>info@decigent.com</div>
-                <div>+90 258 XXX XX XX</div>
                 <div>Atalar Mh. 1346 Sok. No: 24/10 Pamukkale - DENİZLİ</div>
                 <a
                   href="https://www.linkedin.com/company/decigent/"

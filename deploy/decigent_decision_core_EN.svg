@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1536" height="864" viewBox="0 0 1536 864" role="img" aria-labelledby="title desc">
+  <title id="title">Decigent Decision Core</title>
+  <desc id="desc">A Decigent enterprise decision system visual showing connected operational data, risk signals, audit trail, recommended action, human approval, and measured outcome around a central Decision Core.</desc>
+  <defs>
+    <radialGradient id="coreGlow" cx="50%" cy="44%" r="32%">
+      <stop offset="0%" stop-color="#2776EA" stop-opacity="0.35"/>
+      <stop offset="52%" stop-color="#2776EA" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#0D1B2A" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="softShadow" x="-20%" y="-40%" width="140%" height="180%">
+      <feDropShadow dx="0" dy="18" stdDeviation="20" flood-color="#0D1B2A" flood-opacity="0.62"/>
+    </filter>
+    <linearGradient id="cardStroke" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#D4A017" stop-opacity="0.68"/>
+      <stop offset="54%" stop-color="#2776EA" stop-opacity="0.42"/>
+      <stop offset="100%" stop-color="#F7F9FC" stop-opacity="0.16"/>
+    </linearGradient>
+    <style>
+      .label { font-family: "Science Gothic", Inter, Aptos, Arial, sans-serif; font-size: 33px; font-weight: 650; letter-spacing: 0; fill: #F7F9FC; }
+      .subtle { font-family: "Science Gothic", Inter, Aptos, Arial, sans-serif; font-size: 22px; font-weight: 520; letter-spacing: 0; fill: #F7F9FC; fill-opacity: 0.68; }
+      .coreText { font-family: "Science Gothic", Inter, Aptos, Arial, sans-serif; font-size: 38px; font-weight: 720; letter-spacing: 0; fill: #F7F9FC; }
+      .card { fill: #F7F9FC; fill-opacity: 0.045; stroke: url(#cardStroke); stroke-width: 1.4; }
+      .linkBlue { fill: none; stroke: #2776EA; stroke-width: 3.2; stroke-linecap: round; stroke-opacity: 0.74; }
+      .linkGold { fill: none; stroke: #D4A017; stroke-width: 3.2; stroke-linecap: round; stroke-opacity: 0.78; }
+      .iconBlue { fill: none; stroke: #2776EA; stroke-width: 4.5; stroke-linecap: round; stroke-linejoin: round; }
+      .iconGold { fill: none; stroke: #D4A017; stroke-width: 4.5; stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+  </defs>
+
+  <rect width="1536" height="864" fill="#0D1B2A"/>
+  <rect width="1536" height="864" fill="url(#coreGlow)"/>
+
+  <g opacity="0.28">
+    <circle cx="768" cy="370" r="226" fill="none" stroke="#2776EA" stroke-width="1.2"/>
+    <circle cx="768" cy="370" r="168" fill="none" stroke="#D4A017" stroke-width="1"/>
+    <circle cx="768" cy="370" r="104" fill="none" stroke="#F7F9FC" stroke-width="0.8" stroke-opacity="0.42"/>
+  </g>
+
+  <g opacity="0.78">
+    <path class="linkBlue" d="M515 210 C610 230 655 280 704 340"/>
+    <path class="linkGold" d="M1021 210 C924 230 879 280 832 340"/>
+    <path class="linkBlue" d="M486 454 C594 441 656 410 704 382"/>
+    <path class="linkGold" d="M1050 454 C942 441 881 410 832 382"/>
+    <path class="linkBlue" d="M626 638 C683 575 717 514 744 418"/>
+    <path class="linkGold" d="M910 638 C854 575 819 514 792 418"/>
+  </g>
+
+  <g filter="url(#softShadow)">
+    <g transform="translate(248 132)">
+      <rect class="card" width="300" height="126" rx="18"/>
+      <path class="iconBlue" d="M54 39h54v42H54z M70 39v42 M92 39v42"/>
+      <text class="label" x="136" y="63">ERP / CRM / Excel</text>
+      <text class="subtle" x="136" y="94">Operational data</text>
+    </g>
+
+    <g transform="translate(988 132)">
+      <rect class="card" width="300" height="126" rx="18"/>
+      <path class="iconGold" d="M81 36l31 55H50z M81 56v18 M81 83v1"/>
+      <text class="label" x="136" y="63">Risk Signal</text>
+      <text class="subtle" x="136" y="94">Exceptions and anomalies</text>
+    </g>
+
+    <g transform="translate(202 392)">
+      <rect class="card" width="300" height="126" rx="18"/>
+      <path class="iconBlue" d="M56 36h58v56H56z M70 53h30 M70 70h30"/>
+      <text class="label" x="136" y="63">Audit Trail</text>
+      <text class="subtle" x="136" y="94">Traceable decisions</text>
+    </g>
+
+    <g transform="translate(1034 392)">
+      <rect class="card" width="300" height="126" rx="18"/>
+      <path class="iconGold" d="M51 69h60 M88 46l25 23-25 23"/>
+      <text class="label" x="136" y="63">Recommended Action</text>
+      <text class="subtle" x="136" y="94">Next best step</text>
+    </g>
+
+    <g transform="translate(396 640)">
+      <rect class="card" width="300" height="126" rx="18"/>
+      <path class="iconBlue" d="M57 74l18 18 42-50 M54 42h66v52H54z"/>
+      <text class="label" x="136" y="63">Human Approval</text>
+      <text class="subtle" x="136" y="94">Governed autonomy</text>
+    </g>
+
+    <g transform="translate(840 640)">
+      <rect class="card" width="300" height="126" rx="18"/>
+      <path class="iconGold" d="M54 92V44 M78 92V62 M102 92V36 M48 92h64"/>
+      <text class="label" x="136" y="63">Measured Outcome</text>
+      <text class="subtle" x="136" y="94">Business impact</text>
+    </g>
+  </g>
+
+  <g>
+    <circle cx="768" cy="360" r="90" fill="#0D1B2A" fill-opacity="0.86" stroke="#D4A017" stroke-width="2.2" stroke-opacity="0.82"/>
+    <circle cx="768" cy="360" r="118" fill="none" stroke="#2776EA" stroke-width="1.6" stroke-opacity="0.36"/>
+    <image href="/favicon_gold.ico" x="716" y="286" width="104" height="104" preserveAspectRatio="xMidYMid meet"/>
+    <text class="coreText" x="768" y="474" text-anchor="middle">Decision Core</text>
+  </g>
+</svg>
