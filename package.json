@@ -13,9 +13,11 @@
     "react-dom": "^18"
   },
   "devDependencies": {
+    "@resvg/resvg-js": "^2.6.2",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^4",
+    "to-ico": "^1.1.5",
     "typescript": "^5",
     "vite": "^5"
   }

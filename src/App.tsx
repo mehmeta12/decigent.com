@@ -219,115 +219,6 @@ const heroAnnotations: Record<Lang, HeroAnnotation[]> = {
   ],
 };
 
-const servicesAnnotations: Record<Lang, HeroAnnotation[]> = {
-  tr: [
-    {
-      title: "Ajanik İş Akışları",
-      description: "Tekrarlayan süreçleri izlenebilir ve ölçülebilir akışlara dönüştürür.",
-      top: "16%",
-      left: "4%",
-    },
-    {
-      title: "Karar Destek",
-      description: "Yöneticiler için kritik sinyalleri öne çıkarır.",
-      top: "36%",
-      left: "4%",
-    },
-    {
-      title: "Kurumsal Copilot",
-      description: "Role özel asistanlarla ekip verimini artırır.",
-      top: "56%",
-      left: "4%",
-    },
-    {
-      title: "Governance",
-      description: "Yetki, log ve insan onayı ile kontrollü kullanım sağlar.",
-      top: "76%",
-      left: "4%",
-    },
-  ],
-  en: [
-    {
-      title: "Agentic Workflows",
-      description: "Transforms repetitive processes into measurable, traceable flows.",
-      top: "16%",
-      left: "4%",
-    },
-    {
-      title: "Decision Support",
-      description: "Highlights critical signals for executive decisions.",
-      top: "36%",
-      left: "4%",
-    },
-    {
-      title: "Enterprise Copilots",
-      description: "Improves team productivity with role-specific assistants.",
-      top: "56%",
-      left: "4%",
-    },
-    {
-      title: "Governance",
-      description: "Ensures controlled use with permissions, logs, and human approval.",
-      top: "76%",
-      left: "4%",
-    },
-  ],
-};
-
-const solutionsAnnotations: Record<Lang, HeroAnnotation[]> = {
-  tr: [
-    {
-      title: "Yönetim Copilotu",
-      description: "Dağınık verileri yönetim için aksiyona çevrilebilir özetlere dönüştürür.",
-      top: "16%",
-      left: "4%",
-    },
-    {
-      title: "Satış Hızlandırma",
-      description: "Teklif ve yanıt sürecini hızlandırır, dönüşümleri güçlendirir.",
-      top: "36%",
-      left: "4%",
-    },
-    {
-      title: "Satın Alma Akışı",
-      description: "Tedarikçi karşılaştırma ve onay adımlarını kısaltır.",
-      top: "56%",
-      left: "4%",
-    },
-    {
-      title: "İK Asistanı",
-      description: "Politika ve prosedür bazlı güvenli çalışan desteği sağlar.",
-      top: "76%",
-      left: "4%",
-    },
-  ],
-  en: [
-    {
-      title: "Management Copilot",
-      description: "Turns fragmented data into actionable executive summaries.",
-      top: "16%",
-      left: "4%",
-    },
-    {
-      title: "Sales Acceleration",
-      description: "Speeds up proposal and response cycles to improve conversion.",
-      top: "36%",
-      left: "4%",
-    },
-    {
-      title: "Procurement Flow",
-      description: "Shortens supplier comparison and approval steps.",
-      top: "56%",
-      left: "4%",
-    },
-    {
-      title: "HR Assistant",
-      description: "Provides secure employee support on top of policies and procedures.",
-      top: "76%",
-      left: "4%",
-    },
-  ],
-};
 
 const serviceIcons = [WorkflowIcon, BarChart2Icon, BotIcon, LayersIcon, ShieldIcon, RocketIcon];
 
@@ -431,8 +322,6 @@ export default function App() {
   const currentUseCases = useCasesList[lang];
   const currentBlogPosts = blogPosts[lang];
   const currentHeroAnnotations = heroAnnotations[lang];
-  const currentServicesAnnotations = servicesAnnotations[lang];
-  const currentSolutionsAnnotations = solutionsAnnotations[lang];
 
   useEffect(() => {
     const saved = localStorage.getItem("decigent-lang") as Lang | null;
@@ -536,7 +425,7 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const handleContactSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleContactSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
     const name = String(data.get("name") || "");
@@ -582,7 +471,7 @@ export default function App() {
             onClick={() => navigateTo("Ana Sayfa")}
             style={{ background: "transparent", border: "none", cursor: "pointer", padding: 0 }}
           >
-            <img src="/decigent_logo_black.png" alt="Decigent Logo" style={{ height: 36, width: "auto" }} />
+            <img src="/decigent_logo_inverse.svg" alt="Decigent Logo" style={{ height: 56, width: "auto" }} />
           </button>
 
           {isMobile ? (
