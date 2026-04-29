@@ -7,7 +7,7 @@
 }
 
 .card-hover:hover {
-  background: #FEF9EE !important;
-  border-color: #F0D89A !important;
-  box-shadow: 0 12px 36px rgba(14, 38, 56, 0.10) !important;
+  background: rgba(212,160,23,0.07) !important;
+  border-color: rgba(212,160,23,0.28) !important;
+  box-shadow: 0 16px 44px rgba(0,0,0,0.5) !important;
 }

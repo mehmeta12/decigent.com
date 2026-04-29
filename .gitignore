@@ -2,4 +2,8 @@ node_modules/
 dist/
 dev.log
 dev.err
+vite-dev.log
+vite-dev.err.log
+decigent-deploy.zip
+.claude/
 .DS_Store

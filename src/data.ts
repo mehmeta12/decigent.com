@@ -101,6 +101,22 @@ export const copy = {
     whyFoundingText:
       "Üretim sektöründen öncü şirketlerle birlikte ilk pilotu tasarlıyoruz. İlk gruba dahil olun, çözümü birlikte şekillendirin.",
     whyCta: "Kurucu Pilot Görüşmesi İste",
+    problemLabel: "Problem",
+    approachLabel: "Yaklaşım",
+    outputLabel: "Çıktı",
+    metricLabel: "Başarı Metrikleri",
+    founderSection: "Kurucu",
+    formSending: "Gönderiliyor...",
+    formSuccess: "Mesajınız iletildi. 1 iş günü içinde dönüyoruz.",
+    formError: "Bir sorun oluştu. Doğrudan info@decigent.com adresine yazabilirsiniz.",
+    contactNextStep: "İlk 30 dakikalık görüşmede: iş hedefiniz, öncelikli süreciniz ve pilot kapsamı.",
+    pilotEyebrow: "Pilot Metodolojisi",
+    pilotTitle: "8-12 haftada, sıfırdan çalışan sisteme",
+    pilotText: "Her pilot aynı dört aşamadan geçer. Kapalı kutu yoktur — her adımda ne yaptığımızı, ne teslim ettiğimizi ve hangi kriterlere göre ilerlediğimizi birlikte görürsünüz.",
+    pilotDeliverable: "Teslimat",
+    securityEyebrow: "Güvenlik & Yönetişim",
+    securityTitle: "Kurumsal AI güvenli olmalı. Başından beri.",
+    securityText: "Güvenlik ve yönetişim eklenti değil, çözüm tasarımının merkezidir. Kritik operasyon süreçlerinde her karar izlenebilir, her aksiyon onay gerektirir.",
   },
   en: {
     home: "Home",
@@ -202,6 +218,22 @@ export const copy = {
     whyFoundingText:
       "We're designing our first pilots together with pioneering manufacturing companies. Join the first cohort and help shape the solution.",
     whyCta: "Request a Founding Pilot Meeting",
+    problemLabel: "Problem",
+    approachLabel: "Approach",
+    outputLabel: "Output",
+    metricLabel: "Success Metrics",
+    founderSection: "Founder",
+    formSending: "Sending...",
+    formSuccess: "Your message was received. We'll get back to you within 1 business day.",
+    formError: "Something went wrong. Please email us directly at info@decigent.com",
+    contactNextStep: "In our first 30-minute call: your business objective, priority process, and pilot scope.",
+    pilotEyebrow: "Pilot Methodology",
+    pilotTitle: "From zero to working system in 8-12 weeks",
+    pilotText: "Every pilot follows the same four phases. No black boxes — at each step you see what we do, what we deliver, and the criteria we use to move forward.",
+    pilotDeliverable: "Deliverable",
+    securityEyebrow: "Security & Governance",
+    securityTitle: "Enterprise AI must be safe. From day one.",
+    securityText: "Security and governance are not add-ons — they are at the center of solution design. In critical operational processes, every decision is traceable and every action requires approval.",
   },
 } as const;
 
@@ -371,6 +403,251 @@ export const useCasesList = {
     "Secure employee assistants on top of enterprise knowledge bases",
     "Anomaly detection and action suggestions from operational data",
     "Web and WhatsApp based support assistants",
+  ],
+};
+
+export const useCases = {
+  tr: [
+    {
+      sector: "Üretim",
+      title: "Yönetim Raporu ve Aksiyon Copilotu",
+      problem:
+        "Üretim müdürleri haftalık durum raporunu 4-5 farklı sistemden manuel olarak hazırlıyor; kritik sapmalar çoğunlukla geç fark ediliyor.",
+      approach:
+        "ERP, MES ve operasyon verilerini birleştiren AI copilot; sapmaları otomatik işaretler, özet üretir ve önerilen aksiyonu insan onayıyla kayıt altına alır.",
+      output:
+        "Haftalık rapor 3 dakikada hazır. Kritik sapma anlık bildirim. Aksiyon önerisi yönetici onayıyla loglanıyor.",
+      metric: "Rapor hazırlama süresi · Sapma tespit hızı · Müdahale oranı",
+    },
+    {
+      sector: "Satış",
+      title: "Teklif ve Müşteri Yanıt Ajanı",
+      problem:
+        "Satış ekibi teklif hazırlamak için ortalama 2-3 gün harcıyor; müşteri sorularına yanıt gecikmesi fırsatları kaçırıyor.",
+      approach:
+        "CRM geçmişi, ürün kataloğu ve önceki teklifler üzerinden çalışan AI ajanı; taslağı üretiyor, satış müdürü onayıyla çıkıyor.",
+      output:
+        "Teklif taslağı 20 dakikada hazır. Müşteri sorularına ilk yanıt otomatik. Tüm adımlar audit trail'e kaydediliyor.",
+      metric: "Teklif hazırlama süresi · İlk yanıt süresi · Kazanılan teklif oranı",
+    },
+    {
+      sector: "Satın Alma",
+      title: "Tedarikçi Karşılaştırma ve Onay Akışı",
+      problem:
+        "Birden fazla tedarikçi teklifi Excel'de manuel karşılaştırılıyor; onay süreci mail zinciriyle yönetiliyor ve haftalar sürüyor.",
+      approach:
+        "Teklif verilerini otomatik karşılaştıran, risk noktalarını işaretleyen ve dijital onay akışı sunan kontrollü sistem.",
+      output:
+        "Karşılaştırma raporu dakikalar içinde hazır. Onay süresi günlerden saatlere iniyor. Her karar kayıt altında.",
+      metric: "Onay süresi · Maliyet fark tespiti · Audit trail eksiksizliği",
+    },
+    {
+      sector: "İK",
+      title: "İK Politika ve Talep Asistanı",
+      problem:
+        "Çalışanlar izin, masraf ve politika soruları için İK ekibini sık sık meşgul ediyor; İK stratejik işe zaman bulamıyor.",
+      approach:
+        "Şirket içi prosedürler ve politikalar üzerinde çalışan güvenli AI asistanı. Hassas veriye erişimi yok, her yanıt loglanıyor.",
+      output:
+        "Çalışanlar politika sorularına anında yanıt alıyor. İK ekibi rutin sorudan kurtularak stratejik işe odaklanıyor.",
+      metric: "Self-servis tamamlanma oranı · İK'ya yönlendirilen rutin soru sayısı",
+    },
+  ],
+  en: [
+    {
+      sector: "Manufacturing",
+      title: "Management Reporting and Action Copilot",
+      problem:
+        "Production managers manually compile weekly status reports from 4-5 different systems; critical deviations are often caught too late.",
+      approach:
+        "AI copilot that unifies ERP, MES, and operational data; automatically flags deviations, generates summaries, and logs recommended actions after manager approval.",
+      output:
+        "Weekly report ready in 3 minutes. Critical deviation alerts in real time. Action recommendations logged after approval.",
+      metric: "Report prep time · Deviation detection speed · Intervention rate",
+    },
+    {
+      sector: "Sales",
+      title: "Proposal and Customer Response Agent",
+      problem:
+        "Sales teams spend 2-3 days preparing proposals on average; delayed responses to customer questions cost deals.",
+      approach:
+        "AI agent working on CRM history, product catalog, and past proposals; generates the draft, sends it after the sales manager approves.",
+      output:
+        "Proposal draft ready in 20 minutes. First customer response automated. Every step logged in the audit trail.",
+      metric: "Proposal prep time · First response time · Win rate",
+    },
+    {
+      sector: "Procurement",
+      title: "Supplier Comparison and Approval Flow",
+      problem:
+        "Multiple supplier bids are compared manually in Excel; approval is managed via email chains and takes weeks.",
+      approach:
+        "Controlled system that automatically compares bid data, flags risk points, and provides a structured digital approval workflow.",
+      output:
+        "Comparison report ready in minutes. Approval time drops from days to hours. Every decision is on record.",
+      metric: "Approval cycle time · Cost variance detection · Audit trail completeness",
+    },
+    {
+      sector: "HR",
+      title: "HR Policy and Request Assistant",
+      problem:
+        "Employees frequently interrupt the HR team with leave, expense, and policy questions; HR has little time left for strategic work.",
+      approach:
+        "Secure AI assistant built on internal procedures and policies. No access to sensitive data; every response is logged.",
+      output:
+        "Employees get instant answers to policy questions. HR team freed from routine queries to focus on strategic work.",
+      metric: "Self-service completion rate · Routine queries redirected to HR",
+    },
+  ],
+};
+
+export const pilotSteps = {
+  tr: [
+    {
+      step: 1,
+      title: "Keşif",
+      duration: "1-2 Hafta",
+      description:
+        "İş sürecinizi analiz ediyoruz, veri kaynaklarını değerlendiriyoruz ve başarı kriterlerini birlikte belirliyoruz. Yüksek etki / düşük risk kombinasyonunu hedefliyoruz.",
+      deliverable: "Proje kapsamı, KPI tanımları ve veri hazırlık raporu",
+    },
+    {
+      step: 2,
+      title: "Tasarım",
+      duration: "2-3 Hafta",
+      description:
+        "Çözüm mimarisini tasarlıyoruz. Entegrasyon planı, insan onay noktaları, yetki yapısı ve audit mekanizmaları bu aşamada belirlenir.",
+      deliverable: "Teknik tasarım belgesi ve entegrasyon planı",
+    },
+    {
+      step: 3,
+      title: "Pilot",
+      duration: "4-6 Hafta",
+      description:
+        "Kontrollü ortamda canlı sistemi çalıştırıyoruz. Haftalık geri bildirim döngüsüyle iyileştirme yapıyoruz. KPI'lar gerçek veriyle ölçülür.",
+      deliverable: "Çalışan sistem + haftalık KPI ölçüm raporları",
+    },
+    {
+      step: 4,
+      title: "Ölçekleme",
+      duration: "Pilot sonrası",
+      description:
+        "KPI'lar doğrulandıktan sonra kurumsal ölçekte yaygınlaştırma planı oluşturuyoruz. Devir, hibrit yönetim veya tam bağımsız operasyon — tercih sizin.",
+      deliverable: "Ölçekleme yol haritası ve devir planı",
+    },
+  ],
+  en: [
+    {
+      step: 1,
+      title: "Discovery",
+      duration: "1-2 Weeks",
+      description:
+        "We analyze your business process, evaluate data sources, and define success criteria together. We target the high-impact / low-risk combination.",
+      deliverable: "Project scope, KPI definitions, and data readiness report",
+    },
+    {
+      step: 2,
+      title: "Design",
+      duration: "2-3 Weeks",
+      description:
+        "We design the solution architecture. Integration plan, human approval gates, authorization structure, and audit mechanisms are defined in this phase.",
+      deliverable: "Technical design document and integration plan",
+    },
+    {
+      step: 3,
+      title: "Pilot",
+      duration: "4-6 Weeks",
+      description:
+        "We run the live system in a controlled environment. We improve through weekly feedback cycles. KPIs are measured against real data.",
+      deliverable: "Working system + weekly KPI measurement reports",
+    },
+    {
+      step: 4,
+      title: "Scale",
+      duration: "Post-pilot",
+      description:
+        "After KPI validation, we build an enterprise-wide rollout plan. Handover to your team, hybrid management, or fully independent operation — your choice.",
+      deliverable: "Scaling roadmap and handover plan",
+    },
+  ],
+};
+
+export const securityItems = {
+  tr: [
+    {
+      icon: "role",
+      title: "Rol Tabanlı Yetki",
+      description:
+        "Kim neyi görebilir, kim hangi aksiyonu onaylayabilir — her rol açıkça tanımlanır ve sistem bunu zorlar.",
+    },
+    {
+      icon: "approval",
+      title: "İnsan Onay Noktaları",
+      description:
+        "Kritik aksiyonlar otomatik geçmez. Her yüksek riskli karar, tanımlı yetkili tarafından onaylanır.",
+    },
+    {
+      icon: "audit",
+      title: "Tam Audit Trail",
+      description:
+        "Her karar, her aksiyon, her onay — değiştirilemez kayıt altında. Denetim anında erişilebilir.",
+    },
+    {
+      icon: "data",
+      title: "Veri Yönetişimi",
+      description:
+        "Müşteri verisinin nerede, nasıl ve ne kadar süre saklandığı baştan tanımlanır. Silme ve anonimleştirme desteği.",
+    },
+    {
+      icon: "deploy",
+      title: "Esnek Dağıtım",
+      description:
+        "Cloud, private cloud veya on-prem — müşteri ortamında kurulum seçeneği mevcuttur.",
+    },
+    {
+      icon: "shield",
+      title: "KVKK Uyumu",
+      description:
+        "Türk kurumsal alıcılar için KVKK gereksinimlerine uygun sistem tasarımı. GDPR uyumlu süreçler.",
+    },
+  ],
+  en: [
+    {
+      icon: "role",
+      title: "Role-Based Authorization",
+      description:
+        "Who can see what, who can approve which actions — every role is explicitly defined and the system enforces it.",
+    },
+    {
+      icon: "approval",
+      title: "Human Approval Gates",
+      description:
+        "Critical actions don't pass automatically. Every high-risk decision requires approval from a designated authority.",
+    },
+    {
+      icon: "audit",
+      title: "Full Audit Trail",
+      description:
+        "Every decision, every action, every approval — immutable record. Audit access is instant and complete.",
+    },
+    {
+      icon: "data",
+      title: "Data Governance",
+      description:
+        "Where, how, and for how long customer data is stored is defined upfront. Deletion and anonymization supported.",
+    },
+    {
+      icon: "deploy",
+      title: "Flexible Deployment",
+      description:
+        "Cloud, private cloud, or on-prem — deployment in the customer's own environment is available.",
+    },
+    {
+      icon: "shield",
+      title: "KVKK / GDPR Compliance",
+      description:
+        "System design compliant with KVKK requirements for Turkish enterprise buyers. GDPR-compliant processes.",
+    },
   ],
 };
 
