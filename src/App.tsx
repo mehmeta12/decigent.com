@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { type Lang, copy, services, solutions, useCases, pilotSteps, securityItems, blogPosts } from "./data";
+import heroImg from "../img/decigent_hero.jpeg";
+import logoGold from "../img/Decigent_logo_gold_bgwhite_noslogan.png";
 
 type Page =
   | "Ana Sayfa"
@@ -43,7 +45,7 @@ const styles = {
     minHeight: "100vh",
     background: BLACK,
     color: TEXT_PRIMARY,
-    fontFamily: "'Science Gothic', Inter, Aptos, Arial, sans-serif",
+    fontFamily: "'Barlow', Inter, Arial, sans-serif",
   } as const,
   container: {
     width: "100%",
@@ -211,7 +213,7 @@ const fadeUp = {
   visible: (i: number = 0) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, delay: i * 0.08, ease: "easeOut" },
+    transition: { duration: 0.5, delay: i * 0.08, ease: "easeOut" as const },
   }),
 };
 
@@ -305,218 +307,65 @@ function LinkedInMark() {
   );
 }
 
-function DecisionCoreVisual({ lang, isMobile }: { lang: Lang; isMobile: boolean }) {
-  const labels =
-    lang === "tr"
-      ? {
-          data: "ERP / CRM / Excel",
-          risk: "Risk Sinyali",
-          audit: "Denetim Kaydı",
-          action: "Aksiyon Önerisi",
-          approval: "İnsan Onayı",
-          outcome: "Ölçülen Sonuç",
-        }
-      : {
-          data: "ERP / CRM / Excel",
-          risk: "Risk Signal",
-          audit: "Audit Trail",
-          action: "Recommended Action",
-          approval: "Human Approval",
-          outcome: "Measured Outcome",
-        };
-
-  const card = (
-    x: number,
-    y: number,
-    width: number,
-    height: number,
-    title: string,
-    accent: "blue" | "gold",
-    icon: "data" | "risk" | "audit" | "action" | "approval" | "outcome"
-  ) => {
-    const color = accent === "blue" ? "#2776EA" : GOLD;
-    const iconX = x + 40;
-    const iconY = y + 26;
-    const textLines = title.includes("/") ? [title] : title.split(" ");
-    const textX = icon === "data" || icon === "risk" || icon === "audit" ? x + width / 2 : x + 132;
-    const textY = icon === "data" || icon === "risk" || icon === "audit" ? y + 118 : y + 56;
-    const textAnchor = icon === "data" || icon === "risk" || icon === "audit" ? "middle" : "start";
-
-    return (
-      <g key={title}>
-        <rect
-          x={x}
-          y={y}
-          width={width}
-          height={height}
-          rx="14"
-          fill="#0D1B2A"
-          fillOpacity="0.72"
-          stroke={color}
-          strokeWidth="2"
-        />
-        <g transform={`translate(${iconX} ${iconY})`} stroke={color} strokeWidth="4" fill="none" strokeLinecap="round" strokeLinejoin="round">
-          {icon === "data" && (
-            <>
-              <ellipse cx="30" cy="14" rx="24" ry="10" />
-              <path d="M6 14v42c0 6 11 10 24 10s24-4 24-10V14" />
-              <path d="M6 34c0 6 11 10 24 10s24-4 24-10" />
-              <rect x="72" y="22" width="50" height="48" rx="4" />
-              <path d="M84 36h18M84 50h26M84 64h18" />
-            </>
-          )}
-          {icon === "risk" && (
-            <>
-              <path d="M42 4l32 14v24c0 24-14 42-32 52-18-10-32-28-32-52V18L42 4z" />
-              <path d="M42 28v30M42 74h.1" />
-            </>
-          )}
-          {icon === "audit" && (
-            <>
-              <path d="M18 6h48l22 22v70H18z" />
-              <path d="M66 6v24h22M34 44h26M34 62h20M34 80h18" />
-              <circle cx="82" cy="82" r="20" />
-              <path d="M82 70v13l9 6" />
-            </>
-          )}
-          {icon === "action" && (
-            <>
-              <path d="M18 72V36h28" />
-              <path d="M46 36l-14-14M46 36L32 50" />
-              <circle cx="18" cy="72" r="9" />
-              <path d="M70 18l22 22M92 18L70 40M70 72l22 22M92 72L70 94" />
-            </>
-          )}
-          {icon === "approval" && (
-            <>
-              <circle cx="38" cy="28" r="20" />
-              <path d="M8 94c4-30 18-44 30-44s26 14 30 44" />
-              <circle cx="82" cy="76" r="20" />
-              <path d="M72 76l7 7 15-17" />
-            </>
-          )}
-          {icon === "outcome" && (
-            <>
-              <path d="M10 88h96" />
-              <rect x="18" y="58" width="14" height="30" />
-              <rect x="46" y="42" width="14" height="46" />
-              <rect x="74" y="24" width="14" height="64" />
-              <path d="M16 42l26-26 22 20 36-34" />
-              <path d="M84 2h16v16" />
-            </>
-          )}
-        </g>
-        {!isMobile && (
-          <text
-            x={textX}
-            y={textY}
-            fill="#F7F9FC"
-            fontSize="25"
-            fontWeight="700"
-            textAnchor={textAnchor}
-          >
-            {textLines.map((line, index) => (
-              <tspan key={`${line}-${index}`} x={textX} dy={index === 0 ? 0 : 32}>
-                {line}
-              </tspan>
-            ))}
-          </text>
-        )}
-      </g>
-    );
-  };
-
+function HeroGifVisual({ isMobile }: { isMobile: boolean }) {
   return (
     <div
-      aria-label="Decigent Decision Core visual"
       style={{
         position: "relative",
         aspectRatio: "16 / 9",
         minHeight: isMobile ? 260 : 420,
         borderRadius: 8,
         overflow: "hidden",
-        background: NAVY,
+        background: BLACK,
         border: "1px solid rgba(247, 249, 252, 0.12)",
-        boxShadow: "0 16px 44px rgba(13, 27, 42, 0.18)",
+        boxShadow: "0 16px 44px rgba(0,0,0,0.42)",
       }}
     >
-      <svg
-        viewBox="0 0 1536 864"
-        role="img"
-        aria-hidden="true"
-        style={{ width: "100%", height: "100%", display: "block" }}
-      >
-        <defs>
-          <radialGradient id="decisionCoreGlow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#2776EA" stopOpacity="0.14" />
-            <stop offset="58%" stopColor={NAVY} stopOpacity="0.84" />
-            <stop offset="100%" stopColor={NAVY} stopOpacity="1" />
-          </radialGradient>
-          <filter id="goldGlow" x="-80%" y="-80%" width="260%" height="260%">
-            <feDropShadow dx="0" dy="0" stdDeviation="8" floodColor={GOLD} floodOpacity="0.42" />
-          </filter>
-          <filter id="blueGlow" x="-80%" y="-80%" width="260%" height="260%">
-            <feDropShadow dx="0" dy="0" stdDeviation="8" floodColor="#2776EA" floodOpacity="0.42" />
-          </filter>
-        </defs>
-
-        <rect width="1536" height="864" fill={NAVY} />
-        <circle cx="768" cy="432" r="318" fill="url(#decisionCoreGlow)" />
-        {[148, 184, 220, 256].map((r, index) => (
-          <circle
-            key={r}
-            cx="768"
-            cy="432"
-            r={r}
-            fill="none"
-            stroke={index % 2 === 0 ? "#2776EA" : GOLD}
-            strokeOpacity={index % 2 === 0 ? 0.32 : 0.26}
-            strokeDasharray="6 16"
-          />
-        ))}
-
-        <circle cx="768" cy="432" r="188" fill="none" stroke={GOLD} strokeWidth="5" filter="url(#goldGlow)" />
-
-        <path d="M368 198h95c70 0 76 70 156 126" fill="none" stroke="#2776EA" strokeWidth="4" strokeLinecap="round" filter="url(#blueGlow)" />
-        <path d="M344 432h238" fill="none" stroke="#2776EA" strokeWidth="4" strokeLinecap="round" filter="url(#blueGlow)" />
-        <path d="M344 666h116c80 0 88-72 158-128" fill="none" stroke="#2776EA" strokeWidth="4" strokeLinecap="round" filter="url(#blueGlow)" />
-        <path d="M917 324c76-58 76-126 156-126h95" fill="none" stroke={GOLD} strokeWidth="4" strokeLinecap="round" filter="url(#goldGlow)" />
-        <path d="M954 432h228" fill="none" stroke={GOLD} strokeWidth="4" strokeLinecap="round" filter="url(#goldGlow)" />
-        <path d="M918 538c78 58 78 128 158 128h92" fill="none" stroke={GOLD} strokeWidth="4" strokeLinecap="round" filter="url(#goldGlow)" />
-
-        {[{ x: 622, y: 324, c: "#9CCDF6" }, { x: 574, y: 432, c: GOLD }, { x: 622, y: 540, c: "#9CCDF6" }, { x: 914, y: 324, c: GOLD }, { x: 962, y: 432, c: GOLD }, { x: 914, y: 540, c: GOLD }, { x: 768, y: 312, c: GOLD }, { x: 768, y: 552, c: GOLD }].map((dot) => (
-          <circle key={`${dot.x}-${dot.y}`} cx={dot.x} cy={dot.y} r="9" fill={dot.c} filter={dot.c === GOLD ? "url(#goldGlow)" : "url(#blueGlow)"} />
-        ))}
-
-        {card(66, 96, 302, 136, labels.data, "blue", "data")}
-        {card(66, 364, 278, 136, labels.risk, "blue", "risk")}
-        {card(66, 632, 278, 136, labels.audit, "blue", "audit")}
-        {card(1128, 104, 342, 136, labels.action, "gold", "action")}
-        {card(1128, 372, 342, 136, labels.approval, "gold", "approval")}
-        {card(1128, 640, 342, 136, labels.outcome, "gold", "outcome")}
-
-        <text x="768" y="540" textAnchor="middle" fill="#F7F9FC" fontSize="34" fontWeight="800">
-          Decision Core
-        </text>
-      </svg>
       <img
-        src="/favicon_gold.ico"
-        alt=""
-        aria-hidden="true"
+        src={heroImg}
+        alt="Decigent decision intelligence hero"
         style={{
-          position: "absolute",
-          top: "43%",
-          left: "50%",
-          width: isMobile ? 62 : 82,
-          height: isMobile ? 62 : 82,
-          transform: "translate(-50%, -50%)",
-          pointerEvents: "none",
-          filter: "drop-shadow(0 0 14px rgba(212, 160, 23, 0.38))",
+          width: "100%",
+          height: "100%",
+          display: "block",
+          objectFit: "cover",
         }}
       />
+      {/* Floating chips */}
+      <div style={{
+        position: "absolute",
+        top: 16,
+        left: 16,
+        background: "rgba(13,27,42,0.82)",
+        backdropFilter: "blur(8px)",
+        border: `1px solid ${GOLD_BORDER}`,
+        borderRadius: 999,
+        padding: "6px 14px",
+        display: "flex",
+        alignItems: "center",
+        gap: 8,
+      }}>
+        <span style={{ width: 7, height: 7, borderRadius: "50%", background: "#22C55E", display: "inline-block", flexShrink: 0 }} />
+        <span style={{ fontSize: 12, fontWeight: 700, color: TEXT_PRIMARY, whiteSpace: "nowrap" }}>İnsan onaylı kararlar</span>
+      </div>
+      <div style={{
+        position: "absolute",
+        bottom: 16,
+        right: 16,
+        background: "rgba(13,27,42,0.82)",
+        backdropFilter: "blur(8px)",
+        border: `1px solid ${GOLD_BORDER}`,
+        borderRadius: 12,
+        padding: "10px 16px",
+      }}>
+        <div style={{ fontSize: 11, fontWeight: 600, color: TEXT_MUTED, marginBottom: 2 }}>Rapor hazırlama</div>
+        <div style={{ fontSize: 20, fontWeight: 800, color: GOLD, lineHeight: 1 }}>3 dk</div>
+        <div style={{ fontSize: 10, color: TEXT_MUTED, marginTop: 2 }}>vs. 4+ saat</div>
+      </div>
     </div>
   );
 }
+
 
 const inputStyle: React.CSSProperties = {
   width: "100%",
@@ -697,7 +546,7 @@ export default function App() {
             onClick={() => navigateTo("Ana Sayfa")}
             style={{ background: "transparent", border: "none", cursor: "pointer", padding: 0 }}
           >
-            <img src="/decigent_logo.svg" alt="Decigent Logo" style={{ height: 40, width: "auto" }} />
+            <img src={logoGold} alt="Decigent Logo" style={{ height: 40, width: "auto" }} />
           </button>
 
           {isMobile ? (
@@ -777,23 +626,27 @@ export default function App() {
           ) : (
             /* Desktop nav */
             <nav style={{ display: "flex", gap: SPACE.xs, flexWrap: "wrap", alignItems: "center" }}>
-              {navItems.map((item) => (
-                <button
-                  key={item}
-                  onClick={() => navigateTo(item)}
-                  style={{
-                    border: "none",
-                    background: currentPage === item ? GOLD : "transparent",
-                    color: currentPage === item ? NAVY : TEXT_MUTED,
-                    padding: "10px 14px",
-                    borderRadius: 999,
-                    cursor: "pointer",
-                    fontWeight: 600,
-                  }}
-                >
-                  {pageLabel(item)}
-                </button>
-              ))}
+              {navItems.map((item) => {
+                const isContact = item === "İletişim";
+                const isActive = currentPage === item;
+                return (
+                  <button
+                    key={item}
+                    onClick={() => navigateTo(item)}
+                    style={{
+                      border: isContact && !isActive ? `1px solid ${GOLD_BORDER}` : "none",
+                      background: isActive ? GOLD : "transparent",
+                      color: isActive ? NAVY : isContact ? GOLD : TEXT_MUTED,
+                      padding: "10px 14px",
+                      borderRadius: 999,
+                      cursor: "pointer",
+                      fontWeight: isContact ? 700 : 600,
+                    }}
+                  >
+                    {pageLabel(item)}
+                  </button>
+                );
+              })}
               <div
                 style={{
                   display: "flex",
@@ -845,25 +698,29 @@ export default function App() {
               gap: 4,
             }}
           >
-            {navItems.map((item) => (
-              <button
-                key={item}
-                onClick={() => navigateTo(item)}
-                style={{
-                  border: "none",
-                  background: currentPage === item ? GOLD_LIGHT : "transparent",
-                  color: currentPage === item ? GOLD : TEXT_MUTED,
-                  padding: "12px 14px",
-                  borderRadius: 12,
-                  cursor: "pointer",
-                  fontWeight: 600,
-                  textAlign: "left",
-                  fontSize: 15,
-                }}
-              >
-                {pageLabel(item)}
-              </button>
-            ))}
+            {navItems.map((item) => {
+              const isContact = item === "İletişim";
+              const isActive = currentPage === item;
+              return (
+                <button
+                  key={item}
+                  onClick={() => navigateTo(item)}
+                  style={{
+                    border: isContact && !isActive ? `1px solid ${GOLD_BORDER}` : "none",
+                    background: isActive ? GOLD_LIGHT : "transparent",
+                    color: isActive ? GOLD : isContact ? GOLD : TEXT_MUTED,
+                    padding: "12px 14px",
+                    borderRadius: 12,
+                    cursor: "pointer",
+                    fontWeight: isContact ? 700 : 600,
+                    textAlign: "left" as const,
+                    fontSize: 15,
+                  }}
+                >
+                  {pageLabel(item)}
+                </button>
+              );
+            })}
           </div>
         )}
       </header>
@@ -959,7 +816,7 @@ export default function App() {
                   </FadeUp>
                 </div>
                 <FadeUp i={1}>
-                  <DecisionCoreVisual lang={lang} isMobile={isMobile} />
+                  <HeroGifVisual isMobile={isMobile} />
                 </FadeUp>
               </div>
             </div>
@@ -978,9 +835,10 @@ export default function App() {
               }}>
                 {[
                   { label: lang === "tr" ? "Sonuç yoksa ücret yok" : "No results, no fee", icon: "✦" },
-                  { label: lang === "tr" ? "8-12 haftalık pilot" : "8-12 week pilot", icon: "✦" },
-                  { label: lang === "tr" ? "İnsan onaylı süreçler" : "Human-approved workflows", icon: "✦" },
-                  { label: lang === "tr" ? "Tam audit trail" : "Full audit trail", icon: "✦" },
+                  { label: lang === "tr" ? "12 haftalık pilot" : "12 week pilot", icon: "✦" },
+                  { label: lang === "tr" ? "İnsan onaylı kararlar" : "Human-approved decisions", icon: "✦" },
+                  { label: lang === "tr" ? "Tam izlenebilirlik" : "Full traceability", icon: "✦" },
+                  { label: lang === "tr" ? "Devir veya hibrit model" : "Handover or hybrid model", icon: "✦" },
                   { label: "KVKK / GDPR", icon: "✦" },
                 ].map((item, i) => (
                   <div key={i} style={{ display: "flex", alignItems: "center", gap: 8 }}>
@@ -1019,12 +877,12 @@ export default function App() {
           </section>
 
           {/* ── SOLUTIONS ── */}
-          <section id="solutions-section" style={{ ...styles.section, padding: vpad }}>
+          <section id="solutions-section" style={{ ...styles.section, padding: vpad, background: NAVY }}>
             <div style={{ ...styles.container, padding: hpad }}>
               <FadeUp>
                 <SectionHeader eyebrow={c.solutionsEyebrow} title={c.solutionsTitle} text={c.solutionsText} />
               </FadeUp>
-              <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(2, minmax(0,1fr))", gap: SPACE.lg }}>
+              <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, minmax(0,1fr))", gap: SPACE.lg }}>
                 {currentSolutions.map((item, i) => (
                   <FadeUp key={item.title} i={i}>
                   <div
@@ -1240,6 +1098,23 @@ export default function App() {
               >
                 {c.whyCta}
               </button>
+
+              <div style={{ marginTop: 40, borderTop: `1px solid ${BORDER_DARK}`, paddingTop: 32 }}>
+                <div style={{ fontSize: 13, fontWeight: 700, color: GOLD, textTransform: "uppercase" as const, letterSpacing: "0.08em", marginBottom: 20 }}>
+                  {c.engagementTitle}
+                </div>
+                <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, minmax(0,1fr))", gap: SPACE.lg }}>
+                  {c.engagementSteps.map((s) => (
+                    <div key={s.step} style={{ display: "flex", gap: 14, alignItems: "flex-start" }}>
+                      <div style={{ fontSize: 22, fontWeight: 800, color: GOLD, opacity: 0.35, lineHeight: 1, flexShrink: 0, minWidth: 32 }}>{s.step}</div>
+                      <div>
+                        <div style={{ fontWeight: 700, color: TEXT_PRIMARY, marginBottom: 6, fontSize: 15 }}>{s.title}</div>
+                        <div style={{ color: TEXT_MUTED, fontSize: 13, lineHeight: 1.6 }}>{s.text}</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </section>
 
@@ -1435,9 +1310,28 @@ export default function App() {
                 </div>
                 <p style={{ ...styles.muted, margin: "0 0 16px", fontSize: 16 }}>
                   {lang === "tr"
-                    ? "Kurumsal yazılım ve operasyon süreçleri üzerine uzun yıllara dayanan deneyimiyle Mehmet Açıkyer, büyük ölçekli kurumlarda yapay zekanın gerçek iş değeri yaratması için ne gerektiğini bizzat gözlemledi. Bu gözlemden doğan Decigent ile kurumsal karar süreçlerini insan onaylı, izlenebilir ve ölçülebilir AI sistemlerine dönüştürmek için çalışıyor."
-                    : "With extensive experience in enterprise software and operational processes, Mehmet Açıkyer witnessed firsthand what it takes for AI to create real business value at scale. That insight led him to found Decigent — transforming fragmented enterprise decision workflows into controlled, human-approved, and measurable AI systems."}
+                    ? "Mehmet Açıkyer, Türkiye'nin önde gelen bakır üreticilerinden ER-Bakır Elektrolitik Bakır Mamulleri A.Ş.'de 20 yılı aşkın süre görev yaptı; son 12 yılında CIO olarak kurumun tüm bilgi sistemleri ve dijital dönüşüm süreçlerini yönetti. Bu süreçte SAP ERP, SAP BW, Salesforce CRM ve RPA (Automation Anywhere) gibi büyük ölçekli kurumsal projeleri bizzat yönetti; ISO 27001 bilgi güvenliği sisteminin kurulumunda proje yöneticisi ve yönetim temsilcisi olarak görev aldı. Büyük bir üretim şirketinin içinden gelen bu deneyim — ERP verilerinin dağınıklığı, manuel raporlama yükü, onay gecikmeleri — Decigent'i doğrudan şekillendirdi."
+                    : "Mehmet Açıkyer spent over 20 years at ER-Bakır Elektrolitik Bakır Mamulleri A.Ş., one of Türkiye's leading copper manufacturers, including 12 years as CIO. During that time he led large-scale enterprise projects including SAP ERP, SAP BW, Salesforce CRM, and RPA (Automation Anywhere), and served as project manager and management representative for ISO 27001 implementation. That insider experience — fragmented ERP data, manual reporting, approval delays — shaped Decigent directly."}
                 </p>
+
+                {/* Career highlights */}
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 18 }}>
+                  {(lang === "tr"
+                    ? ["CIO — ER-Bakır (12 yıl)", "SAP ERP & BW", "Salesforce CRM", "RPA — Automation Anywhere", "ISO 27001", "20+ yıl üretim sektörü"]
+                    : ["CIO — ER-Bakır (12 years)", "SAP ERP & BW", "Salesforce CRM", "RPA — Automation Anywhere", "ISO 27001", "20+ years in manufacturing"]
+                  ).map((tag) => (
+                    <span key={tag} style={{
+                      fontSize: 12,
+                      fontWeight: 600,
+                      color: TEXT_MUTED,
+                      background: "rgba(247,249,252,0.07)",
+                      border: `1px solid ${BORDER_DARK}`,
+                      borderRadius: 999,
+                      padding: "4px 12px",
+                    }}>{tag}</span>
+                  ))}
+                </div>
+
                 <a
                   href="https://www.linkedin.com/in/mehmet-a%C3%A7%C4%B1kyer-46491b31/"
                   target="_blank"
@@ -1496,13 +1390,23 @@ export default function App() {
             </FadeUp>
 
             {/* LinkedIn callout */}
-            <div style={{ ...styles.card, border: `1px solid ${BORDER_DARK}`, display: "flex", alignItems: "center", gap: 16, marginBottom: 28, flexWrap: "wrap" }}>
-              <LinkedInMark />
-              <span style={{ color: TEXT_MUTED, fontSize: 14, lineHeight: 1.5 }}>
-                {lang === "tr"
-                  ? "Yazıların tamamı LinkedIn'de yayınlanmaktadır. Her makale için \"LinkedIn'de Oku\" butonuna tıklayın."
-                  : "All articles are published on LinkedIn. Click \"Read on LinkedIn\" on any post to access the full content."}
-              </span>
+            <div style={{ ...styles.card, border: `1px solid ${BORDER_DARK}`, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16, marginBottom: 28, flexWrap: "wrap" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                <LinkedInMark />
+                <span style={{ color: TEXT_MUTED, fontSize: 14, lineHeight: 1.5 }}>
+                  {lang === "tr"
+                    ? "Blog içeriklerimiz LinkedIn'de yayınlanıyor. Aşağıdaki özetlerden ilgilendiğiniz makaleye ulaşabilirsiniz."
+                    : "Our blog is published on LinkedIn. Use the summaries below to find the article that interests you."}
+                </span>
+              </div>
+              <a
+                href="https://www.linkedin.com/company/decigent/posts/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ ...styles.buttonSecondary, textDecoration: "none", whiteSpace: "nowrap", fontSize: 13 }}
+              >
+                {lang === "tr" ? "LinkedIn Sayfamız" : "Our LinkedIn Page"}
+              </a>
             </div>
 
             <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, minmax(0,1fr))", gap: SPACE.lg }}>
@@ -1514,12 +1418,14 @@ export default function App() {
                     </div>
                     <h3 style={{ margin: "0 0 10px", fontSize: 20, color: TEXT_PRIMARY, lineHeight: 1.3, flexGrow: 1 }}>{post.title}</h3>
                     <p style={{ ...styles.muted, fontSize: 14, marginBottom: 20 }}>{post.excerpt}</p>
-                    <button
-                      style={{ ...styles.buttonSecondary, alignSelf: "flex-start" }}
-                      onClick={() => window.open("https://www.linkedin.com/company/decigent/", "_blank", "noopener,noreferrer")}
+                    <a
+                      href={post.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ ...styles.buttonSecondary, alignSelf: "flex-start", textDecoration: "none", fontSize: 14 }}
                     >
                       {c.readOnLinkedIn}
-                    </button>
+                    </a>
                   </div>
                 </FadeUp>
               ))}
@@ -1601,6 +1507,9 @@ export default function App() {
                     <div style={{ color: TEXT_PRIMARY }}>{text}</div>
                   </div>
                 ))}
+                <div style={{ fontSize: 13, color: TEXT_MUTED, lineHeight: 1.6, padding: "4px 0" }}>
+                  {c.remoteService}
+                </div>
 
                 <div style={{ ...styles.card, border: `1px solid ${GOLD_BORDER}`, background: GOLD_LIGHT }}>
                   <div style={{ fontWeight: 700, marginBottom: 10, color: GOLD }}>{c.recommended}</div>
@@ -1611,6 +1520,40 @@ export default function App() {
                 </div>
               </div>
             </div>
+          </div>
+        </section>
+      )}
+
+      {/* ── PRE-FOOTER CTA ── */}
+      {currentPage === "Ana Sayfa" && (
+        <section style={{ background: NAVY, borderTop: `1px solid ${BORDER_DARK}`, borderBottom: `1px solid ${BORDER_DARK}` }}>
+          <div style={{ ...styles.container, padding: isMobile ? "56px 16px" : "72px 24px", textAlign: "center" }}>
+            <div style={{
+              display: "inline-block",
+              padding: "6px 14px",
+              borderRadius: 999,
+              background: GOLD_LIGHT,
+              border: `1px solid ${GOLD_BORDER}`,
+              color: GOLD,
+              fontSize: 13,
+              fontWeight: 600,
+              marginBottom: 20,
+            }}>
+              {c.engagementSteps[0].title}
+            </div>
+            <h2 style={{ fontSize: isMobile ? 28 : 42, fontWeight: 800, color: TEXT_PRIMARY, margin: "0 0 16px", lineHeight: 1.15 }}>
+              {c.preCtaTitle}
+            </h2>
+            <p style={{ fontSize: isMobile ? 16 : 18, color: TEXT_MUTED, margin: "0 auto 32px", maxWidth: 560, lineHeight: 1.7 }}>
+              {c.preCtaText}
+            </p>
+            <button
+              type="button"
+              style={{ ...styles.buttonGold, fontSize: 16, padding: "14px 32px" }}
+              onClick={() => setCurrentPage("İletişim")}
+            >
+              {c.preCtaButton}
+            </button>
           </div>
         </section>
       )}
@@ -1632,7 +1575,7 @@ export default function App() {
             }}
           >
             <div>
-              <div style={{ fontSize: 20, fontWeight: 700, marginBottom: 8, color: TEXT_PRIMARY }}>Decigent</div>
+              <img src={logoGold} alt="Decigent" style={{ height: 32, width: "auto", marginBottom: 10 }} />
               <div style={{ color: TEXT_MUTED }}>{c.footerTag}</div>
             </div>
             <div>

@@ -13,9 +13,9 @@ export const copy = {
     heroBadge: "Kurumsal AI karar sistemleri",
     heroTitle: "Ölçülebilir kararlar. Akıllı operasyonlar.",
     heroText:
-      "Decigent, dağınık iş akışlarını 8-12 hafta içinde insan onaylı, izlenebilir ve ölçülebilir AI karar sistemlerine dönüştürür.",
+      "Üretim, satış ve satın alma süreçlerindeki dağınık iş akışlarını 12 hafta içinde insan onaylı, izlenebilir ve ölçülebilir AI karar sistemlerine dönüştürüyoruz.",
     reviewSolutions: "Use Case'leri İncele",
-    quickPilot: "8-12 haftalık pilot",
+    quickPilot: "12 haftalık pilot",
     quickPilotText: "Ölçülebilir iş çıktısı",
     controlledAI: "İnsan onayı dahil",
     controlledAIText: "Kritik aksiyonlarda kontrol",
@@ -36,7 +36,7 @@ export const copy = {
     solutionsEyebrow: "Çözümler",
     solutionsTitle: "Ne inşa ediyoruz?",
     solutionsText:
-      "Kurumsal karar ve operasyon süreçlerini dönüştüren yapay zekâ çözümleri.",
+      "Decigent'in geliştirdiği AI sistem aileleri. Her biri farklı bir kurumsal fonksiyon için tasarlanmış, insan onaylı ve izlenebilir.",
     useCasesEyebrow: "Use Cases",
     useCasesTitle: "Öncelikli kurumsal kullanım senaryoları",
     useCasesText:
@@ -64,7 +64,7 @@ export const copy = {
       "İlk görüşmede iş hedefinizi, öncelikli kullanım senaryonuzu ve en hızlı değer üretme yolunu birlikte değerlendiriyoruz.",
     contactForm: "İletişim formu",
     contactFormText:
-      "Form gönderildiğinde varsayılan mail uygulamanız açılır ve mesajınız otomatik olarak doldurulur.",
+      "Formu doldurun, en geç 1 iş günü içinde dönelim. Acil durumlarda doğrudan info@decigent.com adresine yazabilirsiniz.",
     name: "Ad Soyad",
     company: "Şirket",
     email: "E-posta",
@@ -76,7 +76,7 @@ export const copy = {
     addressLabel: "Adres",
     recommended: "Önerilen ilk adım",
     recommendedText:
-      "Önce tek bir yüksek etkili kullanım alanı seçelim. Sonra veri gereksinimi, iş akışı ve pilot kapsamını birlikte netleştirelim.",
+      "Önce tek bir yüksek etkili kullanım alanı seçelim. Sonra veri gereksinimi, iş akışı ve pilot kapsamını birlikte netleştirelim. Pilot başarı bazlı çalışır — KPI'lara ulaşılmazsa proje ücreti alınmaz.",
     menu: "Menü",
     contactInfo: "İletişim",
     footerTag: "Intelligent decisions and operations",
@@ -90,7 +90,7 @@ export const copy = {
       "Microsoft ya da SAP size yazılım verir, sizin anlamanızı bekler. Decigent önce şirketinizi analiz eder, en yüksek değeri üretecek kullanım alanını birlikte tespit eder, sonra uygular.",
     whyPilot: "Başarı bazlı pilot",
     whyPilotText:
-      "İlk projelerimizde başarı bazlı çalışıyoruz. 90 gün sonunda belirlenen KPI'lara ulaşılmazsa proje ücreti alınmaz.",
+      "İlk projelerimizde başarı bazlı çalışıyoruz. 12 hafta sonunda belirlenen KPI'lara ulaşılmazsa proje ücreti alınmaz.",
     whyAnalysis: "Analiz → Tasarım → Uygulama",
     whyAnalysisText:
       "Tek elden hizmet: ihtiyaç analizinden çözüm tasarımına, pilottan üretime — hepsini biz yönetiyoruz.",
@@ -99,8 +99,8 @@ export const copy = {
       "Pilot sonrası sistemi kendi ekibinize devrederiz, biz yönetmeye devam ederiz ya da hibrit model kurarız. Tercih sizin.",
     whyFounding: "Kurucu pilot ortağı",
     whyFoundingText:
-      "Üretim sektöründen öncü şirketlerle birlikte ilk pilotu tasarlıyoruz. İlk gruba dahil olun, çözümü birlikte şekillendirin.",
-    whyCta: "Kurucu Pilot Görüşmesi İste",
+      "Kurucu pilot ortakları çözümü birlikte şekillendiriyor, tercihli pilot koşullarından yararlanıyor ve sektörde ilk referans vakasını oluşturuyor. Kontenjan sınırlı.",
+    whyCta: "Yönetici Ön Görüşmesi Planla",
     problemLabel: "Problem",
     approachLabel: "Yaklaşım",
     outputLabel: "Çıktı",
@@ -111,12 +111,22 @@ export const copy = {
     formError: "Bir sorun oluştu. Doğrudan info@decigent.com adresine yazabilirsiniz.",
     contactNextStep: "İlk 30 dakikalık görüşmede: iş hedefiniz, öncelikli süreciniz ve pilot kapsamı.",
     pilotEyebrow: "Pilot Metodolojisi",
-    pilotTitle: "8-12 haftada, sıfırdan çalışan sisteme",
+    pilotTitle: "12 haftada, sıfırdan çalışan sisteme",
     pilotText: "Her pilot aynı dört aşamadan geçer. Kapalı kutu yoktur — her adımda ne yaptığımızı, ne teslim ettiğimizi ve hangi kriterlere göre ilerlediğimizi birlikte görürsünüz.",
     pilotDeliverable: "Teslimat",
     securityEyebrow: "Güvenlik & Yönetişim",
     securityTitle: "Kurumsal AI güvenli olmalı. Başından beri.",
     securityText: "Güvenlik ve yönetişim eklenti değil, çözüm tasarımının merkezidir. Kritik operasyon süreçlerinde her karar izlenebilir, her aksiyon onay gerektirir.",
+    engagementTitle: "Nasıl çalışıyoruz?",
+    engagementSteps: [
+      { step: "01", title: "Ücretsiz Keşif Görüşmesi", text: "30 dakika. En yüksek etkili kullanım alanını birlikte belirliyoruz, veri hazırlığını değerlendiriyoruz — taahhüt yok." },
+      { step: "02", title: "Başarı Bazlı Pilot", text: "12 hafta. Anlaşılan KPI'lar. Hedeflere ulaşılmazsa proje ücreti alınmaz. Her adımda tam şeffaflık." },
+      { step: "03", title: "Ölçekleme veya Devir", text: "Pilot sonrası: sistemi ekibinize devrederiz, biz yönetiriz ya da hibrit model kurarız. Tercih sizin." },
+    ],
+    remoteService: "Tüm proje görüşmeleri çevrimiçi veya müşteri lokasyonunda yürütülür. Türkiye genelinde hizmet veriyoruz.",
+    preCtaTitle: "Hâlâ değerlendirme aşamasında mısınız?",
+    preCtaText: "30 dakikalık ücretsiz keşif görüşmesinde iş hedefinizi ve en uygun kullanım alanını birlikte belirleyelim. Taahhüt yok.",
+    preCtaButton: "Ücretsiz Görüşme Planla",
   },
   en: {
     home: "Home",
@@ -130,9 +140,9 @@ export const copy = {
     heroBadge: "Enterprise AI decision systems",
     heroTitle: "Measurable decisions. Intelligent operations.",
     heroText:
-      "Decigent turns fragmented workflows into controlled AI decision systems in 8-12 weeks, with human oversight, traceable actions, and measurable business outcomes.",
+      "We turn fragmented manufacturing, sales, and procurement workflows into controlled AI decision systems in 12 weeks — with human oversight, traceable actions, and measurable outcomes.",
     reviewSolutions: "See Use Cases",
-    quickPilot: "8-12 week pilot",
+    quickPilot: "12 week pilot",
     quickPilotText: "Measurable business outcome",
     controlledAI: "Human approval built in",
     controlledAIText: "Control over critical actions",
@@ -153,7 +163,7 @@ export const copy = {
     solutionsEyebrow: "Solutions",
     solutionsTitle: "What we build",
     solutionsText:
-      "AI solutions that transform enterprise decision and operational processes.",
+      "Decigent's AI system families — each designed for a distinct enterprise function, with human approval and full traceability built in.",
     useCasesEyebrow: "Use Cases",
     useCasesTitle: "Priority enterprise use cases",
     useCasesText:
@@ -181,7 +191,7 @@ export const copy = {
       "In the first conversation, we evaluate your business objective, priority use case, and the fastest path to measurable value.",
     contactForm: "Contact form",
     contactFormText:
-      "When the form is submitted, your default mail app opens and the message is auto-filled.",
+      "Fill in the form and we'll get back to you within 1 business day. For urgent matters, email us directly at info@decigent.com.",
     name: "Full Name",
     company: "Company",
     email: "Email",
@@ -193,7 +203,7 @@ export const copy = {
     addressLabel: "Address",
     recommended: "Recommended first step",
     recommendedText:
-      "Let's first select one high-impact use case. Then we can clarify the data requirements, workflow, and pilot scope together.",
+      "Let's first select one high-impact use case. Then we can clarify the data requirements, workflow, and pilot scope together. The pilot is success-based — if agreed KPIs aren't met, you don't pay.",
     menu: "Menu",
     contactInfo: "Contact",
     footerTag: "Intelligent decisions and operations",
@@ -207,7 +217,7 @@ export const copy = {
       "Microsoft or SAP gives you a platform and waits for you to figure it out. Decigent starts by analyzing your company, identifies the highest-value use case together with you, then implements it.",
     whyPilot: "Success-based pilot",
     whyPilotText:
-      "Our first projects are success-based. If agreed KPIs aren't met after 90 days, you don't pay.",
+      "Our first projects are success-based. If agreed KPIs aren't met after 12 weeks, you don't pay.",
     whyAnalysis: "Analysis → Design → Implementation",
     whyAnalysisText:
       "End-to-end ownership: from needs analysis to solution design, from pilot to production — we manage it all.",
@@ -216,8 +226,8 @@ export const copy = {
       "After the pilot, we hand the system over to your team, continue managing it ourselves, or set up a hybrid model. Your choice.",
     whyFounding: "Founding pilot partner",
     whyFoundingText:
-      "We're designing our first pilots together with pioneering manufacturing companies. Join the first cohort and help shape the solution.",
-    whyCta: "Request a Founding Pilot Meeting",
+      "Founding pilot partners co-design the solution, benefit from preferred pilot terms, and become the first reference case in their sector. Limited spots available.",
+    whyCta: "Book Executive Briefing",
     problemLabel: "Problem",
     approachLabel: "Approach",
     outputLabel: "Output",
@@ -228,12 +238,22 @@ export const copy = {
     formError: "Something went wrong. Please email us directly at info@decigent.com",
     contactNextStep: "In our first 30-minute call: your business objective, priority process, and pilot scope.",
     pilotEyebrow: "Pilot Methodology",
-    pilotTitle: "From zero to working system in 8-12 weeks",
+    pilotTitle: "From zero to working system in 12 weeks",
     pilotText: "Every pilot follows the same four phases. No black boxes — at each step you see what we do, what we deliver, and the criteria we use to move forward.",
     pilotDeliverable: "Deliverable",
     securityEyebrow: "Security & Governance",
     securityTitle: "Enterprise AI must be safe. From day one.",
     securityText: "Security and governance are not add-ons — they are at the center of solution design. In critical operational processes, every decision is traceable and every action requires approval.",
+    engagementTitle: "How we engage",
+    engagementSteps: [
+      { step: "01", title: "Free Discovery Call", text: "30 minutes. We identify your highest-impact use case and assess data readiness — no commitment." },
+      { step: "02", title: "Success-Based Pilot", text: "12 weeks. Agreed KPIs. If targets aren't met, you don't pay. Full transparency at every step." },
+      { step: "03", title: "Scale or Hand Over", text: "After pilot: hand over to your team, we continue managing, or a hybrid model. Your choice." },
+    ],
+    remoteService: "All project meetings are conducted online or at the client's location. We serve enterprises across Türkiye.",
+    preCtaTitle: "Still evaluating?",
+    preCtaText: "In a free 30-minute discovery call, we'll identify your business objective and the highest-impact use case together. No commitment.",
+    preCtaButton: "Book a Free Call",
   },
 } as const;
 
@@ -307,82 +327,110 @@ export const services = {
 export const solutions = {
   tr: [
     {
-      title: "Yönetim Raporu ve Aksiyon Copilotu",
-      sector: "Üretim",
+      title: "Karar & Raporlama Copilotu",
+      sector: "Karar Desteği",
       description:
-        "Yöneticilere dağınık operasyon verilerini özetler, kritik sapmaları işaretler ve önerilen aksiyonları sunar.",
+        "Çok kaynaklı operasyon verisini birleştirerek yöneticilere anlık özet, sapma alarmı ve insan onaylı aksiyon önerisi sunar.",
       bullets: [
-        "Haftalık özet",
+        "ERP / MES entegrasyonu",
         "Sapma alarmı",
         "Aksiyon önerisi",
         "Yönetici görünümü",
       ],
     },
     {
-      title: "Teklif ve Müşteri Yanıt Ajanı",
-      sector: "Satış",
+      title: "Teklif & Yanıt Ajanı",
+      sector: "Satış & Müşteri",
       description:
-        "Teklif hazırlama, müşteri sorularını yanıtlama ve satış ekibinin yanıt hızını artırma için kullanılır.",
+        "CRM geçmişi ve ürün bilgisi üzerinden çalışır; teklif taslağı üretir, müşteri sorularını otomatik yanıtlar, her adımı kaydeder.",
       bullets: [
-        "Teklif taslağı",
-        "Hızlı yanıtlama",
+        "Taslak üretimi",
+        "Hızlı yanıt",
         "CRM özeti",
-        "Fırsat takibi",
+        "Onay akışı",
       ],
     },
     {
-      title: "Tedarikçi Karşılaştırma ve Onay Akışı",
+      title: "Tedarik Zekası",
       sector: "Satın Alma",
       description:
-        "Teklifleri kıyaslar, risk noktalarını işaretler ve onay süreçlerini hızlandırır.",
-      bullets: ["Karşılaştırma", "Risk analizi", "Onay akışı", "Kayıt"],
+        "Tedarikçi tekliflerini karşılaştırır, risk noktalarını işaretler ve dijital onay akışını insan denetiminde yönetir.",
+      bullets: ["Teklif karşılaştırma", "Risk analizi", "Dijital onay", "Audit kaydı"],
     },
     {
-      title: "İK Talep ve Politika Asistanı",
-      sector: "İK",
+      title: "Kurumsal Bilgi Asistanı",
+      sector: "Çalışan Deneyimi",
       description:
-        "İç prosedür ve politikalar üzerinden çalışan sorularını yanıtlayan güvenli kurumsal asistan sunar.",
-      bullets: ["Politika Q&A", "Self-service", "Loglama", "Doküman erişimi"],
+        "Şirket içi prosedür, politika ve dokümanlar üzerinde güvenli Q&A imkânı sunar. Hassas veriye erişimi yoktur, her yanıt loglanır.",
+      bullets: ["Politika Q&A", "Self-service", "Erişim kontrolü", "Loglama"],
+    },
+    {
+      title: "Anomali Tespiti & Alarm",
+      sector: "Operasyon",
+      description:
+        "Operasyon verilerindeki kritik sapmaları gerçek zamanlı tespit ederek tanımlı yetkilileri uyarır ve müdahale akışını başlatır.",
+      bullets: ["Gerçek zamanlı izleme", "Eşik alarmları", "Kök neden özeti", "Bildirim"],
+    },
+    {
+      title: "Süreç Otomasyon Ajanı",
+      sector: "İş Akışı",
+      description:
+        "Tekrarlayan çok adımlı iş süreçlerini insan onay noktalarıyla birlikte otomatikleştirir. Pilot'tan üretime ölçeklenir.",
+      bullets: ["Çok adımlı akış", "İnsan onayı", "Audit trail", "Ölçekleme"],
     },
   ],
   en: [
     {
-      title: "Management Reporting and Action Copilot",
-      sector: "Manufacturing",
+      title: "Decision & Reporting Copilot",
+      sector: "Decision Support",
       description:
-        "Summarizes fragmented operational data for executives, highlights critical deviations, and presents recommended actions.",
+        "Unifies multi-source operational data to give executives real-time summaries, deviation alerts, and human-approved action recommendations.",
       bullets: [
-        "Weekly summary",
+        "ERP / MES integration",
         "Deviation alerts",
         "Action suggestions",
         "Executive view",
       ],
     },
     {
-      title: "Proposal and Customer Response Agent",
-      sector: "Sales",
+      title: "Proposal & Response Agent",
+      sector: "Sales & Customer",
       description:
-        "Used to prepare proposals, answer customer questions, and improve sales response speed.",
+        "Works on CRM history and product data; generates proposal drafts, automates customer responses, and logs every step.",
       bullets: [
-        "Proposal draft",
+        "Draft generation",
         "Fast responses",
         "CRM summary",
-        "Opportunity tracking",
+        "Approval flow",
       ],
     },
     {
-      title: "Supplier Comparison and Approval Flow",
+      title: "Procurement Intelligence",
       sector: "Procurement",
       description:
-        "Compares bids, flags risk points, and accelerates approval processes.",
-      bullets: ["Comparison", "Risk analysis", "Approval flow", "Audit trail"],
+        "Compares supplier bids, flags risk points, and manages a structured digital approval workflow under human oversight.",
+      bullets: ["Bid comparison", "Risk analysis", "Digital approval", "Audit trail"],
     },
     {
-      title: "HR Request and Policy Assistant",
-      sector: "HR",
+      title: "Enterprise Knowledge Assistant",
+      sector: "Employee Experience",
       description:
-        "Provides a secure enterprise assistant that answers employee questions based on internal procedures and policies.",
-      bullets: ["Policy Q&A", "Self-service", "Logging", "Document access"],
+        "Provides secure Q&A on internal procedures, policies, and documents. No access to sensitive data; every response is logged.",
+      bullets: ["Policy Q&A", "Self-service", "Access control", "Logging"],
+    },
+    {
+      title: "Anomaly Detection & Alerting",
+      sector: "Operations",
+      description:
+        "Detects critical deviations in operational data in real time, notifies designated owners, and triggers the response workflow.",
+      bullets: ["Real-time monitoring", "Threshold alerts", "Root cause summary", "Notifications"],
+    },
+    {
+      title: "Process Automation Agent",
+      sector: "Workflow",
+      description:
+        "Automates repetitive multi-step business processes with built-in human approval gates. Scales from pilot to production.",
+      bullets: ["Multi-step flow", "Human approval", "Audit trail", "Scalability"],
     },
   ],
 };
@@ -658,18 +706,21 @@ export const blogPosts = {
       title: "Agentic AI neden kurumsal dönüşümün bir sonraki aşaması?",
       excerpt:
         "Kurumsal yapay zekâ kullanımının, tekil chatbotlardan kontrollü ajan tabanlı iş akışlarına neden evrildiğini anlatıyoruz.",
+      url: "https://www.linkedin.com/company/decigent/posts/",
     },
     {
       category: "Uygulama",
       title: "Başarılı bir AI pilotu nasıl tasarlanır?",
       excerpt:
-        "90 günlük bir pilotta hedef kapsam, veri gereksinimleri, insan kontrolü ve başarı ölçütleri nasıl tanımlanmalı?",
+        "12 haftalık bir pilotta hedef kapsam, veri gereksinimleri, insan kontrolü ve başarı ölçütleri nasıl tanımlanmalı?",
+      url: "https://www.linkedin.com/company/decigent/posts/",
     },
     {
       category: "Yönetim",
       title: "Karar destek sistemlerinde güven ve izlenebilirlik",
       excerpt:
         "Kurumsal ortamlarda güvenli AI kullanımının temelinde açıklanabilirlik, yetki ve kayıt mekanizmaları yer alır.",
+      url: "https://www.linkedin.com/company/decigent/posts/",
     },
   ],
   en: [
@@ -678,18 +729,21 @@ export const blogPosts = {
       title: "Why is Agentic AI the next phase of enterprise transformation?",
       excerpt:
         "We explain why enterprise AI usage is evolving from standalone chatbots to controlled, agent-based workflows.",
+      url: "https://www.linkedin.com/company/decigent/posts/",
     },
     {
       category: "Implementation",
       title: "How should a successful AI pilot be designed?",
       excerpt:
-        "How should scope, data requirements, human control, and success metrics be defined in a 90-day pilot?",
+        "How should scope, data requirements, human control, and success metrics be defined in a 12-week pilot?",
+      url: "https://www.linkedin.com/company/decigent/posts/",
     },
     {
       category: "Management",
       title: "Trust and traceability in decision support systems",
       excerpt:
         "Safe AI usage in enterprise environments is built on explainability, authorization, and recording mechanisms.",
+      url: "https://www.linkedin.com/company/decigent/posts/",
     },
   ],
 };
