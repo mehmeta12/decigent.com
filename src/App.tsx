@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { type Lang, copy, services, solutions, useCases, pilotSteps, securityItems, blogPosts } from "./data";
-import heroImg from "../img/decigent_hero.jpeg";
+import heroImg from "../img/decigent_hero.webp";
 import logoGold from "../img/Decigent_logo_gold_bgwhite_noslogan.png";
 
 type Page =
@@ -43,7 +43,7 @@ const SPACE = {
 const styles = {
   page: {
     minHeight: "100vh",
-    background: BLACK,
+    background: `radial-gradient(ellipse 110% 55% at 50% -8%, rgba(39,118,234,0.13) 0%, transparent 58%), ${BLACK}`,
     color: TEXT_PRIMARY,
     fontFamily: "'Barlow', Inter, Arial, sans-serif",
   } as const,
@@ -54,17 +54,19 @@ const styles = {
     padding: "0 24px",
   } as const,
   section: {
-    padding: "64px 0",
+    padding: "88px 0",
   } as const,
   sectionLarge: {
-    padding: "64px 0",
+    padding: "88px 0",
   } as const,
   card: {
-    border: `1px solid ${BORDER_DARK}`,
-    borderRadius: "8px",
-    padding: "24px",
-    background: NAVY,
-    boxShadow: "0 8px 28px rgba(0,0,0,0.35)",
+    border: "1px solid rgba(247,249,252,0.07)",
+    borderRadius: "16px",
+    padding: "28px",
+    background: "rgba(18,34,56,0.72)",
+    backdropFilter: "blur(20px)",
+    WebkitBackdropFilter: "blur(20px)",
+    boxShadow: "inset 0 1px 0 rgba(255,255,255,0.05), 0 4px 24px rgba(0,0,0,0.45)",
   } as const,
   muted: {
     color: TEXT_MUTED,
@@ -72,31 +74,36 @@ const styles = {
     lineHeight: 1.7,
   } as const,
   buttonPrimary: {
-    background: BLUE,
+    background: "linear-gradient(135deg, #1560cc 0%, #2776EA 100%)",
     color: TEXT_PRIMARY,
     border: "none",
     borderRadius: "999px",
-    padding: "12px 20px",
+    padding: "13px 26px",
     cursor: "pointer",
     fontWeight: 600,
+    letterSpacing: "0.02em",
+    boxShadow: "0 0 20px rgba(39,118,234,0.22), 0 2px 8px rgba(0,0,0,0.25)",
   } as const,
   buttonSecondary: {
-    background: "transparent",
+    background: "rgba(247,249,252,0.05)",
     color: TEXT_PRIMARY,
-    border: `1px solid ${BORDER_DARK}`,
+    border: "1px solid rgba(247,249,252,0.14)",
     borderRadius: "999px",
-    padding: "12px 20px",
+    padding: "13px 26px",
     cursor: "pointer",
     fontWeight: 600,
+    letterSpacing: "0.02em",
   } as const,
   buttonGold: {
-    background: GOLD,
+    background: "linear-gradient(135deg, #C49010 0%, #E8B520 50%, #D4A017 100%)",
     color: NAVY,
     border: "none",
     borderRadius: "999px",
-    padding: "12px 20px",
+    padding: "13px 26px",
     cursor: "pointer",
     fontWeight: 700,
+    letterSpacing: "0.02em",
+    boxShadow: "0 0 28px rgba(212,160,23,0.30), 0 2px 8px rgba(0,0,0,0.2)",
   } as const,
 };
 
@@ -253,7 +260,7 @@ function SectionHeader({
   text: string;
 }) {
   return (
-    <div style={{ maxWidth: 760, marginBottom: 28 }}>
+    <div style={{ maxWidth: 760, marginBottom: 36 }}>
       <div
         style={{
           display: "inline-block",
@@ -262,8 +269,10 @@ function SectionHeader({
           background: GOLD_LIGHT,
           border: `1px solid ${GOLD_BORDER}`,
           color: GOLD,
-          fontSize: 13,
-          fontWeight: 600,
+          fontSize: 11,
+          fontWeight: 700,
+          letterSpacing: "0.1em",
+          textTransform: "uppercase" as const,
           marginBottom: 16,
         }}
       >
@@ -272,10 +281,10 @@ function SectionHeader({
       <h2
         style={{
           margin: "0 0 12px",
-          fontSize: "clamp(28px, 3vw, 36px)",
+          fontSize: "clamp(30px, 3.5vw, 44px)",
           lineHeight: 1.2,
           fontWeight: 700,
-          letterSpacing: 0,
+          letterSpacing: "-0.01em",
           color: TEXT_PRIMARY,
         }}
       >
@@ -296,7 +305,7 @@ function LinkedInMark() {
         alignItems: "center",
         justifyContent: "center",
         borderRadius: 3,
-        background: NAVY,
+        background: "#0A66C2",
         color: "white",
         fontSize: 10,
         fontWeight: 700,
@@ -307,60 +316,101 @@ function LinkedInMark() {
   );
 }
 
-function HeroGifVisual({ isMobile }: { isMobile: boolean }) {
+const heroLabels = {
+  left: [
+    { tr: "Kurumsal Veri", en: "Enterprise Data" },
+    { tr: "Gerçek Zamanlı Sinyaller", en: "Real-time Signals" },
+    { tr: "Bağlam Katmanı", en: "Context Layer" },
+  ],
+  center: { tr: "Karar Motoru", en: "Decision Core" },
+  right: [
+    { tr: "Önerilen Aksiyonlar", en: "Recommended Actions" },
+    { tr: "İnsan Onaylı Süreç", en: "Human-in-the-Loop" },
+    { tr: "Ölçülen Sonuçlar", en: "Measured Outcomes" },
+  ],
+};
+
+const rowTops = ["29%", "59%", "86%"];
+
+const HERO_BLUE = "#88BBDD";
+
+function HeroGifVisual({ isMobile, lang, children }: { isMobile: boolean; lang: Lang; children?: React.ReactNode }) {
+  const labelStyle = (side: "left" | "right"): React.CSSProperties => ({
+    position: "absolute",
+    textAlign: "center" as const,
+    fontSize: isMobile ? "clamp(5px, 1.6vw, 9px)" : "clamp(8px, 1.2vw, 14px)",
+    fontWeight: 700,
+    color: side === "left" ? HERO_BLUE : GOLD,
+    pointerEvents: "none" as const,
+    lineHeight: 1.3,
+    width: "25%",
+    transform: "translateY(-50%)",
+    textShadow: side === "left"
+      ? "0 0 12px rgba(39,118,234,0.5), 0 1px 6px rgba(0,0,0,0.9)"
+      : "0 0 12px rgba(212,160,23,0.5), 0 1px 6px rgba(0,0,0,0.9)",
+    ...(side === "left" ? { left: "1.5%" } : { right: "1.5%" }),
+  });
+
   return (
-    <div
-      style={{
-        position: "relative",
-        aspectRatio: "16 / 9",
-        minHeight: isMobile ? 260 : 420,
-        borderRadius: 8,
-        overflow: "hidden",
-        background: BLACK,
-        border: "1px solid rgba(247, 249, 252, 0.12)",
-        boxShadow: "0 16px 44px rgba(0,0,0,0.42)",
-      }}
-    >
-      <img
-        src={heroImg}
-        alt="Decigent decision intelligence hero"
-        style={{
-          width: "100%",
-          height: "100%",
-          display: "block",
-          objectFit: "cover",
-        }}
-      />
-      {/* Floating chips */}
-      <div style={{
-        position: "absolute",
-        top: 16,
-        left: 16,
-        background: "rgba(13,27,42,0.82)",
-        backdropFilter: "blur(8px)",
-        border: `1px solid ${GOLD_BORDER}`,
-        borderRadius: 999,
-        padding: "6px 14px",
-        display: "flex",
-        alignItems: "center",
-        gap: 8,
-      }}>
-        <span style={{ width: 7, height: 7, borderRadius: "50%", background: "#22C55E", display: "inline-block", flexShrink: 0 }} />
-        <span style={{ fontSize: 12, fontWeight: 700, color: TEXT_PRIMARY, whiteSpace: "nowrap" }}>İnsan onaylı kararlar</span>
-      </div>
-      <div style={{
-        position: "absolute",
-        bottom: 16,
-        right: 16,
-        background: "rgba(13,27,42,0.82)",
-        backdropFilter: "blur(8px)",
-        border: `1px solid ${GOLD_BORDER}`,
-        borderRadius: 12,
-        padding: "10px 16px",
-      }}>
-        <div style={{ fontSize: 11, fontWeight: 600, color: TEXT_MUTED, marginBottom: 2 }}>Rapor hazırlama</div>
-        <div style={{ fontSize: 20, fontWeight: 800, color: GOLD, lineHeight: 1 }}>3 dk</div>
-        <div style={{ fontSize: 10, color: TEXT_MUTED, marginTop: 2 }}>vs. 4+ saat</div>
+    <div style={{ position: "relative" }}>
+
+      {/* Image — no frame, edge fades blend into page */}
+      <div style={{ position: "relative", zIndex: 1, overflow: "hidden" }}>
+        <img
+          src={heroImg}
+          alt="Decigent Decision Core — enterprise AI decision system"
+          className="hero-image-mask"
+          style={{ width: "100%", display: "block" }}
+        />
+
+        {/* Button overlay */}
+        {children && (
+          <div style={{
+            position: "absolute",
+            top: 0,
+            left: "50%",
+            transform: "translateX(-50%)",
+            display: "flex",
+            flexWrap: "wrap" as const,
+            justifyContent: "center",
+            gap: 12,
+            zIndex: 10,
+          }}>
+            {children}
+          </div>
+        )}
+
+        {/* Left labels */}
+        {heroLabels.left.map((label, i) => (
+          <div key={i} style={{ ...labelStyle("left"), top: rowTops[i] }}>
+            {lang === "tr" ? label.tr : label.en}
+          </div>
+        ))}
+
+        {/* Center label */}
+        <div style={{
+          position: "absolute",
+          left: "50%",
+          top: "67%",
+          transform: "translate(-50%, -50%)",
+          textAlign: "center" as const,
+          fontSize: isMobile ? "clamp(6px, 2vw, 10px)" : "clamp(9px, 1.2vw, 14px)",
+          fontWeight: 800,
+          color: GOLD,
+          pointerEvents: "none",
+          letterSpacing: "0.04em",
+          textShadow: "0 0 16px rgba(212,160,23,0.6), 0 1px 6px rgba(0,0,0,0.9)",
+          whiteSpace: "nowrap" as const,
+        }}>
+          {lang === "tr" ? heroLabels.center.tr : heroLabels.center.en}
+        </div>
+
+        {/* Right labels */}
+        {heroLabels.right.map((label, i) => (
+          <div key={i} style={{ ...labelStyle("right"), top: rowTops[i] }}>
+            {lang === "tr" ? label.tr : label.en}
+          </div>
+        ))}
       </div>
     </div>
   );
@@ -370,12 +420,12 @@ function HeroGifVisual({ isMobile }: { isMobile: boolean }) {
 const inputStyle: React.CSSProperties = {
   width: "100%",
   padding: "14px 16px",
-  borderRadius: 16,
-  border: `1px solid ${BORDER_DARK}`,
+  borderRadius: 12,
+  border: "1px solid rgba(247,249,252,0.1)",
   fontSize: 15,
   outline: "none",
   boxSizing: "border-box",
-  background: NAVY,
+  background: "rgba(18,34,56,0.8)",
   color: TEXT_PRIMARY,
 };
 
@@ -389,7 +439,7 @@ export default function App() {
 
   const isMobile = useIsMobile();
   const hpad = isMobile ? "0 16px" : "0 24px";
-  const vpad = isMobile ? "48px 0" : "64px 0";
+  const vpad = isMobile ? "40px 0" : "64px 0";
 
   const c = copy[lang];
   const currentServices = services[lang];
@@ -731,100 +781,89 @@ export default function App() {
           <section
             style={{
               ...styles.sectionLarge,
-              background: BLACK,
-              padding: isMobile ? "40px 0 48px" : "64px 0",
+              background: "transparent",
+              padding: isMobile ? "20px 0 48px" : "44px 0",
+              position: "relative",
+              overflow: "hidden",
             }}
           >
-            <div style={{ ...styles.container, padding: hpad }}>
-              <div
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: isMobile ? "1fr" : "0.92fr 1.08fr",
-                  gap: isMobile ? 28 : 42,
-                  alignItems: "center",
-                }}
-              >
-                <div>
-                  <FadeUp i={0}>
-                    <div
-                      style={{
-                        display: "inline-flex",
-                        alignItems: "center",
-                        gap: 8,
-                        padding: "7px 12px",
-                        borderRadius: 999,
-                        border: `1px solid ${GOLD_BORDER}`,
-                        background: GOLD_LIGHT,
-                        color: GOLD,
-                        fontSize: 13,
-                        fontWeight: 700,
-                        marginBottom: 18,
-                      }}
-                    >
-                      <span style={{ width: 7, height: 7, borderRadius: 999, background: GOLD, display: "inline-block" }} />
-                      {c.heroBadge}
-                    </div>
-                  </FadeUp>
-                  <FadeUp i={1}>
-                    <h1
-                      style={{
-                        fontSize: isMobile ? 38 : 62,
-                        lineHeight: 1.02,
-                        margin: "0 0 18px",
-                        fontWeight: 800,
-                        letterSpacing: 0,
-                        maxWidth: 760,
-                      }}
-                    >
-                      {c.heroTitle}
-                    </h1>
-                    <p style={{ ...styles.muted, margin: 0, fontSize: isMobile ? 16 : 19, maxWidth: 680 }}>
-                      {c.heroText}
-                    </p>
-                  </FadeUp>
-                  <FadeUp i={2}>
-                    <div style={{ display: "flex", flexWrap: "wrap", gap: SPACE.sm, marginTop: 26 }}>
-                      <button type="button" style={styles.buttonGold} onClick={() => navigateTo("Use Cases")}>
-                        {c.reviewSolutions}
-                      </button>
-                      <button type="button" style={styles.buttonSecondary} onClick={() => setCurrentPage("İletişim")}>
-                        {c.ctaMeet}
-                      </button>
-                    </div>
-                  </FadeUp>
-                  <FadeUp i={3}>
-                    <div
-                      style={{
-                        display: "grid",
-                        gridTemplateColumns: isMobile ? "1fr" : "repeat(3, minmax(0, 1fr))",
-                        gap: SPACE.sm,
-                        marginTop: 28,
-                        maxWidth: 760,
-                      }}
-                    >
-                      {[
-                        [c.quickPilot, c.quickPilotText],
-                        [c.controlledAI, c.controlledAIText],
-                        [c.enterpriseFit, c.enterpriseFitText],
-                      ].map(([title, text]) => (
-                        <div key={title} style={{ borderTop: `2px solid ${GOLD}`, paddingTop: 10 }}>
-                          <div style={{ color: TEXT_PRIMARY, fontWeight: 800, fontSize: 14, marginBottom: 4 }}>{title}</div>
-                          <div style={{ color: TEXT_MUTED, fontSize: 13, lineHeight: 1.45 }}>{text}</div>
-                        </div>
-                      ))}
-                    </div>
-                  </FadeUp>
-                </div>
-                <FadeUp i={1}>
-                  <HeroGifVisual isMobile={isMobile} />
-                </FadeUp>
-              </div>
+            {/* Atmospheric glow orb */}
+            <div style={{
+              position: "absolute",
+              top: "50%",
+              left: isMobile ? "0" : "35%",
+              transform: "translate(-50%, -60%)",
+              width: isMobile ? "100vw" : "70vw",
+              height: isMobile ? "60vh" : "80vh",
+              maxWidth: 900,
+              background: "radial-gradient(circle, rgba(39,118,234,0.12) 0%, rgba(212,160,23,0.04) 40%, transparent 70%)",
+              pointerEvents: "none",
+            }} />
+            <div style={{ ...styles.container, padding: hpad, position: "relative" }}>
+              {/* H1 */}
+              <FadeUp i={0}>
+                <h1
+                  style={{
+                    fontSize: isMobile ? 38 : 84,
+                    lineHeight: 1.0,
+                    margin: "0 0 28px",
+                    fontWeight: 800,
+                    letterSpacing: "-0.03em",
+                    textAlign: "center",
+                  }}
+                >
+                  {c.heroTitle.split(". ").map((part, i, arr) => (
+                    <span key={i}>
+                      {i === arr.length - 1
+                        ? <span className="hero-gradient-text">{part}</span>
+                        : <>{part}.<br /></>
+                      }
+                    </span>
+                  ))}
+                </h1>
+              </FadeUp>
+
+              {/* Subtitle */}
+              <FadeUp i={2}>
+                <p
+                  style={{
+                    ...styles.muted,
+                    textAlign: "center",
+                    margin: "0 auto 36px",
+                    maxWidth: 620,
+                    fontSize: isMobile ? 16 : 18,
+                    lineHeight: 1.65,
+                  }}
+                >
+                  {c.heroText}
+                </p>
+              </FadeUp>
+
+              {/* Hero image — full width, buttons overlaid */}
+              <FadeUp i={3}>
+                <HeroGifVisual isMobile={isMobile} lang={lang}>
+                  <button
+                    type="button"
+                    style={{ ...styles.buttonGold, fontSize: isMobile ? 14 : 15, padding: isMobile ? "13px 24px" : "15px 32px" }}
+                    onClick={() => navigateTo("Use Cases")}
+                  >
+                    {c.reviewSolutions} →
+                  </button>
+                  <button
+                    type="button"
+                    style={{ ...styles.buttonSecondary, fontSize: isMobile ? 14 : 15 }}
+                    onClick={() => setCurrentPage("İletişim")}
+                  >
+                    {c.ctaMeet}
+                  </button>
+                </HeroGifVisual>
+              </FadeUp>
             </div>
           </section>
 
           {/* ── PROOF STRIP ── */}
-          <div style={{ borderTop: `1px solid ${BORDER_DARK}`, borderBottom: `1px solid ${BORDER_DARK}`, background: NAVY }}>
-            <div style={{ ...styles.container, padding: isMobile ? "18px 16px" : "18px 24px" }}>
+          <div style={{ background: `linear-gradient(90deg, transparent 0%, rgba(13,27,42,0.9) 12%, rgba(13,27,42,0.9) 88%, transparent 100%)`, borderTop: `1px solid rgba(247,249,252,0.06)`, borderBottom: `1px solid rgba(247,249,252,0.06)` }}>
+            <div style={{ ...styles.container, padding: isMobile ? "26px 16px" : "26px 24px" }}>
               <div style={{
                 display: isMobile ? "grid" : "flex",
                 gridTemplateColumns: "1fr 1fr",
@@ -843,7 +882,7 @@ export default function App() {
                 ].map((item, i) => (
                   <div key={i} style={{ display: "flex", alignItems: "center", gap: 8 }}>
                     <span style={{ color: GOLD, fontSize: 10 }}>{item.icon}</span>
-                    <span style={{ fontSize: 13, fontWeight: 600, color: TEXT_MUTED, whiteSpace: "nowrap" }}>{item.label}</span>
+                    <span style={{ fontSize: 13, fontWeight: 600, color: TEXT_MUTED }}>{item.label}</span>
                   </div>
                 ))}
               </div>
@@ -862,7 +901,7 @@ export default function App() {
                   const isFeatured = index === 0;
                   return (
                     <FadeUp key={service.title} i={index}>
-                      <div className="card-hover" style={{ ...styles.card, background: isFeatured ? GOLD_LIGHT : NAVY, border: isFeatured ? `1px solid ${GOLD_BORDER}` : `1px solid ${BORDER_DARK}`, height: "100%" }}>
+                      <div className="card-hover" style={{ ...styles.card, height: "100%", ...(isFeatured ? { background: "rgba(40,28,4,0.72)", border: "1px solid rgba(212,160,23,0.25)", boxShadow: "0 0 0 1px rgba(212,160,23,0.12), 0 0 40px rgba(212,160,23,0.07), inset 0 1px 0 rgba(212,160,23,0.2), 0 4px 24px rgba(0,0,0,0.5)", borderTop: "2px solid rgba(212,160,23,0.7)" } : {}) }}>
                         <div style={{ width: 48, height: 48, borderRadius: 16, background: isFeatured ? "rgba(212,160,23,0.15)" : "rgba(247,249,252,0.07)", marginBottom: 16, display: "flex", alignItems: "center", justifyContent: "center" }}>
                           <ServiceIcon size={22} color={isFeatured ? GOLD : TEXT_MUTED} strokeWidth={2.2} />
                         </div>
@@ -877,7 +916,7 @@ export default function App() {
           </section>
 
           {/* ── SOLUTIONS ── */}
-          <section id="solutions-section" style={{ ...styles.section, padding: vpad, background: NAVY }}>
+          <section id="solutions-section" style={{ ...styles.section, padding: vpad, background: `linear-gradient(180deg, transparent 0%, rgba(13,27,42,0.95) 5%, rgba(13,27,42,0.95) 95%, transparent 100%)` }}>
             <div style={{ ...styles.container, padding: hpad }}>
               <FadeUp>
                 <SectionHeader eyebrow={c.solutionsEyebrow} title={c.solutionsTitle} text={c.solutionsText} />
@@ -902,12 +941,12 @@ export default function App() {
                     >
                       {item.sector}
                     </div>
-                    <h3 style={{ margin: "0 0 10px", fontSize: 28, color: TEXT_PRIMARY }}>{item.title}</h3>
+                    <h3 style={{ margin: "0 0 10px", fontSize: isMobile ? 21 : 28, color: TEXT_PRIMARY }}>{item.title}</h3>
                     <p style={{ ...styles.muted, marginTop: 0 }}>{item.description}</p>
                     <div
                       style={{
                         display: "grid",
-                        gridTemplateColumns: "1fr 1fr",
+                        gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
                         gap: SPACE.sm,
                         marginTop: 16,
                       }}
@@ -1119,7 +1158,7 @@ export default function App() {
           </section>
 
           {/* ── PILOT METHODOLOGY ── */}
-          <section style={{ ...styles.section, padding: vpad, background: NAVY }}>
+          <section style={{ ...styles.section, padding: vpad, background: `linear-gradient(180deg, transparent 0%, rgba(13,27,42,0.95) 5%, rgba(13,27,42,0.95) 95%, transparent 100%)` }}>
             <div style={{ ...styles.container, padding: hpad }}>
               <FadeUp>
                 <SectionHeader
@@ -1384,7 +1423,7 @@ export default function App() {
                   value={blogQuery}
                   onChange={(e) => setBlogQuery(e.target.value)}
                   placeholder={c.searchPosts}
-                  style={{ padding: "12px 16px", borderRadius: 999, border: `1px solid ${BORDER_DARK}`, minWidth: isMobile ? "100%" : 240, boxSizing: "border-box", background: NAVY, color: TEXT_PRIMARY }}
+                  style={{ padding: "12px 16px", borderRadius: 999, border: "1px solid rgba(247,249,252,0.1)", minWidth: isMobile ? "100%" : 240, boxSizing: "border-box", background: "rgba(18,34,56,0.8)", color: TEXT_PRIMARY, outline: "none" }}
                 />
               </div>
             </FadeUp>
@@ -1526,7 +1565,7 @@ export default function App() {
 
       {/* ── PRE-FOOTER CTA ── */}
       {currentPage === "Ana Sayfa" && (
-        <section style={{ background: NAVY, borderTop: `1px solid ${BORDER_DARK}`, borderBottom: `1px solid ${BORDER_DARK}` }}>
+        <section style={{ background: `linear-gradient(135deg, rgba(13,27,42,0.95) 0%, rgba(10,20,36,0.98) 100%)`, borderTop: `1px solid rgba(247,249,252,0.07)`, borderBottom: `1px solid rgba(247,249,252,0.07)` }}>
           <div style={{ ...styles.container, padding: isMobile ? "56px 16px" : "72px 24px", textAlign: "center" }}>
             <div style={{
               display: "inline-block",
