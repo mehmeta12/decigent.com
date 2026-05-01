@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { type Lang, copy, services, solutions, useCases, pilotSteps, securityItems, blogPosts } from "./data";
-import heroImg from "../img/decigent_hero.webp";
+import heroImg from "../img/decigent_hero_new.webp";
 import logoGold from "../img/Decigent_logo_gold_bgwhite_noslogan.png";
 
 type Page =
@@ -52,6 +52,7 @@ const styles = {
     maxWidth: "1200px",
     margin: "0 auto",
     padding: "0 24px",
+    boxSizing: "border-box",
   } as const,
   section: {
     padding: "88px 0",
@@ -215,6 +216,43 @@ function securityIcon(iconKey: string, color: string) {
   }
 }
 
+function ProofIcon({ type, color = GOLD }: { type: "result" | "pilot" | "human" | "privacy"; color?: string }) {
+  const p = { width: 18, height: 18, viewBox: "0 0 24 24", fill: "none", "aria-hidden": true };
+  const stroke = { stroke: color, strokeWidth: 2.2, strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
+
+  if (type === "result") {
+    return (
+      <svg {...p}>
+        <circle cx="12" cy="12" r="9" {...stroke} />
+        <path d="M8 12l2.5 2.5L16 9" {...stroke} />
+      </svg>
+    );
+  }
+  if (type === "pilot") {
+    return (
+      <svg {...p}>
+        <rect x="4" y="5" width="16" height="15" rx="2" {...stroke} />
+        <path d="M8 3v4M16 3v4M4 10h16M9 15h3" {...stroke} />
+      </svg>
+    );
+  }
+  if (type === "human") {
+    return (
+      <svg {...p}>
+        <path d="M15 19a6 6 0 0 0-10 0" {...stroke} />
+        <circle cx="10" cy="8" r="4" {...stroke} />
+        <path d="M16 12l2 2 4-4" {...stroke} />
+      </svg>
+    );
+  }
+  return (
+    <svg {...p}>
+      <path d="M12 3l7 3v5c0 4.5-2.6 7.8-7 10-4.4-2.2-7-5.5-7-10V6l7-3z" {...stroke} />
+      <path d="M9 12l2 2 4-4" {...stroke} />
+    </svg>
+  );
+}
+
 const fadeUp = {
   hidden: { opacity: 0, y: 22 },
   visible: (i: number = 0) => ({
@@ -254,30 +292,34 @@ function SectionHeader({
   eyebrow,
   title,
   text,
+  hideEyebrow = false,
 }: {
   eyebrow: string;
   title: string;
   text: string;
+  hideEyebrow?: boolean;
 }) {
   return (
     <div style={{ maxWidth: 760, marginBottom: 36 }}>
-      <div
-        style={{
-          display: "inline-block",
-          padding: "6px 12px",
-          borderRadius: 999,
-          background: GOLD_LIGHT,
-          border: `1px solid ${GOLD_BORDER}`,
-          color: GOLD,
-          fontSize: 11,
-          fontWeight: 700,
-          letterSpacing: "0.1em",
-          textTransform: "uppercase" as const,
-          marginBottom: 16,
-        }}
-      >
-        {eyebrow}
-      </div>
+      {!hideEyebrow && (
+        <div
+          style={{
+            display: "inline-block",
+            padding: "6px 12px",
+            borderRadius: 999,
+            background: GOLD_LIGHT,
+            border: `1px solid ${GOLD_BORDER}`,
+            color: GOLD,
+            fontSize: 11,
+            fontWeight: 700,
+            letterSpacing: "0.1em",
+            textTransform: "uppercase" as const,
+            marginBottom: 16,
+          }}
+        >
+          {eyebrow}
+        </div>
+      )}
       <h2
         style={{
           margin: "0 0 12px",
@@ -330,31 +372,44 @@ const heroLabels = {
   ],
 };
 
-const rowTops = ["29%", "59%", "86%"];
+const rowTops = ["28.7%", "59%", "86.5%"];
 
 const HERO_BLUE = "#88BBDD";
 
-function HeroGifVisual({ isMobile, lang, children }: { isMobile: boolean; lang: Lang; children?: React.ReactNode }) {
+function HeroGifVisual({ isMobile, lang }: { isMobile: boolean; lang: Lang }) {
   const labelStyle = (side: "left" | "right"): React.CSSProperties => ({
     position: "absolute",
     textAlign: "center" as const,
-    fontSize: isMobile ? "clamp(5px, 1.6vw, 9px)" : "clamp(8px, 1.2vw, 14px)",
+    fontSize: isMobile ? "clamp(5px, 1.45vw, 8px)" : "clamp(9px, 1.05vw, 14px)",
     fontWeight: 700,
     color: side === "left" ? HERO_BLUE : GOLD,
     pointerEvents: "none" as const,
-    lineHeight: 1.3,
-    width: "25%",
+    lineHeight: 1.15,
+    width: "16.8%",
+    height: "5.6%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    boxSizing: "border-box",
+    padding: "0 1.1%",
     transform: "translateY(-50%)",
     textShadow: side === "left"
       ? "0 0 12px rgba(39,118,234,0.5), 0 1px 6px rgba(0,0,0,0.9)"
       : "0 0 12px rgba(212,160,23,0.5), 0 1px 6px rgba(0,0,0,0.9)",
-    ...(side === "left" ? { left: "1.5%" } : { right: "1.5%" }),
+    ...(side === "left" ? { left: "4.7%" } : { right: "4.7%" }),
   });
 
   return (
-    <div style={{ position: "relative" }}>
+    <div
+      style={{
+        position: "relative",
+        width: isMobile ? "100%" : "88%",
+        maxWidth: isMobile ? "none" : 1040,
+        margin: "0 auto",
+      }}
+    >
 
-      {/* Image — no frame, edge fades blend into page */}
+      {/* Image — overflow hidden clips any render bleed */}
       <div style={{ position: "relative", zIndex: 1, overflow: "hidden" }}>
         <img
           src={heroImg}
@@ -362,56 +417,37 @@ function HeroGifVisual({ isMobile, lang, children }: { isMobile: boolean; lang: 
           className="hero-image-mask"
           style={{ width: "100%", display: "block" }}
         />
-
-        {/* Button overlay */}
-        {children && (
-          <div style={{
-            position: "absolute",
-            top: 0,
-            left: "50%",
-            transform: "translateX(-50%)",
-            display: "flex",
-            flexWrap: "wrap" as const,
-            justifyContent: "center",
-            gap: 12,
-            zIndex: 10,
-          }}>
-            {children}
-          </div>
-        )}
-
-        {/* Left labels */}
-        {heroLabels.left.map((label, i) => (
-          <div key={i} style={{ ...labelStyle("left"), top: rowTops[i] }}>
-            {lang === "tr" ? label.tr : label.en}
-          </div>
-        ))}
-
-        {/* Center label */}
-        <div style={{
-          position: "absolute",
-          left: "50%",
-          top: "67%",
-          transform: "translate(-50%, -50%)",
-          textAlign: "center" as const,
-          fontSize: isMobile ? "clamp(6px, 2vw, 10px)" : "clamp(9px, 1.2vw, 14px)",
-          fontWeight: 800,
-          color: GOLD,
-          pointerEvents: "none",
-          letterSpacing: "0.04em",
-          textShadow: "0 0 16px rgba(212,160,23,0.6), 0 1px 6px rgba(0,0,0,0.9)",
-          whiteSpace: "nowrap" as const,
-        }}>
-          {lang === "tr" ? heroLabels.center.tr : heroLabels.center.en}
-        </div>
-
-        {/* Right labels */}
-        {heroLabels.right.map((label, i) => (
-          <div key={i} style={{ ...labelStyle("right"), top: rowTops[i] }}>
-            {lang === "tr" ? label.tr : label.en}
-          </div>
-        ))}
       </div>
+
+      {/* Labels — outside overflow:hidden so they are never clipped */}
+      {heroLabels.left.map((label, i) => (
+        <div key={i} style={{ ...labelStyle("left"), top: rowTops[i] }}>
+          {lang === "tr" ? label.tr : label.en}
+        </div>
+      ))}
+
+      <div style={{
+        position: "absolute",
+        left: "50%",
+        top: "67%",
+        transform: "translate(-50%, -50%)",
+        textAlign: "center" as const,
+        fontSize: isMobile ? "clamp(6px, 2vw, 10px)" : "clamp(9px, 1.2vw, 14px)",
+        fontWeight: 800,
+        color: GOLD,
+        pointerEvents: "none",
+        letterSpacing: "0.04em",
+        textShadow: "0 0 16px rgba(212,160,23,0.6), 0 1px 6px rgba(0,0,0,0.9)",
+        whiteSpace: "nowrap" as const,
+      }}>
+        {lang === "tr" ? heroLabels.center.tr : heroLabels.center.en}
+      </div>
+
+      {heroLabels.right.map((label, i) => (
+        <div key={i} style={{ ...labelStyle("right"), top: rowTops[i] }}>
+          {lang === "tr" ? label.tr : label.en}
+        </div>
+      ))}
     </div>
   );
 }
@@ -488,6 +524,15 @@ export default function App() {
   useEffect(() => {
     if (!isMobile) setMobileMenuOpen(false);
   }, [isMobile]);
+
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMobileMenuOpen(false);
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [mobileMenuOpen]);
 
   const filteredPosts = useMemo(() => {
     return currentBlogPosts.filter((post) => {
@@ -588,20 +633,32 @@ export default function App() {
             alignItems: "center",
             justifyContent: "space-between",
             gap: 12,
-            flexWrap: "wrap",
+            flexWrap: isMobile ? "nowrap" : "wrap",
             padding: isMobile ? "12px 16px" : "0 24px",
           }}
         >
           <button
+            type="button"
             onClick={() => navigateTo("Ana Sayfa")}
-            style={{ background: "transparent", border: "none", cursor: "pointer", padding: 0 }}
+            style={{
+              background: "transparent",
+              border: "none",
+              cursor: "pointer",
+              padding: 0,
+              minWidth: 0,
+              flexShrink: 1,
+            }}
           >
-            <img src={logoGold} alt="Decigent Logo" style={{ height: 40, width: "auto" }} />
+            <img
+              src={logoGold}
+              alt="Decigent Logo"
+              style={{ height: 40, width: "auto", maxWidth: isMobile ? "48vw" : "none", display: "block" }}
+            />
           </button>
 
           {isMobile ? (
             /* Mobile: lang toggle + hamburger */
-            <div style={{ display: "flex", alignItems: "center", gap: SPACE.xs }}>
+            <div style={{ display: "flex", alignItems: "center", gap: SPACE.xs, flexShrink: 0 }}>
               <div
                 style={{
                   display: "flex",
@@ -611,6 +668,7 @@ export default function App() {
                 }}
               >
                 <button
+                  type="button"
                   onClick={() => setLang("tr")}
                   style={{
                     border: "none",
@@ -625,6 +683,7 @@ export default function App() {
                   TR
                 </button>
                 <button
+                  type="button"
                   onClick={() => setLang("en")}
                   style={{
                     border: "none",
@@ -640,8 +699,11 @@ export default function App() {
                 </button>
               </div>
               <button
+                type="button"
                 onClick={() => setMobileMenuOpen((v) => !v)}
                 aria-label={mobileMenuOpen ? "Menüyü kapat" : "Menüyü aç"}
+                aria-expanded={mobileMenuOpen}
+                aria-controls="mobile-menu"
                 style={{
                   border: `1px solid ${BORDER_DARK}`,
                   borderRadius: 12,
@@ -740,37 +802,67 @@ export default function App() {
         {/* Mobile dropdown menu */}
         {isMobile && mobileMenuOpen && (
           <div
+            id="mobile-menu"
+            className="mobile-menu-dropdown"
             style={{
               borderTop: `1px solid ${BORDER_DARK}`,
-              background: BLACK,
-              padding: "12px 16px",
-              display: "grid",
+              background: "rgba(8,16,28,0.96)",
+              backdropFilter: "blur(24px)",
+              WebkitBackdropFilter: "blur(24px)",
+              padding: "12px 16px 16px",
+              display: "flex",
+              flexDirection: "column",
               gap: 4,
+              width: "100%",
+              boxSizing: "border-box",
             }}
           >
-            {navItems.map((item) => {
-              const isContact = item === "İletişim";
+            {navItems.filter((item) => item !== "İletişim").map((item) => {
               const isActive = currentPage === item;
               return (
                 <button
                   key={item}
+                  type="button"
                   onClick={() => navigateTo(item)}
                   style={{
-                    border: isContact && !isActive ? `1px solid ${GOLD_BORDER}` : "none",
-                    background: isActive ? GOLD_LIGHT : "transparent",
-                    color: isActive ? GOLD : isContact ? GOLD : TEXT_MUTED,
-                    padding: "12px 14px",
-                    borderRadius: 12,
+                    border: "none",
+                    background: isActive ? "rgba(212,160,23,0.1)" : "transparent",
+                    color: isActive ? GOLD : TEXT_MUTED,
+                    padding: "14px 18px",
+                    borderRadius: 10,
                     cursor: "pointer",
-                    fontWeight: isContact ? 700 : 600,
+                    fontWeight: 600,
                     textAlign: "left" as const,
-                    fontSize: 15,
+                    fontSize: 16,
+                    width: "100%",
+                    boxSizing: "border-box",
                   }}
                 >
                   {pageLabel(item)}
                 </button>
               );
             })}
+            <div style={{ height: 1, background: BORDER_DARK, margin: "8px 0" }} />
+            <button
+              type="button"
+              onClick={() => navigateTo("İletişim")}
+              style={{
+                border: "none",
+                background: "linear-gradient(135deg, #C49010 0%, #E8B520 50%, #D4A017 100%)",
+                color: NAVY,
+                padding: "14px 18px",
+                borderRadius: 10,
+                cursor: "pointer",
+                fontWeight: 700,
+                textAlign: "center" as const,
+                fontSize: 16,
+                boxShadow: "0 0 20px rgba(212,160,23,0.25)",
+                width: "100%",
+                boxSizing: "border-box",
+              }}
+            >
+              {pageLabel("İletişim")}
+            </button>
           </div>
         )}
       </header>
@@ -791,9 +883,9 @@ export default function App() {
             <div style={{
               position: "absolute",
               top: "50%",
-              left: isMobile ? "0" : "35%",
+              left: isMobile ? "50%" : "35%",
               transform: "translate(-50%, -60%)",
-              width: isMobile ? "100vw" : "70vw",
+              width: isMobile ? "100%" : "70vw",
               height: isMobile ? "60vh" : "80vh",
               maxWidth: 900,
               background: "radial-gradient(circle, rgba(39,118,234,0.12) 0%, rgba(212,160,23,0.04) 40%, transparent 70%)",
@@ -804,11 +896,11 @@ export default function App() {
               <FadeUp i={0}>
                 <h1
                   style={{
-                    fontSize: isMobile ? 38 : 84,
-                    lineHeight: 1.0,
-                    margin: "0 0 28px",
+                    fontSize: isMobile ? 36 : 72,
+                    lineHeight: 1.05,
+                    margin: "0 0 22px",
                     fontWeight: 800,
-                    letterSpacing: "-0.03em",
+                    letterSpacing: "-0.015em",
                     textAlign: "center",
                   }}
                 >
@@ -829,7 +921,7 @@ export default function App() {
                   style={{
                     ...styles.muted,
                     textAlign: "center",
-                    margin: "0 auto 36px",
+                    margin: "0 auto 24px",
                     maxWidth: 620,
                     fontSize: isMobile ? 16 : 18,
                     lineHeight: 1.65,
@@ -839,50 +931,83 @@ export default function App() {
                 </p>
               </FadeUp>
 
-              {/* Hero image — full width, buttons overlaid */}
+              {/* CTA buttons before hero image */}
               <FadeUp i={3}>
-                <HeroGifVisual isMobile={isMobile} lang={lang}>
+                <div style={{ display: "flex", gap: 10, justifyContent: "center", flexWrap: "wrap", marginBottom: isMobile ? 24 : 32 }}>
                   <button
                     type="button"
-                    style={{ ...styles.buttonGold, fontSize: isMobile ? 14 : 15, padding: isMobile ? "13px 24px" : "15px 32px" }}
+                    style={{ ...styles.buttonGold, fontSize: 13, padding: isMobile ? "10px 16px" : "10px 22px" }}
                     onClick={() => navigateTo("Use Cases")}
                   >
-                    {c.reviewSolutions} →
+                    {isMobile ? (lang === "tr" ? "Use Cases →" : "See Cases →") : `${c.reviewSolutions} →`}
                   </button>
                   <button
                     type="button"
-                    style={{ ...styles.buttonSecondary, fontSize: isMobile ? 14 : 15 }}
+                    style={{ ...styles.buttonSecondary, fontSize: 13, padding: isMobile ? "10px 16px" : "10px 22px" }}
                     onClick={() => setCurrentPage("İletişim")}
                   >
-                    {c.ctaMeet}
+                    {isMobile ? (lang === "tr" ? "Görüşme Planla" : "Book a Call") : c.ctaMeet}
                   </button>
-                </HeroGifVisual>
+                </div>
+              </FadeUp>
+
+              {/* Hero image — full width */}
+              <FadeUp i={4}>
+                <HeroGifVisual isMobile={isMobile} lang={lang} />
               </FadeUp>
             </div>
           </section>
 
           {/* ── PROOF STRIP ── */}
-          <div style={{ background: `linear-gradient(90deg, transparent 0%, rgba(13,27,42,0.9) 12%, rgba(13,27,42,0.9) 88%, transparent 100%)`, borderTop: `1px solid rgba(247,249,252,0.06)`, borderBottom: `1px solid rgba(247,249,252,0.06)` }}>
+          <div
+            style={{
+              marginTop: isMobile ? 8 : 18,
+              background: `linear-gradient(90deg, transparent 0%, rgba(13,27,42,0.82) 12%, rgba(13,27,42,0.82) 88%, transparent 100%)`,
+              borderTop: `1px solid rgba(247,249,252,0.05)`,
+              borderBottom: `1px solid rgba(247,249,252,0.05)`,
+            }}
+          >
             <div style={{ ...styles.container, padding: isMobile ? "26px 16px" : "26px 24px" }}>
               <div style={{
                 display: isMobile ? "grid" : "flex",
                 gridTemplateColumns: "1fr 1fr",
                 flexWrap: "wrap",
-                gap: isMobile ? "10px 12px" : 0,
+                gap: isMobile ? "12px" : 22,
                 alignItems: "center",
-                justifyContent: "space-between",
+                justifyContent: "center",
               }}>
                 {[
-                  { label: lang === "tr" ? "Sonuç yoksa ücret yok" : "No results, no fee", icon: "✦" },
-                  { label: lang === "tr" ? "12 haftalık pilot" : "12 week pilot", icon: "✦" },
-                  { label: lang === "tr" ? "İnsan onaylı kararlar" : "Human-approved decisions", icon: "✦" },
-                  { label: lang === "tr" ? "Tam izlenebilirlik" : "Full traceability", icon: "✦" },
-                  { label: lang === "tr" ? "Devir veya hibrit model" : "Handover or hybrid model", icon: "✦" },
-                  { label: "KVKK / GDPR", icon: "✦" },
+                  { label: lang === "tr" ? "Risk bazlı insan onayı" : "Risk-based human approval", icon: "human" as const },
+                  { label: lang === "tr" ? "Uçtan uca otomasyon" : "End-to-end automation", icon: "result" as const },
+                  { label: lang === "tr" ? "12 haftalık pilot" : "12-week pilot", icon: "pilot" as const },
+                  { label: lang === "tr" ? "KVKK uyumlu yaklaşım" : "GDPR-aligned approach", icon: "privacy" as const },
                 ].map((item, i) => (
-                  <div key={i} style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                    <span style={{ color: GOLD, fontSize: 10 }}>{item.icon}</span>
-                    <span style={{ fontSize: 13, fontWeight: 600, color: TEXT_MUTED }}>{item.label}</span>
+                  <div
+                    key={i}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 10,
+                      minWidth: isMobile ? 0 : 190,
+                      justifyContent: isMobile ? "flex-start" : "center",
+                    }}
+                  >
+                    <span
+                      style={{
+                        width: 30,
+                        height: 30,
+                        borderRadius: 999,
+                        display: "inline-flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        flexShrink: 0,
+                        background: "rgba(212,160,23,0.10)",
+                        border: "1px solid rgba(212,160,23,0.18)",
+                      }}
+                    >
+                      <ProofIcon type={item.icon} />
+                    </span>
+                    <span style={{ fontSize: 13, fontWeight: 650, color: TEXT_PRIMARY, lineHeight: 1.35 }}>{item.label}</span>
                   </div>
                 ))}
               </div>
@@ -893,7 +1018,7 @@ export default function App() {
           <section id="services-section" style={{ ...styles.section, padding: vpad }}>
             <div style={{ ...styles.container, padding: hpad }}>
               <FadeUp>
-                <SectionHeader eyebrow={c.servicesEyebrow} title={c.servicesTitle} text={c.servicesText} />
+                <SectionHeader eyebrow={c.servicesEyebrow} title={c.servicesTitle} text={c.servicesText} hideEyebrow />
               </FadeUp>
               <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, minmax(0,1fr))", gap: SPACE.lg }}>
                 {currentServices.map((service, index) => {
@@ -919,7 +1044,7 @@ export default function App() {
           <section id="solutions-section" style={{ ...styles.section, padding: vpad, background: `linear-gradient(180deg, transparent 0%, rgba(13,27,42,0.95) 5%, rgba(13,27,42,0.95) 95%, transparent 100%)` }}>
             <div style={{ ...styles.container, padding: hpad }}>
               <FadeUp>
-                <SectionHeader eyebrow={c.solutionsEyebrow} title={c.solutionsTitle} text={c.solutionsText} />
+                <SectionHeader eyebrow={c.solutionsEyebrow} title={c.solutionsTitle} text={c.solutionsText} hideEyebrow />
               </FadeUp>
               <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, minmax(0,1fr))", gap: SPACE.lg }}>
                 {currentSolutions.map((item, i) => (
@@ -981,6 +1106,7 @@ export default function App() {
                   eyebrow={c.useCasesEyebrow}
                   title={c.useCasesTitle}
                   text={c.useCasesText}
+                  hideEyebrow
                 />
               </FadeUp>
               <div
@@ -1099,6 +1225,7 @@ export default function App() {
                   eyebrow={c.whyEyebrow}
                   title={c.whyTitle}
                   text={c.whyText}
+                  hideEyebrow
                 />
               </FadeUp>
               <div
@@ -1165,6 +1292,7 @@ export default function App() {
                   eyebrow={c.pilotEyebrow}
                   title={c.pilotTitle}
                   text={c.pilotText}
+                  hideEyebrow
                 />
               </FadeUp>
               <div style={{
@@ -1253,6 +1381,7 @@ export default function App() {
                   eyebrow={c.securityEyebrow}
                   title={c.securityTitle}
                   text={c.securityText}
+                  hideEyebrow
                 />
               </FadeUp>
               <div style={{
@@ -1601,28 +1730,35 @@ export default function App() {
       <footer
         style={{
           borderTop: `1px solid ${BORDER_DARK}`,
-          padding: "40px 0",
-          background: BLACK,
+          padding: isMobile ? "40px 0 28px" : "48px 0 32px",
+          background: `linear-gradient(180deg, ${BLACK} 0%, rgba(13,27,42,0.42) 100%)`,
         }}
       >
         <div style={{ ...styles.container, padding: hpad }}>
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr 1fr",
-              gap: SPACE.xl,
+              gridTemplateColumns: isMobile ? "1fr" : "1.35fr 0.85fr 1fr",
+              gap: isMobile ? 30 : 48,
+              alignItems: "start",
             }}
           >
             <div>
               <img src={logoGold} alt="Decigent" style={{ height: 32, width: "auto", marginBottom: 10 }} />
-              <div style={{ color: TEXT_MUTED }}>{c.footerTag}</div>
+              <div style={{ color: TEXT_PRIMARY, fontWeight: 700, lineHeight: 1.45, maxWidth: 360 }}>{c.footerTag}</div>
+              <div style={{ color: TEXT_MUTED, fontSize: 13, lineHeight: 1.6, marginTop: 12, maxWidth: 380 }}>
+                {lang === "tr"
+                  ? "Risk bazlı insan onayı, uçtan uca otomasyon ve ölçülebilir pilot yaklaşımıyla."
+                  : "With risk-based human approval, end-to-end automation, and measurable pilot delivery."}
+              </div>
             </div>
             <div>
               <div style={{ fontWeight: 700, marginBottom: 12, color: TEXT_PRIMARY }}>{c.menu}</div>
-              <div style={{ display: "grid", gap: SPACE.xs }}>
+              <div style={{ display: "grid", gap: 9 }}>
                 {navItems.map((item) => (
                   <button
                     key={item}
+                    type="button"
                     onClick={() => navigateTo(item)}
                     style={{
                       background: "transparent",
@@ -1631,6 +1767,8 @@ export default function App() {
                       color: TEXT_MUTED,
                       cursor: "pointer",
                       padding: 0,
+                      fontSize: 14,
+                      lineHeight: 1.35,
                     }}
                   >
                     {pageLabel(item)}
@@ -1640,9 +1778,9 @@ export default function App() {
             </div>
             <div>
               <div style={{ fontWeight: 700, marginBottom: 12, color: TEXT_PRIMARY }}>{c.contactInfo}</div>
-              <div style={{ display: "grid", gap: SPACE.xs, color: TEXT_MUTED }}>
-                <div>info@decigent.com</div>
-                <div style={{ wordBreak: "break-word" }}>Atalar Mh. 1346 Sok. No: 24/10 Pamukkale - DENİZLİ</div>
+              <div style={{ display: "grid", gap: 10, color: TEXT_MUTED, fontSize: 14, lineHeight: 1.55 }}>
+                <a href="mailto:info@decigent.com" style={{ color: TEXT_MUTED, textDecoration: "none" }}>info@decigent.com</a>
+                <div style={{ wordBreak: "break-word" }}>Atalar Mh. 1346 Sok. No: 24/10 Pamukkale - Denizli</div>
                 <a
                   href="https://www.linkedin.com/company/decigent/"
                   target="_blank"
@@ -1654,6 +1792,7 @@ export default function App() {
                     alignItems: "center",
                     gap: SPACE.xs,
                     marginTop: 6,
+                    width: "fit-content",
                   }}
                 >
                   <LinkedInMark />
@@ -1664,14 +1803,19 @@ export default function App() {
           </div>
           <div
             style={{
-              marginTop: 32,
-              paddingTop: 20,
+              marginTop: isMobile ? 30 : 40,
+              paddingTop: 18,
               borderTop: `1px solid ${BORDER_DARK}`,
               color: TEXT_MUTED,
-              fontSize: 14,
+              fontSize: 13,
+              display: "flex",
+              flexDirection: isMobile ? "column" : "row",
+              justifyContent: "space-between",
+              gap: 10,
             }}
           >
-            © {new Date().getFullYear()} Decigent. {c.rights}
+            <span>© {new Date().getFullYear()} Decigent. {c.rights}</span>
+            <span>{lang === "tr" ? "Agentic AI · AI Agents · Generative AI" : "Agentic AI · AI Agents · Generative AI"}</span>
           </div>
         </div>
       </footer>

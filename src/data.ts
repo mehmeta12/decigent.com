@@ -11,9 +11,9 @@ export const copy = {
     contact: "İletişim",
     ctaMeet: "Yönetici Ön Görüşmesi Planla",
     heroBadge: "Kurumsal AI karar sistemleri",
-    heroTitle: "Ölçülebilir kararlar. Akıllı operasyonlar.",
+    heroTitle: "Karar ve operasyon süreçleri için Agentic AI çözümleri",
     heroText:
-      "Üretim, satış ve satın alma süreçlerindeki dağınık iş akışlarını 12 hafta içinde insan onaylı, izlenebilir ve ölçülebilir AI karar sistemlerine dönüştürüyoruz.",
+      "Decigent, belirsizlik içeren, çok adımlı ve bağlama göre karar gerektiren iş süreçlerini AI agent akışlarına dönüştürür. Kritik veya geri döndürülemez kararlarda insanı akışa dahil eder; düşük riskli süreçlerde otomasyonu uçtan uca çalıştırır.",
     reviewSolutions: "Use Case'leri İncele",
     quickPilot: "12 haftalık pilot",
     quickPilotText: "Ölçülebilir iş çıktısı",
@@ -32,15 +32,15 @@ export const copy = {
     servicesEyebrow: "Hizmetler",
     servicesTitle: "Nasıl çalışıyoruz?",
     servicesText:
-      "Decigent, kurumlara AI dönüşümünü başlatmak ve ölçeklemek için uçtan uca hizmetler sunar.",
+      "Decigent, karar ve operasyon süreçlerini analiz eder; Agentic AI, AI agent'lar, Generative AI ve kurumsal uygulama geliştirme yetkinliklerini birleştirerek kontrollü veya otomatik iş akışları kurar.",
     solutionsEyebrow: "Çözümler",
     solutionsTitle: "Ne inşa ediyoruz?",
     solutionsText:
-      "Decigent'in geliştirdiği AI sistem aileleri. Her biri farklı bir kurumsal fonksiyon için tasarlanmış, insan onaylı ve izlenebilir.",
+      "Decigent'in geliştirdiği Agentic AI çözüm aileleri; karar, operasyon ve bilgi akışlarını risk seviyesine göre insan onaylı veya otomatik çalışacak şekilde tasarlar.",
     useCasesEyebrow: "Use Cases",
     useCasesTitle: "Öncelikli kurumsal kullanım senaryoları",
     useCasesText:
-      "İlk aşamada hızlı değer üretmeye en uygun alanları hedefliyoruz. Bu örnekler, farklı sektörlerde uygulanabilecek yapıların temsilidir.",
+      "İlk aşamada belirsizlik içeren, çok adımlı ve ölçülebilir değer üretebilecek süreçlere odaklanıyoruz. Her senaryoda insan onayı veya otomasyon seviyesi, kararın kritiklik ve geri döndürülebilirlik düzeyine göre tasarlanır.",
     talkThisUseCase: "Bu Use Case'i Konuşalım",
     aboutEyebrow: "About",
     aboutTitle: "Decigent hakkında",
@@ -79,27 +79,27 @@ export const copy = {
       "Önce tek bir yüksek etkili kullanım alanı seçelim. Sonra veri gereksinimi, iş akışı ve pilot kapsamını birlikte netleştirelim. Pilot başarı bazlı çalışır — KPI'lara ulaşılmazsa proje ücreti alınmaz.",
     menu: "Menü",
     contactInfo: "İletişim",
-    footerTag: "Intelligent decisions and operations",
+    footerTag: "Karar ve operasyon süreçleri için Agentic AI çözümleri",
     rights: "Tüm hakları saklıdır.",
     linkedIn: "LinkedIn",
     prefMessage:
       "Merhaba, {title} use case'i ile ilgileniyorum. Bu çözüm için detaylı bilgi almak ve kısa bir görüşme planlamak istiyorum.",
     whyEyebrow: "Neden Decigent?",
-    whyTitle: "Büyük platformlar araç sunar. Decigent sonucu uygular.",
+    whyTitle: "Platform değil, çalışan Agentic AI akışları kuruyoruz",
     whyText:
-      "Microsoft ya da SAP size yazılım verir, sizin anlamanızı bekler. Decigent önce şirketinizi analiz eder, en yüksek değeri üretecek kullanım alanını birlikte tespit eder, sonra uygular.",
+      "Decigent, hazır bir araç verip sizi yalnız bırakmaz. Karar ve operasyon süreçlerinizi analiz eder, risk seviyesine göre insan onaylı veya otomatik agentic akışlar tasarlar, sistemi pilotta ölçer ve üretime taşır.",
     whyPilot: "Başarı bazlı pilot",
     whyPilotText:
       "İlk projelerimizde başarı bazlı çalışıyoruz. 12 hafta sonunda belirlenen KPI'lara ulaşılmazsa proje ücreti alınmaz.",
     whyAnalysis: "Analiz → Tasarım → Uygulama",
     whyAnalysisText:
-      "Tek elden hizmet: ihtiyaç analizinden çözüm tasarımına, pilottan üretime — hepsini biz yönetiyoruz.",
+      "İhtiyaç analizinden agentic akış tasarımına, entegrasyondan pilota ve üretime geçişe kadar süreci tek elden yönetiyoruz.",
     whyFlexible: "Kilit olmak yok",
     whyFlexibleText:
       "Pilot sonrası sistemi kendi ekibinize devrederiz, biz yönetmeye devam ederiz ya da hibrit model kurarız. Tercih sizin.",
     whyFounding: "Kurucu pilot ortağı",
     whyFoundingText:
-      "Kurucu pilot ortakları çözümü birlikte şekillendiriyor, tercihli pilot koşullarından yararlanıyor ve sektörde ilk referans vakasını oluşturuyor. Kontenjan sınırlı.",
+      "Kurucu pilot ortakları, çözümü kendi gerçek süreçleri üzerinde birlikte şekillendirir, tercihli pilot koşullarından yararlanır ve sektörde ilk referans vakasını oluşturur.",
     whyCta: "Yönetici Ön Görüşmesi Planla",
     problemLabel: "Problem",
     approachLabel: "Yaklaşım",
@@ -112,11 +112,11 @@ export const copy = {
     contactNextStep: "İlk 30 dakikalık görüşmede: iş hedefiniz, öncelikli süreciniz ve pilot kapsamı.",
     pilotEyebrow: "Pilot Metodolojisi",
     pilotTitle: "12 haftada, sıfırdan çalışan sisteme",
-    pilotText: "Her pilot aynı dört aşamadan geçer. Kapalı kutu yoktur — her adımda ne yaptığımızı, ne teslim ettiğimizi ve hangi kriterlere göre ilerlediğimizi birlikte görürsünüz.",
+    pilotText: "Her pilot aynı dört aşamadan geçer. Kapalı kutu yoktur — süreçte hangi kararların insan onayı gerektirdiğini, hangilerinin otomatik çalışabileceğini ve başarı kriterlerini birlikte belirleriz.",
     pilotDeliverable: "Teslimat",
     securityEyebrow: "Güvenlik & Yönetişim",
-    securityTitle: "Kurumsal AI güvenli olmalı. Başından beri.",
-    securityText: "Güvenlik ve yönetişim eklenti değil, çözüm tasarımının merkezidir. Kritik operasyon süreçlerinde her karar izlenebilir, her aksiyon onay gerektirir.",
+    securityTitle: "Kontrollü otonomluk için güvenlik ve yönetişim",
+    securityText: "Agentic AI çözümlerinde güvenlik sonradan eklenmez. Hangi kararın otomatik çalışacağı, hangisinin insan onayı gerektireceği, kimin neyi görebileceği ve her aksiyonun nasıl kaydedileceği tasarım aşamasında belirlenir.",
     engagementTitle: "Nasıl çalışıyoruz?",
     engagementSteps: [
       { step: "01", title: "Ücretsiz Keşif Görüşmesi", text: "30 dakika. En yüksek etkili kullanım alanını birlikte belirliyoruz, veri hazırlığını değerlendiriyoruz — taahhüt yok." },
@@ -124,9 +124,9 @@ export const copy = {
       { step: "03", title: "Ölçekleme veya Devir", text: "Pilot sonrası: sistemi ekibinize devrederiz, biz yönetiriz ya da hibrit model kurarız. Tercih sizin." },
     ],
     remoteService: "Tüm proje görüşmeleri çevrimiçi veya müşteri lokasyonunda yürütülür. Türkiye genelinde hizmet veriyoruz.",
-    preCtaTitle: "Hâlâ değerlendirme aşamasında mısınız?",
-    preCtaText: "30 dakikalık ücretsiz keşif görüşmesinde iş hedefinizi ve en uygun kullanım alanını birlikte belirleyelim. Taahhüt yok.",
-    preCtaButton: "Ücretsiz Görüşme Planla",
+    preCtaTitle: "İlk Agentic AI kullanım alanınızı birlikte netleştirelim",
+    preCtaText: "30 dakikalık ücretsiz keşif görüşmesinde karar veya operasyon süreçlerinizden hangisinin insan onaylı ya da otomatik akışa uygun olduğunu birlikte değerlendiririz. Taahhüt yok.",
+    preCtaButton: "Ücretsiz Keşif Görüşmesi Planla",
   },
   en: {
     home: "Home",
@@ -138,9 +138,9 @@ export const copy = {
     contact: "Contact",
     ctaMeet: "Book Executive Briefing",
     heroBadge: "Enterprise AI decision systems",
-    heroTitle: "Measurable decisions. Intelligent operations.",
+    heroTitle: "Agentic AI Solutions for Decision and Operations Workflows.",
     heroText:
-      "We turn fragmented manufacturing, sales, and procurement workflows into controlled AI decision systems in 12 weeks — with human oversight, traceable actions, and measurable outcomes.",
+      "Decigent turns uncertain, multi-step, context-dependent business processes into AI agent workflows. For critical or irreversible decisions, humans stay in the loop; for low-risk processes, automation runs end to end.",
     reviewSolutions: "See Use Cases",
     quickPilot: "12 week pilot",
     quickPilotText: "Measurable business outcome",
@@ -159,15 +159,15 @@ export const copy = {
     servicesEyebrow: "Services",
     servicesTitle: "How we work",
     servicesText:
-      "Decigent provides end-to-end services to launch and scale AI transformation in enterprises.",
+      "Decigent analyzes decision and operations workflows, then combines Agentic AI, AI agents, Generative AI, and enterprise application development to build controlled or automated workflows.",
     solutionsEyebrow: "Solutions",
     solutionsTitle: "What we build",
     solutionsText:
-      "Decigent's AI system families — each designed for a distinct enterprise function, with human approval and full traceability built in.",
+      "Decigent's Agentic AI solution families are designed to run decision, operations, and knowledge workflows with human approval or automation based on risk level.",
     useCasesEyebrow: "Use Cases",
     useCasesTitle: "Priority enterprise use cases",
     useCasesText:
-      "We focus first on the areas most suitable for rapid value creation. These examples represent structures that can be applied across sectors.",
+      "We first focus on uncertain, multi-step workflows where measurable value can be created quickly. In each use case, the level of human approval or automation is designed based on criticality and reversibility.",
     talkThisUseCase: "Let's discuss this use case",
     aboutEyebrow: "About",
     aboutTitle: "About Decigent",
@@ -206,27 +206,27 @@ export const copy = {
       "Let's first select one high-impact use case. Then we can clarify the data requirements, workflow, and pilot scope together. The pilot is success-based — if agreed KPIs aren't met, you don't pay.",
     menu: "Menu",
     contactInfo: "Contact",
-    footerTag: "Intelligent decisions and operations",
+    footerTag: "Agentic AI solutions for decision and operations workflows",
     rights: "All rights reserved.",
     linkedIn: "LinkedIn",
     prefMessage:
       "Hello, I am interested in the use case: {title}. I would like to learn more and schedule a short meeting.",
     whyEyebrow: "Why Decigent?",
-    whyTitle: "Big platforms provide tools. Decigent implements outcomes.",
+    whyTitle: "Not a platform. Working Agentic AI workflows.",
     whyText:
-      "Microsoft or SAP gives you a platform and waits for you to figure it out. Decigent starts by analyzing your company, identifies the highest-value use case together with you, then implements it.",
+      "Decigent does not hand over a generic tool and leave you to figure it out. We analyze your decision and operations workflows, design human-approved or automated agentic flows based on risk level, measure them in a pilot, and move them toward production.",
     whyPilot: "Success-based pilot",
     whyPilotText:
       "Our first projects are success-based. If agreed KPIs aren't met after 12 weeks, you don't pay.",
     whyAnalysis: "Analysis → Design → Implementation",
     whyAnalysisText:
-      "End-to-end ownership: from needs analysis to solution design, from pilot to production — we manage it all.",
+      "We manage the process end to end: from needs analysis to agentic workflow design, from integration to pilot and production rollout.",
     whyFlexible: "No lock-in",
     whyFlexibleText:
       "After the pilot, we hand the system over to your team, continue managing it ourselves, or set up a hybrid model. Your choice.",
     whyFounding: "Founding pilot partner",
     whyFoundingText:
-      "Founding pilot partners co-design the solution, benefit from preferred pilot terms, and become the first reference case in their sector. Limited spots available.",
+      "Founding pilot partners shape the solution on their real processes, benefit from preferred pilot terms, and become the first reference case in their sector.",
     whyCta: "Book Executive Briefing",
     problemLabel: "Problem",
     approachLabel: "Approach",
@@ -239,11 +239,11 @@ export const copy = {
     contactNextStep: "In our first 30-minute call: your business objective, priority process, and pilot scope.",
     pilotEyebrow: "Pilot Methodology",
     pilotTitle: "From zero to working system in 12 weeks",
-    pilotText: "Every pilot follows the same four phases. No black boxes — at each step you see what we do, what we deliver, and the criteria we use to move forward.",
+    pilotText: "Every pilot follows the same four phases. No black boxes — together we define which decisions require human approval, which workflows can run automatically, and how success will be measured.",
     pilotDeliverable: "Deliverable",
     securityEyebrow: "Security & Governance",
-    securityTitle: "Enterprise AI must be safe. From day one.",
-    securityText: "Security and governance are not add-ons — they are at the center of solution design. In critical operational processes, every decision is traceable and every action requires approval.",
+    securityTitle: "Security and governance for controlled autonomy",
+    securityText: "In Agentic AI solutions, security is not added later. Which decisions can run automatically, which require human approval, who can see what, and how every action is recorded are defined during design.",
     engagementTitle: "How we engage",
     engagementSteps: [
       { step: "01", title: "Free Discovery Call", text: "30 minutes. We identify your highest-impact use case and assess data readiness — no commitment." },
@@ -251,75 +251,75 @@ export const copy = {
       { step: "03", title: "Scale or Hand Over", text: "After pilot: hand over to your team, we continue managing, or a hybrid model. Your choice." },
     ],
     remoteService: "All project meetings are conducted online or at the client's location. We serve enterprises across Türkiye.",
-    preCtaTitle: "Still evaluating?",
-    preCtaText: "In a free 30-minute discovery call, we'll identify your business objective and the highest-impact use case together. No commitment.",
-    preCtaButton: "Book a Free Call",
+    preCtaTitle: "Let's clarify your first Agentic AI use case",
+    preCtaText: "In a free 30-minute discovery call, we assess which decision or operations workflow is suitable for human-approved or automated agentic flow. No commitment.",
+    preCtaButton: "Book a Free Discovery Call",
   },
 } as const;
 
 export const services = {
   tr: [
     {
-      title: "Ajan Tabanlı İş Akışları",
+      title: "Agentic AI İş Akışları",
       description:
-        "Tekrarlayan ve karar gerektiren iş süreçlerini kontrollü, izlenebilir ve ölçülebilir AI iş akışlarına dönüştürüyoruz.",
+        "Belirsiz, çok adımlı ve bağlama göre karar gerektiren süreçleri AI agent akışlarına dönüştürüyoruz.",
     },
     {
-      title: "Karar Destek Çözümleri",
+      title: "AI Agent Tasarımı ve Orkestrasyonu",
       description:
-        "Yöneticilerin daha hızlı, daha tutarlı ve veri destekli karar almasını sağlayan kurumsal çözümler geliştiriyoruz.",
+        "Farklı görevler için uzman agent'lar tasarlar, gerektiğinde multi-agent yapılar kurarız.",
     },
     {
-      title: "Kurumsal Copilotlar",
+      title: "Risk Bazlı Otomasyon Modeli",
       description:
-        "Satış, operasyon, satın alma, İK ve yönetim ekipleri için role özel yapay zekâ asistanları tasarlıyoruz.",
+        "Sürecin kritiklik ve geri döndürülebilirlik seviyesine göre insan onayı veya uçtan uca otomasyon kurgularız.",
     },
     {
-      title: "Veri ve İçgörü Katmanı",
+      title: "Generative AI ve Veri Katmanı",
       description:
-        "Dağınık verileri anlamlı içgörülere dönüştüren sorgulama, özetleme ve aksiyon katmanı kuruyoruz.",
+        "Kurumsal veri, doküman ve iş kurallarını agent'ların güvenli kullanabileceği bağlam katmanına dönüştürürüz.",
     },
     {
-      title: "AI Governance",
+      title: "Kurumsal Uygulama ve Entegrasyon",
       description:
-        "Yetki, insan onayı, izlenebilirlik ve güvenli kullanım gereksinimlerini çözüm tasarımının merkezine yerleştiriyoruz.",
+        "ERP, CRM, e-posta, BI ve iş akışı sistemleriyle çalışan uygulamalar ve entegrasyonlar geliştiririz.",
     },
     {
-      title: "Pilot ve Ölçekleme",
+      title: "Pilot, Ölçüm ve Ölçekleme",
       description:
-        "Hızlı pilotlarla değeri kanıtlıyor, ardından kurumsal ölçekte yaygınlaştırma planı oluşturuyoruz.",
+        "12 haftalık pilotla değeri ölçer, ardından üretime alma, devir veya ölçekleme planını oluştururuz.",
     },
   ],
   en: [
     {
-      title: "Agentic Workflows",
+      title: "Agentic AI Workflows",
       description:
-        "We transform repetitive and decision-heavy business processes into controlled, traceable, and measurable AI workflows.",
+        "We turn uncertain, multi-step, context-dependent processes into AI agent workflows.",
     },
     {
-      title: "Decision Support Solutions",
+      title: "AI Agent Design and Orchestration",
       description:
-        "We build enterprise solutions that enable executives to make faster, more consistent, and data-driven decisions.",
+        "We design specialized agents for different tasks and build multi-agent structures when needed.",
     },
     {
-      title: "Enterprise Copilots",
+      title: "Risk-Based Automation Model",
       description:
-        "We design role-specific AI assistants for sales, operations, procurement, HR, and executive teams.",
+        "We define when humans stay in the loop and when automation can run end to end based on risk and reversibility.",
     },
     {
-      title: "Data and Insight Layer",
+      title: "Generative AI and Data Layer",
       description:
-        "We build a layer that turns fragmented data into meaningful insights, querying, summarization, and action.",
+        "We turn enterprise data, documents, and business rules into a secure context layer agents can use.",
     },
     {
-      title: "AI Governance",
+      title: "Enterprise Application and Integration",
       description:
-        "We place authorization, human approval, traceability, and safe usage requirements at the center of solution design.",
+        "We build applications and integrations that work with ERP, CRM, email, BI, and workflow systems.",
     },
     {
-      title: "Pilot and Scaling",
+      title: "Pilot, Measurement and Scaling",
       description:
-        "We prove value with fast pilots and then define a scaling roadmap at enterprise level.",
+        "We measure value through a 12-week pilot, then define the production, handover, or scaling roadmap.",
     },
   ],
 };
@@ -327,14 +327,14 @@ export const services = {
 export const solutions = {
   tr: [
     {
-      title: "Karar & Raporlama Copilotu",
+      title: "Karar ve Raporlama Copilotu",
       sector: "Karar Desteği",
       description:
-        "Çok kaynaklı operasyon verisini birleştirerek yöneticilere anlık özet, sapma alarmı ve insan onaylı aksiyon önerisi sunar.",
+        "Çok kaynaklı operasyon verisini birleştirir; yöneticilere anlık özet, sapma uyarısı ve risk seviyesine göre onaylı aksiyon akışı sunar.",
       bullets: [
         "ERP / MES entegrasyonu",
-        "Sapma alarmı",
-        "Aksiyon önerisi",
+        "Sapma uyarısı",
+        "Aksiyon akışı",
         "Yönetici görünümü",
       ],
     },
@@ -351,44 +351,44 @@ export const solutions = {
       ],
     },
     {
-      title: "Tedarik Zekası",
+      title: "Tedarik Karar Ajanı",
       sector: "Satın Alma",
       description:
-        "Tedarikçi tekliflerini karşılaştırır, risk noktalarını işaretler ve dijital onay akışını insan denetiminde yönetir.",
-      bullets: ["Teklif karşılaştırma", "Risk analizi", "Dijital onay", "Audit kaydı"],
+        "Tedarikçi tekliflerini karşılaştırır, risk noktalarını işaretler ve kritiklik seviyesine göre dijital onay veya otomatik ilerleme akışını yönetir.",
+      bullets: ["Teklif karşılaştırma", "Risk analizi", "Onay akışı", "Denetim kaydı"],
     },
     {
       title: "Kurumsal Bilgi Asistanı",
       sector: "Çalışan Deneyimi",
       description:
-        "Şirket içi prosedür, politika ve dokümanlar üzerinde güvenli Q&A imkânı sunar. Hassas veriye erişimi yoktur, her yanıt loglanır.",
-      bullets: ["Politika Q&A", "Self-service", "Erişim kontrolü", "Loglama"],
+        "Şirket içi prosedür, politika ve dokümanlar üzerinde güvenli yanıt üretir; gerektiğinde ilgili süreci veya talebi başlatır.",
+      bullets: ["Politika soru-cevap", "Self servis", "Erişim kontrolü", "Talep akışı"],
     },
     {
-      title: "Anomali Tespiti & Alarm",
+      title: "Anomali ve Yönlendirme Ajanı",
       sector: "Operasyon",
       description:
-        "Operasyon verilerindeki kritik sapmaları gerçek zamanlı tespit ederek tanımlı yetkilileri uyarır ve müdahale akışını başlatır.",
-      bullets: ["Gerçek zamanlı izleme", "Eşik alarmları", "Kök neden özeti", "Bildirim"],
+        "Operasyon verilerindeki kritik sapmaları gerçek zamanlı tespit eder, kök neden özetini çıkarır ve müdahale akışını ilgili yetkililere yönlendirir.",
+      bullets: ["Gerçek zamanlı izleme", "Yetkiliye yönlendirme", "Kök neden özeti", "Müdahale akışı"],
     },
     {
       title: "Süreç Otomasyon Ajanı",
       sector: "İş Akışı",
       description:
-        "Tekrarlayan çok adımlı iş süreçlerini insan onay noktalarıyla birlikte otomatikleştirir. Pilot'tan üretime ölçeklenir.",
-      bullets: ["Çok adımlı akış", "İnsan onayı", "Audit trail", "Ölçekleme"],
+        "Tekrarlayan çok adımlı iş süreçlerini insan onay noktalarıyla birlikte otomatikleştirir. Pilot aşamasından üretime ölçeklenir.",
+      bullets: ["Çok adımlı akış", "İnsan onayı", "Denetim izi", "Ölçekleme"],
     },
   ],
   en: [
     {
-      title: "Decision & Reporting Copilot",
+      title: "Decision and Reporting Copilot",
       sector: "Decision Support",
       description:
-        "Unifies multi-source operational data to give executives real-time summaries, deviation alerts, and human-approved action recommendations.",
+        "Unifies multi-source operational data to give executives real-time summaries, deviation alerts, and risk-based action workflows.",
       bullets: [
         "ERP / MES integration",
         "Deviation alerts",
-        "Action suggestions",
+        "Action workflow",
         "Executive view",
       ],
     },
@@ -405,25 +405,25 @@ export const solutions = {
       ],
     },
     {
-      title: "Procurement Intelligence",
+      title: "Procurement Decision Agent",
       sector: "Procurement",
       description:
-        "Compares supplier bids, flags risk points, and manages a structured digital approval workflow under human oversight.",
-      bullets: ["Bid comparison", "Risk analysis", "Digital approval", "Audit trail"],
+        "Compares supplier bids, flags risk points, and manages approval or automated progression based on criticality.",
+      bullets: ["Bid comparison", "Risk analysis", "Approval flow", "Audit trail"],
     },
     {
       title: "Enterprise Knowledge Assistant",
       sector: "Employee Experience",
       description:
-        "Provides secure Q&A on internal procedures, policies, and documents. No access to sensitive data; every response is logged.",
-      bullets: ["Policy Q&A", "Self-service", "Access control", "Logging"],
+        "Provides secure answers on internal procedures, policies, and documents; starts related workflows or requests when needed.",
+      bullets: ["Policy Q&A", "Self-service", "Access control", "Request flow"],
     },
     {
-      title: "Anomaly Detection & Alerting",
+      title: "Anomaly and Escalation Agent",
       sector: "Operations",
       description:
-        "Detects critical deviations in operational data in real time, notifies designated owners, and triggers the response workflow.",
-      bullets: ["Real-time monitoring", "Threshold alerts", "Root cause summary", "Notifications"],
+        "Detects critical deviations in operational data in real time, summarizes root causes, and escalates the response workflow.",
+      bullets: ["Real-time monitoring", "Escalation", "Root cause summary", "Response workflow"],
     },
     {
       title: "Process Automation Agent",
@@ -462,9 +462,9 @@ export const useCases = {
       problem:
         "Üretim müdürleri haftalık durum raporunu 4-5 farklı sistemden manuel olarak hazırlıyor; kritik sapmalar çoğunlukla geç fark ediliyor.",
       approach:
-        "ERP, MES ve operasyon verilerini birleştiren AI copilot; sapmaları otomatik işaretler, özet üretir ve önerilen aksiyonu insan onayıyla kayıt altına alır.",
+        "ERP, MES ve operasyon verilerini birleştiren Agentic AI akışı; sapmaları otomatik işaretler, özet üretir ve kritik aksiyonları insan onayına sunar.",
       output:
-        "Haftalık rapor 3 dakikada hazır. Kritik sapma anlık bildirim. Aksiyon önerisi yönetici onayıyla loglanıyor.",
+        "Haftalık rapor 3 dakikada hazır. Kritik sapma anlık bildirim. Onaylanan aksiyonlar denetim iziyle kayıt altına alınıyor.",
       metric: "Rapor hazırlama süresi · Sapma tespit hızı · Müdahale oranı",
     },
     {
@@ -473,18 +473,18 @@ export const useCases = {
       problem:
         "Satış ekibi teklif hazırlamak için ortalama 2-3 gün harcıyor; müşteri sorularına yanıt gecikmesi fırsatları kaçırıyor.",
       approach:
-        "CRM geçmişi, ürün kataloğu ve önceki teklifler üzerinden çalışan AI ajanı; taslağı üretiyor, satış müdürü onayıyla çıkıyor.",
+        "CRM geçmişi, ürün kataloğu ve önceki teklifler üzerinden çalışan AI agent akışı; taslağı üretir, düşük riskli yanıtları otomatik hazırlar, bağlayıcı teklifleri satış müdürü onayına sunar.",
       output:
-        "Teklif taslağı 20 dakikada hazır. Müşteri sorularına ilk yanıt otomatik. Tüm adımlar audit trail'e kaydediliyor.",
+        "Teklif taslağı 20 dakikada hazır. Müşteri sorularına ilk yanıt otomatik. Tüm adımlar denetim izine kaydediliyor.",
       metric: "Teklif hazırlama süresi · İlk yanıt süresi · Kazanılan teklif oranı",
     },
     {
       sector: "Satın Alma",
-      title: "Tedarikçi Karşılaştırma ve Onay Akışı",
+      title: "Tedarik Karar Ajanı",
       problem:
         "Birden fazla tedarikçi teklifi Excel'de manuel karşılaştırılıyor; onay süreci mail zinciriyle yönetiliyor ve haftalar sürüyor.",
       approach:
-        "Teklif verilerini otomatik karşılaştıran, risk noktalarını işaretleyen ve dijital onay akışı sunan kontrollü sistem.",
+        "Teklif verilerini karşılaştıran, risk noktalarını işaretleyen ve kritiklik seviyesine göre dijital onay veya otomatik ilerleme sağlayan agentic akış.",
       output:
         "Karşılaştırma raporu dakikalar içinde hazır. Onay süresi günlerden saatlere iniyor. Her karar kayıt altında.",
       metric: "Onay süresi · Maliyet fark tespiti · Audit trail eksiksizliği",
@@ -495,9 +495,9 @@ export const useCases = {
       problem:
         "Çalışanlar izin, masraf ve politika soruları için İK ekibini sık sık meşgul ediyor; İK stratejik işe zaman bulamıyor.",
       approach:
-        "Şirket içi prosedürler ve politikalar üzerinde çalışan güvenli AI asistanı. Hassas veriye erişimi yok, her yanıt loglanıyor.",
+        "Şirket içi prosedürler ve politikalar üzerinde çalışan güvenli AI asistanı. Düşük riskli talepleri self servis karşılar, kritik veya kişisel veri içeren konuları İK'ya yönlendirir.",
       output:
-        "Çalışanlar politika sorularına anında yanıt alıyor. İK ekibi rutin sorudan kurtularak stratejik işe odaklanıyor.",
+        "Çalışanlar politika sorularına anında yanıt alıyor. İK ekibi rutin sorulardan kurtuluyor, kritik talepler doğru kişiye yönleniyor.",
       metric: "Self-servis tamamlanma oranı · İK'ya yönlendirilen rutin soru sayısı",
     },
   ],
@@ -508,9 +508,9 @@ export const useCases = {
       problem:
         "Production managers manually compile weekly status reports from 4-5 different systems; critical deviations are often caught too late.",
       approach:
-        "AI copilot that unifies ERP, MES, and operational data; automatically flags deviations, generates summaries, and logs recommended actions after manager approval.",
+        "Agentic AI workflow that unifies ERP, MES, and operational data; automatically flags deviations, generates summaries, and routes critical actions for manager approval.",
       output:
-        "Weekly report ready in 3 minutes. Critical deviation alerts in real time. Action recommendations logged after approval.",
+        "Weekly report ready in 3 minutes. Critical deviation alerts in real time. Approved actions are recorded with an audit trail.",
       metric: "Report prep time · Deviation detection speed · Intervention rate",
     },
     {
@@ -519,18 +519,18 @@ export const useCases = {
       problem:
         "Sales teams spend 2-3 days preparing proposals on average; delayed responses to customer questions cost deals.",
       approach:
-        "AI agent working on CRM history, product catalog, and past proposals; generates the draft, sends it after the sales manager approves.",
+        "AI agent workflow working on CRM history, product catalog, and past proposals; generates drafts, prepares low-risk responses automatically, and routes binding proposals for sales manager approval.",
       output:
         "Proposal draft ready in 20 minutes. First customer response automated. Every step logged in the audit trail.",
       metric: "Proposal prep time · First response time · Win rate",
     },
     {
       sector: "Procurement",
-      title: "Supplier Comparison and Approval Flow",
+      title: "Procurement Decision Agent",
       problem:
         "Multiple supplier bids are compared manually in Excel; approval is managed via email chains and takes weeks.",
       approach:
-        "Controlled system that automatically compares bid data, flags risk points, and provides a structured digital approval workflow.",
+        "Agentic workflow that compares bid data, flags risk points, and provides approval or automated progression based on criticality.",
       output:
         "Comparison report ready in minutes. Approval time drops from days to hours. Every decision is on record.",
       metric: "Approval cycle time · Cost variance detection · Audit trail completeness",
@@ -541,9 +541,9 @@ export const useCases = {
       problem:
         "Employees frequently interrupt the HR team with leave, expense, and policy questions; HR has little time left for strategic work.",
       approach:
-        "Secure AI assistant built on internal procedures and policies. No access to sensitive data; every response is logged.",
+        "Secure AI assistant built on internal procedures and policies. Low-risk requests are handled through self-service; critical or personal-data cases are routed to HR.",
       output:
-        "Employees get instant answers to policy questions. HR team freed from routine queries to focus on strategic work.",
+        "Employees get instant answers to policy questions. HR is freed from routine queries, while critical requests are routed to the right owner.",
       metric: "Self-service completion rate · Routine queries redirected to HR",
     },
   ],
@@ -556,16 +556,16 @@ export const pilotSteps = {
       title: "Keşif",
       duration: "1-2 Hafta",
       description:
-        "İş sürecinizi analiz ediyoruz, veri kaynaklarını değerlendiriyoruz ve başarı kriterlerini birlikte belirliyoruz. Yüksek etki / düşük risk kombinasyonunu hedefliyoruz.",
-      deliverable: "Proje kapsamı, KPI tanımları ve veri hazırlık raporu",
+        "İş sürecinizi analiz ediyor, veri kaynaklarını değerlendiriyor ve sürecin kritiklik / geri döndürülebilirlik seviyesini çıkarıyoruz.",
+      deliverable: "Proje kapsamı, KPI tanımları, veri hazırlık ve risk analizi",
     },
     {
       step: 2,
       title: "Tasarım",
       duration: "2-3 Hafta",
       description:
-        "Çözüm mimarisini tasarlıyoruz. Entegrasyon planı, insan onay noktaları, yetki yapısı ve audit mekanizmaları bu aşamada belirlenir.",
-      deliverable: "Teknik tasarım belgesi ve entegrasyon planı",
+        "Agentic akış mimarisini tasarlıyoruz. Entegrasyon planı, insan onay noktaları, otomasyon seviyesi, yetki yapısı ve denetim mekanizmaları bu aşamada belirlenir.",
+      deliverable: "Agentic akış tasarımı, teknik mimari ve entegrasyon planı",
     },
     {
       step: 3,
@@ -590,16 +590,16 @@ export const pilotSteps = {
       title: "Discovery",
       duration: "1-2 Weeks",
       description:
-        "We analyze your business process, evaluate data sources, and define success criteria together. We target the high-impact / low-risk combination.",
-      deliverable: "Project scope, KPI definitions, and data readiness report",
+        "We analyze your business process, evaluate data sources, and map the criticality and reversibility level of the workflow.",
+      deliverable: "Project scope, KPI definitions, data readiness, and risk analysis",
     },
     {
       step: 2,
       title: "Design",
       duration: "2-3 Weeks",
       description:
-        "We design the solution architecture. Integration plan, human approval gates, authorization structure, and audit mechanisms are defined in this phase.",
-      deliverable: "Technical design document and integration plan",
+        "We design the agentic workflow architecture. Integration plan, human approval gates, automation level, authorization structure, and audit mechanisms are defined in this phase.",
+      deliverable: "Agentic workflow design, technical architecture, and integration plan",
     },
     {
       step: 3,
@@ -632,11 +632,11 @@ export const securityItems = {
       icon: "approval",
       title: "İnsan Onay Noktaları",
       description:
-        "Kritik aksiyonlar otomatik geçmez. Her yüksek riskli karar, tanımlı yetkili tarafından onaylanır.",
+        "Kritik veya geri döndürülemez kararlar otomatik geçmez. Risk seviyesine göre tanımlı yetkilinin onayı gerekir.",
     },
     {
       icon: "audit",
-      title: "Tam Audit Trail",
+      title: "Tam Denetim İzi",
       description:
         "Her karar, her aksiyon, her onay — değiştirilemez kayıt altında. Denetim anında erişilebilir.",
     },
@@ -656,7 +656,7 @@ export const securityItems = {
       icon: "shield",
       title: "KVKK Uyumu",
       description:
-        "Türk kurumsal alıcılar için KVKK gereksinimlerine uygun sistem tasarımı. GDPR uyumlu süreçler.",
+        "Türk kurumsal alıcılar için KVKK gereksinimlerine uygun sistem tasarımı, veri işleme ve kayıt mekanizmaları.",
     },
   ],
   en: [
@@ -670,7 +670,7 @@ export const securityItems = {
       icon: "approval",
       title: "Human Approval Gates",
       description:
-        "Critical actions don't pass automatically. Every high-risk decision requires approval from a designated authority.",
+        "Critical or irreversible decisions do not pass automatically. Approval is required from a designated authority based on risk level.",
     },
     {
       icon: "audit",
@@ -692,9 +692,9 @@ export const securityItems = {
     },
     {
       icon: "shield",
-      title: "KVKK / GDPR Compliance",
+      title: "GDPR Compliance",
       description:
-        "System design compliant with KVKK requirements for Turkish enterprise buyers. GDPR-compliant processes.",
+        "System design, data processing, and recordkeeping mechanisms aligned with GDPR requirements.",
     },
   ],
 };
